@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بوابة فرع الخبر — تحفيظ الشرقية</title>
+<style>
+:root {
+  --primary:#323366; --mid:#544f7d; --cyan:#60c4e4; --cyan-l:#a8dff0;
+  --white:#fff; --off:#f7f8fc; --border:#e8eaf2;
+  --text:#1a1a2e; --tl:#6b6f8a;
+  --success:#2d7a55; --warn:#b45309; --danger:#c0392b;
+  --r:14px; --rs:8px;
+  --sh:0 2px 16px rgba(50,51,102,.09);
+  --shm:0 4px 28px rgba(50,51,102,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--off);color:var(--text);min-height:100vh;direction:rtl}
+
+/* HEADER */
+.hdr{background:var(--primary);position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;top:-40px;left:-40px;width:220px;height:220px;border:32px solid rgba(96,196,228,.10);border-radius:50%}
+.hdr::after{content:'';position:absolute;bottom:-60px;right:8%;width:280px;height:280px;border:40px solid rgba(96,196,228,.06);border-radius:50%}
+.hdr-pat{height:8px;background:repeating-linear-gradient(90deg,var(--cyan) 0,var(--cyan) 14px,var(--mid) 14px,var(--mid) 28px,var(--cyan) 28px,var(--cyan) 42px,transparent 42px,transparent 56px);opacity:.6}
+.hdr-inner{max-width:1400px;margin:0 auto;padding:22px 32px 18px;display:flex;align-items:center;gap:20px;position:relative;z-index:1}
+.hdr-logo{width:60px;height:60px;border-radius:50%;background:rgba(96,196,228,.12);border:2px solid rgba(96,196,228,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-titles{flex:1}
+.hdr-titles h1{font-size:20px;font-weight:700;color:#fff;line-height:1.3}
+.hdr-titles h1 span{color:var(--cyan)}
+.hdr-titles p{font-size:12px;color:rgba(255,255,255,.55);margin-top:2px}
+.hdr-badge{background:rgba(96,196,228,.15);border:1px solid rgba(96,196,228,.4);color:var(--cyan);padding:6px 18px;border-radius:20px;font-size:13px;font-weight:700}
+
+/* NAV */
+.nav{background:#fff;border-bottom:3px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(50,51,102,.07)}
+.nav-inner{max-width:1400px;margin:0 auto;padding:0 28px;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nav-btn{padding:14px 18px;border:none;background:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;color:var(--tl);white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all .2s;display:flex;align-items:center;gap:7px}
+.nav-btn:hover{color:var(--primary)}
+.nav-btn.active{color:var(--primary);border-bottom-color:var(--cyan)}
+
+/* MAIN */
+.main{max-width:1400px;margin:0 auto;padding:28px 32px}
+@media(max-width:600px){.main{padding:16px}.hdr-inner{padding:14px 16px}}
+
+/* PAGES */
+.page{display:none;animation:pgIn .25s ease}
+.page.active{display:block}
+@keyframes pgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* SEC HEADER */
+.sec-hdr{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.sec-hdr h2{font-size:20px;font-weight:700;color:var(--primary)}
+.sec-div{flex:1;height:2px;background:linear-gradient(90deg,var(--cyan),transparent)}
+.sec-badge{background:rgba(96,196,228,.12);color:var(--mid);padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(96,196,228,.3)}
+
+/* BACK BTN */
+.back-btn{display:inline-flex;align-items:center;gap:7px;background:#fff;border:2px solid var(--border);border-radius:20px;padding:7px 18px;font-family:inherit;font-size:13px;font-weight:700;color:var(--primary);cursor:pointer;margin-bottom:20px;transition:all .18s}
+.back-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* YEAR TOGGLE */
+.yr-toggle{display:flex;gap:6px;margin-bottom:22px;background:#fff;padding:5px;border-radius:24px;width:fit-content;box-shadow:var(--sh);border:1px solid var(--border);flex-wrap:wrap}
+.yr-btn{padding:7px 18px;border:none;border-radius:20px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;transition:all .2s;background:transparent;color:var(--tl)}
+.yr-btn.active{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(50,51,102,.3)}
+
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:28px}
+.stat-card{background:#fff;border-radius:var(--r);padding:20px 18px;box-shadow:var(--sh);border-top:4px solid var(--cyan);position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s}
+.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shm)}
+.stat-card.ac{border-top-color:var(--primary)}.stat-card.md{border-top-color:var(--mid)}
+.bg-icon{position:absolute;bottom:-6px;left:10px;font-size:48px;opacity:.06;pointer-events:none}
+.stat-lbl{font-size:11px;color:var(--tl);font-weight:700;margin-bottom:8px}
+.stat-val{font-size:32px;font-weight:900;color:var(--primary);line-height:1}
+.stat-chg{font-size:11px;margin-top:6px;font-weight:700}
+.stat-chg.up{color:var(--success)}.stat-chg.dn{color:var(--danger)}.stat-chg.ne{color:var(--tl)}
+
+/* CARD */
+.card{background:#fff;border-radius:var(--r);padding:22px;box-shadow:var(--sh);border:1px solid var(--border);margin-bottom:16px}
+.card-title{font-size:15px;font-weight:700;color:var(--primary);margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:8px}
+.ct-icon{width:28px;height:28px;background:rgba(96,196,228,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
+
+/* BAR */
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.bar-lbl{width:96px;font-size:12px;color:var(--tl);font-weight:600;text-align:right;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;height:9px;background:var(--border);border-radius:5px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--primary),var(--cyan))}
+.bar-num{width:44px;font-size:12px;font-weight:700;color:var(--primary);text-align:left;flex-shrink:0}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{background:var(--primary);color:#fff;padding:10px 14px;text-align:right;font-weight:700;font-size:12px}
+.tbl th:first-child{border-radius:0 var(--rs) 0 0}.tbl th:last-child{border-radius:var(--rs) 0 0 0}
+.tbl td{padding:9px 14px;border-bottom:1px solid var(--border)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:nth-child(even) td{background:rgba(247,248,252,.6)}
+
+/* DONUT */
+.donut-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.legend{min-width:120px}
+.leg-item{display:flex;align-items:center;gap:8px;margin-bottom:9px;font-size:13px}
+.leg-dot{width:11px;height:11px;border-radius:3px;flex-shrink:0}
+
+/* COMPARE */
+.cmp-card{background:#fff;border-radius:var(--rs);padding:16px;box-shadow:var(--sh);border:1px solid var(--border);text-align:center}
+.cmp-title{font-size:11px;color:var(--tl);font-weight:700;margin-bottom:10px}
+.cmp-row{display:flex;justify-content:space-around;align-items:center}
+.cmp-yr{font-size:10px;color:var(--tl)}
+.cmp-num{font-size:20px;font-weight:900;color:var(--primary)}
+.cmp-arr{font-size:20px;font-weight:900}
+.cmp-arr.up{color:var(--success)}.cmp-arr.dn{color:var(--danger)}
+.cmp-diff{font-size:12px;font-weight:700;margin-top:6px}
+.cmp-diff.up{color:var(--success)}.cmp-diff.dn{color:var(--danger)}
+
+/* FINANCE */
+.fin-qtrs{display:flex;gap:12px;justify-content:space-around;align-items:flex-end;height:130px;padding:0 8px}
+.fin-q{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+.fin-q-lbl{font-size:11px;color:var(--tl);font-weight:700}
+.fin-bars{display:flex;gap:4px;align-items:flex-end}
+.fin-bar{width:22px;border-radius:4px 4px 0 0}
+.fin-bar.rev{background:var(--primary)}.fin-bar.exp{background:rgba(192,57,43,.55)}
+.fin-q-vals{font-size:10px;text-align:center;line-height:1.6}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.kpi-card{background:#fff;border-radius:var(--rs);padding:16px;box-shadow:var(--sh);border:1px solid var(--border);border-right:4px solid var(--cyan)}
+.kpi-card.edu{border-right-color:#3b82f6}.kpi-card.ops{border-right-color:#f59e0b}
+.kpi-card.fin{border-right-color:#10b981}.kpi-card.hr{border-right-color:#8b5cf6}
+.kpi-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:10px}
+.kpi-code{font-size:11px;color:var(--tl);padding:2px 8px;border-radius:6px;font-weight:700;flex-shrink:0;border:1px solid var(--border)}
+.kpi-name{font-size:12px;font-weight:700;color:var(--text);line-height:1.45;flex:1}
+.kpi-nums{display:flex;justify-content:space-between;font-size:11px;color:var(--tl);margin-bottom:5px}
+.kpi-pct{font-weight:900;font-size:14px}
+.kpi-pct.exceed{color:var(--success)}.kpi-pct.ok{color:var(--primary)}.kpi-pct.wn{color:var(--warn)}.kpi-pct.low{color:var(--danger)}
+.prog-track{height:7px;background:var(--border);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;border-radius:4px}
+.prog-fill.exceed{background:linear-gradient(90deg,var(--success),#4ade80)}
+.prog-fill.ok{background:linear-gradient(90deg,var(--primary),var(--cyan))}
+.prog-fill.wn{background:linear-gradient(90deg,var(--warn),#fbbf24)}
+.prog-fill.low{background:linear-gradient(90deg,var(--danger),#f87171)}
+
+/* CAT FILTER */
+.cat-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.cat-btn{padding:7px 16px;border:2px solid var(--border);border-radius:20px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:700;background:#fff;color:var(--tl);transition:all .18s}
+.cat-btn.active,.cat-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* LANDING */
+.landing{min-height:calc(100vh - 140px);display:flex;flex-direction:column;align-items:center;padding:40px 20px 60px}
+.landing-hero{text-align:center;margin-bottom:48px}
+.landing-hero h2{font-size:28px;font-weight:900;color:var(--primary);margin-bottom:10px}
+.landing-hero p{font-size:14px;color:var(--tl);max-width:520px}
+.landing-div{width:80px;height:4px;background:linear-gradient(90deg,var(--primary),var(--cyan));border-radius:2px;margin:14px auto 0}
+.landing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;width:100%;max-width:900px}
+@media(max-width:780px){.landing-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.landing-grid{grid-template-columns:1fr}}
+.lcard{background:#fff;border-radius:18px;padding:32px 24px 28px;box-shadow:var(--sh);border:1.5px solid var(--border);cursor:pointer;text-align:center;transition:transform .22s,box-shadow .22s,border-color .22s;position:relative;overflow:hidden}
+.lcard::before{content:'';position:absolute;top:0;right:0;left:0;height:5px;background:linear-gradient(90deg,var(--primary),var(--cyan));border-radius:18px 18px 0 0}
+.lcard:hover{transform:translateY(-6px);box-shadow:var(--shm);border-color:var(--cyan)}
+.lcard-icon{font-size:42px;margin-bottom:14px;display:block;line-height:1}
+.lcard h3{font-size:16px;font-weight:700;color:var(--primary);margin-bottom:8px}
+.lcard p{font-size:12px;color:var(--tl);line-height:1.6}
+.lcard-arr{margin-top:18px;display:inline-block;background:var(--primary);color:#fff;font-size:12px;font-weight:700;padding:6px 18px;border-radius:20px;opacity:0;transform:translateY(4px);transition:opacity .2s,transform .2s}
+.lcard:hover .lcard-arr{opacity:1;transform:none}
+.lcard.ctrl-card{border-color:rgba(96,196,228,.4)}
+.lcard.ctrl-card::before{background:linear-gradient(90deg,var(--cyan),var(--primary))}
+
+/* FORMS */
+.forms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.form-card{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+.form-card:hover{transform:translateY(-4px);box-shadow:var(--shm)}
+.fc-hdr{padding:20px 22px;color:#fff;position:relative;overflow:hidden}
+.fc-hdr::after{content:'';position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;border:12px solid rgba(96,196,228,.15);border-radius:50%}
+.fc-icon{font-size:28px;margin-bottom:8px}
+.fc-hdr h3{font-size:15px;font-weight:700}
+.fc-hdr p{font-size:11px;opacity:.65;margin-top:3px}
+.fc-body{padding:18px 22px}
+.fc-fields{list-style:none;margin-bottom:14px}
+.fc-fields li{font-size:12px;color:var(--tl);padding:5px 0;border-bottom:1px dashed var(--border);display:flex;align-items:center;gap:8px}
+.fc-fields li::before{content:'◆';font-size:8px;color:var(--cyan)}
+.fc-btn{width:100%;padding:10px;border:none;border-radius:var(--rs);cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;margin-bottom:8px;transition:all .18s}
+.fc-btn-p{background:var(--primary);color:#fff}.fc-btn-p:hover{background:var(--mid)}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;display:none;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:var(--r);width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:var(--shm)}
+.modal-head{background:var(--primary);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;border-radius:var(--r) var(--r) 0 0;position:sticky;top:0;z-index:1}
+.modal-head h3{font-size:15px;font-weight:700}
+.modal-close{background:rgba(255,255,255,.12);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
+.modal-body{padding:22px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px}
+.fg label span{color:var(--danger)}
+.fi{width:100%;padding:9px 12px;border:2px solid var(--border);border-radius:var(--rs);font-family:inherit;font-size:13px;color:var(--text);background:#fff;outline:none;transition:border-color .18s}
+.fi:focus{border-color:var(--primary)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.f-row{grid-template-columns:1fr}}
+.modal-foot{padding:14px 22px;border-top:2px solid var(--border);display:flex;gap:10px;justify-content:flex-end}
+.btn{padding:9px 22px;border:none;border-radius:var(--rs);cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;transition:all .18s}
+.btn-p{background:var(--primary);color:#fff}.btn-p:hover{background:var(--mid)}
+.btn-g{background:var(--off);color:var(--tl);border:2px solid var(--border)}.btn-g:hover{background:var(--border)}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--success);color:#fff;padding:12px 28px;border-radius:30px;font-weight:700;font-size:13px;box-shadow:var(--shm);z-index:2000;transition:transform .3s;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* INFO BOX */
+.info-box{background:rgba(96,196,228,.08);border:1px solid rgba(96,196,228,.3);border-radius:var(--rs);padding:12px 16px;font-size:12px;color:var(--mid);margin-bottom:16px;display:flex;align-items:flex-start;gap:8px}
+
+/* CTRL PANEL */
+.ctrl-sec{background:#fff;border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh);margin-bottom:22px;overflow:hidden}
+.ctrl-head{background:linear-gradient(135deg,var(--primary),var(--mid));color:#fff;padding:16px 22px;display:flex;align-items:center;gap:10px}
+.ctrl-head h3{font-size:15px;font-weight:700}
+.ctrl-body{padding:22px}
+.ctrl-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+@media(max-width:600px){.ctrl-grid{grid-template-columns:1fr}}
+.ctrl-field label{display:block;font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px}
+.ctrl-field input,.ctrl-field select{width:100%;padding:9px 12px;border:2px solid var(--border);border-radius:var(--rs);font-family:inherit;font-size:13px;color:var(--text);background:#fff;outline:none;transition:border-color .18s;text-align:center}
+.ctrl-field input:focus,.ctrl-field select:focus{border-color:var(--cyan)}
+.ctrl-save{background:linear-gradient(135deg,var(--primary),var(--mid));color:#fff;border:none;border-radius:var(--rs);padding:11px 28px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .18s;display:inline-flex;align-items:center;gap:8px;margin-top:8px}
+.ctrl-save:hover{opacity:.88}
+.ctrl-group-title{font-size:13px;font-weight:700;color:var(--primary);margin:20px 0 10px;padding-bottom:8px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:6px}
+
+/* UPLOAD */
+.upload-zone{border:2.5px dashed var(--cyan);border-radius:var(--r);padding:36px 24px;text-align:center;cursor:pointer;background:rgba(96,196,228,.04);transition:background .2s,border-color .2s;position:relative;margin-bottom:8px}
+.upload-zone:hover,.upload-zone.drag{background:rgba(96,196,228,.10);border-color:var(--primary)}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-icon{font-size:40px;margin-bottom:10px}
+.upload-zone h4{font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px}
+.upload-zone p{font-size:12px;color:var(--tl)}
+.upload-res{margin-top:12px;padding:14px 18px;border-radius:var(--rs);font-size:13px;font-weight:700;display:none;line-height:1.8}
+.upload-res.ok{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7}
+.upload-res.err{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+
+/* KPI EDIT TABLE */
+.kpi-et{width:100%;border-collapse:collapse;font-size:12px}
+.kpi-et th{background:var(--off);color:var(--tl);font-weight:700;padding:8px 10px;text-align:right;border-bottom:2px solid var(--border)}
+.kpi-et td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:middle}
+.kpi-et input{width:90px;padding:5px 8px;border:1.5px solid var(--border);border-radius:6px;font-size:12px;text-align:center;outline:none;font-family:inherit}
+.kpi-et input:focus{border-color:var(--cyan)}
+.cat-bdg{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:700}
+.cat-bdg.edu{background:#dbeafe;color:#1e40af}.cat-bdg.ops{background:#fef3c7;color:#92400e}
+.cat-bdg.fin{background:#d1fae5;color:#065f46}.cat-bdg.hr{background:#ede9fe;color:#5b21b6}
+
+/* HOODS CTRL */
+.hood-row{display:grid;grid-template-columns:1fr 100px 36px;gap:8px;align-items:center;margin-bottom:8px}
+.hood-inp{padding:7px 10px;border:1.5px solid var(--border);border-radius:var(--rs);font-family:inherit;font-size:12px;outline:none;width:100%}
+.hood-inp:focus{border-color:var(--cyan)}
+.del-btn{background:rgba(192,57,43,.1);border:none;color:var(--danger);width:32px;height:32px;border-radius:var(--rs);cursor:pointer;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.del-btn:hover{background:var(--danger);color:#fff}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+        <path d="M18 4L28 10L28 22L18 28L8 22L8 10Z" fill="none" stroke="#60c4e4" stroke-width="1.5" opacity=".6"/>
+        <path d="M18 8L24 12L24 20L18 24L12 20L12 12Z" fill="rgba(96,196,228,.15)"/>
+        <circle cx="18" cy="16" r="4" fill="#60c4e4" opacity=".8"/>
+        <circle cx="18" cy="7" r="2" fill="#60c4e4"/>
+      </svg>
+    </div>
+    <div class="hdr-titles">
+      <h1>جمعية تحفيظ القرآن الكريم <span>بالمنطقة الشرقية</span></h1>
+      <p>منصة متكاملة للبيانات والمتابعة الميدانية — فرع الخبر</p>
+    </div>
+    <div class="hdr-badge">فرع الخبر</div>
+  </div>
+  <div class="hdr-pat"></div>
+</header>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showPage('landing')" data-p="landing">🏠 الرئيسية</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- LANDING -->
+<div class="page active" id="page-landing">
+  <div class="landing">
+    <div class="landing-hero">
+      <h2>بوابة فرع الخبر</h2>
+      <p>جمعية تحفيظ القرآن الكريم بالمنطقة الشرقية — نظام متكامل للبيانات والمتابعة الميدانية</p>
+      <div class="landing-div"></div>
+    </div>
+    <!-- صف 1 -->
+    <div class="landing-grid">
+      <div class="lcard" onclick="showPage('home')"><span class="lcard-icon">📈</span><h3>النظرة العامة</h3><p>المؤشرات الرئيسية والمقارنة بين السنوات وتوزيع الأحياء</p><div class="lcard-arr">الدخول ←</div></div>
+      <div class="lcard" onclick="showPage('edu')"><span class="lcard-icon">📚</span><h3>الشؤون التعليمية</h3><p>الحلق والطلاب والحفاظ وأنظمة الدراسة والمؤشرات</p><div class="lcard-arr">الدخول ←</div></div>
+      <div class="lcard" onclick="showPage('admin')"><span class="lcard-icon">👥</span><h3>الشؤون الإدارية</h3><p>الكوادر البشرية من معلمين ومشرفين حسب الجنسية</p><div class="lcard-arr">الدخول ←</div></div>
+      <!-- صف 2 -->
+      <div class="lcard" onclick="showPage('finance')"><span class="lcard-icon">💰</span><h3>الشؤون المالية</h3><p>الإيرادات والمصروفات الربعية وتحقق الأهداف المالية</p><div class="lcard-arr">الدخول ←</div></div>
+      <div class="lcard" onclick="showPage('kpi')"><span class="lcard-icon">📊</span><h3>مؤشرات الأداء</h3><p>مؤشرات الخطة الاستراتيجية على المحاور الأربعة</p><div class="lcard-arr">الدخول ←</div></div>
+      <div class="lcard" onclick="showPage('forms')"><span class="lcard-icon">📝</span><h3>النماذج الرسمية</h3><p>فتح الحلقات وشهادات الشكر وتهنئة الحفاظ الجدد</p><div class="lcard-arr">الدخول ←</div></div>
+    </div>
+    <!-- لوحة التحكم — صف منفرد -->
+    <div style="width:100%;max-width:900px;margin-top:20px">
+      <div class="lcard ctrl-card" onclick="showPage('ctrl')" style="text-align:center;padding:24px 32px">
+        <span class="lcard-icon">⚙️</span>
+        <h3>لوحة التحكم</h3>
+        <p>تحديث بيانات جميع الأقسام لأي عام — برفع Excel أو التعديل اليدوي</p>
+        <div class="lcard-arr">الدخول ←</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div class="page" id="page-home">
+  <button class="back-btn" onclick="showPage('landing')">← الرئيسية</button>
+  <div class="sec-hdr"><h2>نظرة عامة — فرع الخبر</h2><div class="sec-div"></div><div class="sec-badge" id="home-badge">—</div></div>
+  <div id="home-yr-toggle"></div>
+  <div id="home-content"></div>
+</div>
+
+<!-- EDU -->
+<div class="page" id="page-edu">
+  <button class="back-btn" onclick="showPage('landing')">← الرئيسية</button>
+  <div class="sec-hdr"><h2>الشؤون التعليمية</h2><div class="sec-div"></div><div class="sec-badge" id="edu-badge">—</div></div>
+  <div id="edu-yr-toggle"></div>
+  <div id="edu-content"></div>
+</div>
+
+<!-- ADMIN -->
+<div class="page" id="page-admin">
+  <button class="back-btn" onclick="showPage('landing')">← الرئيسية</button>
+  <div class="sec-hdr"><h2>الشؤون الإدارية — الكوادر البشرية</h2><div class="sec-div"></div><div class="sec-badge" id="admin-badge">—</div></div>
+  <div id="admin-yr-toggle"></div>
+  <div id="admin-content"></div>
+</div>
+
+<!-- FINANCE -->
+<div class="page" id="page-finance">
+  <button class="back-btn" onclick="showPage('landing')">← الرئيسية</button>
+  <div class="sec-hdr"><h2 id="fin-title">الشؤون المالية</h2><div class="sec-div"></div><div class="sec-badge" id="fin-badge">—</div></div>
+  <div id="fin-yr-toggle"></div>
+  <div id="fin-content"></div>
+</div>
+
+<!-- KPI -->
+<div class="page" id="page-kpi">
+  <button class="back-btn" onclick="showPage('landing')">← الرئيسية</button>
+  <div class="sec-hdr"><h2>مؤشرات الأداء — الخطة الاستراتيجية</h2><div class="sec-div"></div><div class="sec-badge" id="kpi-badge">—</div></div>
+  <div class="stats-grid" style="margin-bottom:20px">
+    <div class="stat-card ac"><div class="stat-lbl">مؤشرات متحققة (100%+)</div><div class="stat-val" id="kpi-exceed">—</div></div>
+    <div class="stat-card"><div class="stat-lbl">مؤشرات قريبة (90-99%)</div><div class="stat-val" id="kpi-ok">—</div></div>
+    <div class="stat-card md"><div class="stat-lbl">مؤشرات تحت المتابعة</div><div class="stat-val" id="kpi-low">—</div></div>
+  </div>
+  <div class="cat-filter">
+    <button class="cat-btn active" onclick="filterKpi('all',this)">الكل</button>
+    <button class="cat-btn" onclick="filterKpi('edu',this)">تعليمي</button>
+    <button class="cat-btn" onclick="filterKpi('ops',this)">تشغيلي</button>
+    <button class="cat-btn" onclick="filterKpi('fin',this)">مالي</button>
+    <button class="cat-btn" onclick="filterKpi('hr',this)">بشري</button>
+  </div>
+  <div class="kpi-grid" id="kpi-container"></div>
+</div>
+
+<!-- FORMS -->
+<div class="page" id="page-forms">
+  <button class="back-btn" onclick="showPage('landing')">← الرئيسية</button>
+  <div class="sec-hdr"><h2>النماذج الرسمية</h2><div class="sec-div"></div></div>
+  <div class="info-box"><span>💡</span><span>سيتم ربط النماذج بـ Google Sheets في المرحلة الثانية</span></div>
+  <div class="forms-grid">
+    <div class="form-card">
+      <div class="fc-hdr" style="background:linear-gradient(135deg,var(--primary),var(--mid))"><div class="fc-icon">🕌</div><h3>تصريح فتح حلقة قرآنية</h3><p>الإذن الرسمي بفتح حلقة جديدة</p></div>
+      <div class="fc-body"><ul class="fc-fields"><li>اسم المسجد والحي</li><li>الفترة الزمنية</li><li>اسم الإمام ورقم الجوال</li><li>عدد الطلاب بالمراحل</li><li>توقيع المشرف</li></ul>
+      <button class="fc-btn fc-btn-p" onclick="openForm('halqa')">📝 فتح النموذج</button></div>
+    </div>
+    <div class="form-card">
+      <div class="fc-hdr" style="background:linear-gradient(135deg,var(--mid),var(--primary))"><div class="fc-icon">🏆</div><h3>شهادة شكر وتقدير — الطلاب</h3><p>تُرسل PDF تلقائياً</p></div>
+      <div class="fc-body"><ul class="fc-fields"><li>اسم الطالب كاملاً</li><li>اسم الجامع / الحلقة</li><li>اسم المناسبة</li><li>البريد الإلكتروني</li></ul>
+      <button class="fc-btn fc-btn-p" onclick="openForm('student-cert')">📝 فتح النموذج</button></div>
+    </div>
+    <div class="form-card">
+      <div class="fc-hdr" style="background:linear-gradient(135deg,#3a5a8f,var(--primary))"><div class="fc-icon">🎖️</div><h3>شهادة شكر وتقدير — المعلمون</h3><p>تُرسل PDF تلقائياً</p></div>
+      <div class="fc-body"><ul class="fc-fields"><li>اسم المعلم كاملاً</li><li>اسم الجامع / الحلقة</li><li>اسم المناسبة</li><li>البريد الإلكتروني</li></ul>
+      <button class="fc-btn fc-btn-p" onclick="openForm('teacher-cert')">📝 فتح النموذج</button></div>
+    </div>
+    <div class="form-card">
+      <div class="fc-hdr" style="background:linear-gradient(135deg,var(--primary),#1a5276)"><div class="fc-icon">⭐</div><h3>تهنئة الحفاظ الجدد</h3><p>يُولِّد شهادة PDF</p></div>
+      <div class="fc-body"><ul class="fc-fields"><li>اسم الطالب الحافظ</li><li>اسم الجامع</li><li>عدد الأجزاء المحفوظة</li><li>صورة الطالب (اختياري)</li></ul>
+      <button class="fc-btn fc-btn-p" onclick="openForm('huffaz')">📝 فتح النموذج</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTROL PANEL -->
+<div class="page" id="page-ctrl">
+  <button class="back-btn" onclick="showPage('landing')">← الرئيسية</button>
+  <div class="sec-hdr"><h2>لوحة التحكم</h2><div class="sec-div"></div><div class="sec-badge">تحديث البيانات — جميع الأقسام</div></div>
+
+  <!-- رفع Excel -->
+  <div class="ctrl-sec">
+    <div class="ctrl-head"><span style="font-size:20px">📂</span><h3>رفع ملفات Excel — يقرأ جميع السنوات تلقائياً</h3></div>
+    <div class="ctrl-body">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+        <span style="font-size:12px;background:rgba(96,196,228,.12);color:var(--primary);padding:4px 12px;border-radius:20px;font-weight:700">📊 احصائيات_فرع_الخبر.xlsx</span>
+        <span style="font-size:12px;background:rgba(96,196,228,.12);color:var(--primary);padding:4px 12px;border-radius:20px;font-weight:700">📋 رصد_مستهدفات_الخطة.xlsx</span>
+      </div>
+      <div class="upload-zone" id="upload-zone" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
+        <input type="file" accept=".xlsx,.xls" multiple onchange="handleMultiUpload(this.files)">
+        <div class="upload-icon">📁</div>
+        <h4>اسحب الملفين هنا أو انقر للاختيار</h4>
+        <p>يُحدِّث جميع الأقسام تلقائياً لجميع السنوات الموجودة في الملف</p>
+      </div>
+      <div class="upload-res" id="upload-res"></div>
+      <p style="font-size:11px;color:var(--tl);margin-top:8px">* مكتبة قراءة Excel تحتاج اتصال بالإنترنت عند أول تشغيل فقط.</p>
+    </div>
+  </div>
+
+  <!-- تصدير Excel -->
+  <div class="ctrl-sec">
+    <div class="ctrl-head"><span style="font-size:20px">📤</span><h3>تصدير بيانات Excel — للتعديل والرجوع برفعه</h3></div>
+    <div class="ctrl-body">
+      <p style="font-size:12px;color:var(--tl);margin-bottom:18px">صدِّر البيانات الحالية كملف Excel، عدّل عليه، ثم ارفعه مرة ثانية من الأعلى.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+
+        <!-- تصدير الإحصائيات -->
+        <div style="background:var(--off);border-radius:var(--r);padding:20px;border:1px solid var(--border)">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:26px">📊</span>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--primary)">ملف الإحصائيات</div>
+              <div style="font-size:11px;color:var(--tl)">احصائيات_فرع_الخبر.xlsx</div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--tl);margin-bottom:14px;line-height:1.7">
+            يحتوي على بيانات جميع السنوات المدخلة:<br>
+            المساجد، الحلق، الطلاب، الكوادر، الحفاظ، المالية، الأحياء
+          </p>
+          <button onclick="exportStatsExcel()" class="ctrl-save" style="width:100%;justify-content:center">
+            ⬇️ تصدير ملف الإحصائيات
+          </button>
+        </div>
+
+        <!-- تصدير KPI -->
+        <div style="background:var(--off);border-radius:var(--r);padding:20px;border:1px solid var(--border)">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:26px">📋</span>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--primary)">ملف مؤشرات الأداء</div>
+              <div style="font-size:11px;color:var(--tl)">رصد_مستهدفات_الخطة.xlsx</div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--tl);margin-bottom:14px;line-height:1.7">
+            يحتوي على جميع مؤشرات الأداء:<br>
+            الكود، الاسم، الهدف، المحقق، نسبة التحقق
+          </p>
+          <button onclick="exportKpiExcel()" class="ctrl-save" style="width:100%;justify-content:center">
+            ⬇️ تصدير ملف المؤشرات
+          </button>
+        </div>
+
+      </div>
+      <div class="info-box" style="margin-top:14px;margin-bottom:0">
+        <span>💡</span>
+        <span>بعد التعديل على الملف، ارفعه من قسم <strong>"رفع ملفات Excel"</strong> في الأعلى — سيُحدِّث البيانات تلقائياً.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- اختيار السنة + إضافة سنة -->
+  <div class="ctrl-sec">
+    <div class="ctrl-head"><span style="font-size:20px">📅</span><h3>اختر السنة للتعديل اليدوي</h3></div>
+    <div class="ctrl-body">
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <div id="ctrl-yr-toggle" class="yr-toggle" style="margin-bottom:0"></div>
+        <button onclick="openAddYearModal()" style="padding:8px 18px;border:2px dashed var(--cyan);border-radius:20px;background:rgba(96,196,228,.06);color:var(--primary);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s" onmouseover="this.style.background='rgba(96,196,228,.15)'" onmouseout="this.style.background='rgba(96,196,228,.06)'">＋ إضافة سنة جديدة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- بيانات الأقسام -->
+  <div class="ctrl-sec">
+    <div class="ctrl-head"><span style="font-size:20px">✏️</span><h3>تحديث بيانات جميع الأقسام — <span id="ctrl-year-label">—</span></h3></div>
+    <div class="ctrl-body">
+
+      <div class="ctrl-group-title">🕌 المساجد والحلق</div>
+      <div class="ctrl-grid">
+        <div class="ctrl-field"><label>عدد المساجد</label><input type="number" id="c-masajid" min="0"></div>
+        <div class="ctrl-field"><label>إجمالي الحلق</label><input type="number" id="c-halaq" min="0"></div>
+        <div class="ctrl-field"><label>الحلق المدعومة</label><input type="number" id="c-halaq-s" min="0"></div>
+        <div class="ctrl-field"><label>الحلق غير المدعومة</label><input type="number" id="c-halaq-u" min="0"></div>
+        <div class="ctrl-field"><label>الحلق المتوقفة</label><input type="number" id="c-halaq-p" min="0"></div>
+      </div>
+
+      <div class="ctrl-group-title">👤 الطلاب</div>
+      <div class="ctrl-grid">
+        <div class="ctrl-field"><label>إجمالي الطلاب</label><input type="number" id="c-students" min="0"></div>
+        <div class="ctrl-field"><label>طلاب سعوديون</label><input type="number" id="c-stu-sa" min="0"></div>
+        <div class="ctrl-field"><label>طلاب غير سعوديين</label><input type="number" id="c-stu-ns" min="0"></div>
+        <div class="ctrl-field"><label>نظام الحفظ</label><input type="number" id="c-hafz" min="0"></div>
+        <div class="ctrl-field"><label>نظام التلقين</label><input type="number" id="c-talqin" min="0"></div>
+        <div class="ctrl-field"><label>أنظمة أخرى</label><input type="number" id="c-other-sys" min="0"></div>
+        <div class="ctrl-field"><label>نسبة النجاح %</label><input type="number" id="c-success" min="0" max="100" step="0.01"></div>
+      </div>
+
+      <div class="ctrl-group-title">👨‍🏫 الكوادر</div>
+      <div class="ctrl-grid">
+        <div class="ctrl-field"><label>إجمالي المعلمين</label><input type="number" id="c-teachers" min="0"></div>
+        <div class="ctrl-field"><label>معلمون سعوديون</label><input type="number" id="c-tch-sa" min="0"></div>
+        <div class="ctrl-field"><label>معلمون غير سعوديين</label><input type="number" id="c-tch-ns" min="0"></div>
+        <div class="ctrl-field"><label>إجمالي المشرفين</label><input type="number" id="c-supervisors" min="0"></div>
+        <div class="ctrl-field"><label>مشرفون سعوديون</label><input type="number" id="c-sup-sa" min="0"></div>
+        <div class="ctrl-field"><label>مشرفون غير سعوديين</label><input type="number" id="c-sup-ns" min="0"></div>
+      </div>
+
+      <div class="ctrl-group-title">⭐ الحفاظ</div>
+      <div class="ctrl-grid">
+        <div class="ctrl-field"><label>إجمالي الحفاظ الجدد</label><input type="number" id="c-huffaz" min="0"></div>
+        <div class="ctrl-field"><label>حفاظ سعوديون</label><input type="number" id="c-huf-sa" min="0"></div>
+        <div class="ctrl-field"><label>حفاظ غير سعوديين</label><input type="number" id="c-huf-ns" min="0"></div>
+        <div class="ctrl-field"><label>الأجزاء المحفوظة</label><input type="number" id="c-ajzaa" min="0"></div>
+      </div>
+
+      <div class="ctrl-group-title">💰 المالية — الإيرادات</div>
+      <div class="ctrl-grid">
+        <div class="ctrl-field"><label>إيرادات الربع الأول</label><input type="number" id="c-rev1" min="0"></div>
+        <div class="ctrl-field"><label>إيرادات الربع الثاني</label><input type="number" id="c-rev2" min="0"></div>
+        <div class="ctrl-field"><label>إيرادات الربع الثالث</label><input type="number" id="c-rev3" min="0"></div>
+        <div class="ctrl-field"><label>إيرادات الربع الرابع</label><input type="number" id="c-rev4" min="0"></div>
+      </div>
+
+      <div class="ctrl-group-title">💸 المالية — المصروفات</div>
+      <div class="ctrl-grid">
+        <div class="ctrl-field"><label>مصروفات الربع الأول</label><input type="number" id="c-exp1" min="0"></div>
+        <div class="ctrl-field"><label>مصروفات الربع الثاني</label><input type="number" id="c-exp2" min="0"></div>
+        <div class="ctrl-field"><label>مصروفات الربع الثالث</label><input type="number" id="c-exp3" min="0"></div>
+        <div class="ctrl-field"><label>مصروفات الربع الرابع</label><input type="number" id="c-exp4" min="0"></div>
+      </div>
+
+      <div class="ctrl-group-title">🏘️ توزيع الأحياء</div>
+      <div id="hoods-ctrl"></div>
+      <button onclick="addHood()" style="padding:7px 14px;border:2px dashed var(--cyan);border-radius:16px;background:rgba(96,196,228,.06);color:var(--primary);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;margin-top:6px">＋ إضافة حي</button>
+
+      <br><br>
+      <button class="ctrl-save" onclick="saveYearData()">💾 حفظ بيانات السنة — يُحدِّث جميع الأقسام</button>
+    </div>
+  </div>
+
+  <!-- تعديل KPI -->
+  <div class="ctrl-sec">
+    <div class="ctrl-head"><span style="font-size:20px">📊</span><h3>تعديل مؤشرات الأداء (KPI)</h3></div>
+    <div class="ctrl-body">
+      <p style="font-size:12px;color:var(--tl);margin-bottom:14px">عدّل قيمة المحقق لأي مؤشر وسيُحسب التحقق تلقائياً — يُحدِّث صفحة مؤشرات الأداء فوراً.</p>
+      <div style="overflow-x:auto">
+        <table class="kpi-et">
+          <thead><tr><th>الكود</th><th>المؤشر</th><th>المحور</th><th>الهدف</th><th>المحقق</th><th>%</th></tr></thead>
+          <tbody id="kpi-edit-body"></tbody>
+        </table>
+      </div>
+      <button class="ctrl-save" onclick="saveKpis()">💾 حفظ مؤشرات الأداء</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div class="overlay" id="modal-halqa">
+  <div class="modal">
+    <div class="modal-head"><h3>🕌 تصريح فتح حلقة</h3><button class="modal-close" onclick="closeForm('halqa')">✕</button></div>
+    <div class="modal-body">
+      <div class="f-row"><div class="fg"><label>اسم المسجد <span>*</span></label><input class="fi" type="text"></div><div class="fg"><label>الحي <span>*</span></label><input class="fi" type="text"></div></div>
+      <div class="fg"><label>اسم الإمام</label><input class="fi" type="text"></div>
+      <div class="f-row"><div class="fg"><label>رقم الجوال</label><input class="fi" type="tel" placeholder="05xxxxxxxx"></div><div class="fg"><label>الفترة</label><select class="fi"><option>الأولى</option><option>الثانية</option><option>الفترتان</option></select></div></div>
+      <div class="fg"><label>عدد الطلاب</label><input class="fi" type="number" min="0"></div>
+    </div>
+    <div class="modal-foot"><button class="btn btn-g" onclick="closeForm('halqa')">إلغاء</button><button class="btn btn-p" onclick="submitForm('halqa')">📤 إرسال</button></div>
+  </div>
+</div>
+<div class="overlay" id="modal-student-cert">
+  <div class="modal">
+    <div class="modal-head"><h3>🏆 شهادة شكر — طالب</h3><button class="modal-close" onclick="closeForm('student-cert')">✕</button></div>
+    <div class="modal-body">
+      <div class="fg"><label>اسم الطالب <span>*</span></label><input class="fi" type="text"></div>
+      <div class="fg"><label>اسم الجامع</label><input class="fi" type="text"></div>
+      <div class="fg"><label>المناسبة</label><input class="fi" type="text"></div>
+      <div class="fg"><label>البريد الإلكتروني</label><input class="fi" type="email"></div>
+    </div>
+    <div class="modal-foot"><button class="btn btn-g" onclick="closeForm('student-cert')">إلغاء</button><button class="btn btn-p" onclick="submitForm('student-cert')">📤 إنشاء</button></div>
+  </div>
+</div>
+<div class="overlay" id="modal-teacher-cert">
+  <div class="modal">
+    <div class="modal-head"><h3>🎖️ شهادة شكر — معلم</h3><button class="modal-close" onclick="closeForm('teacher-cert')">✕</button></div>
+    <div class="modal-body">
+      <div class="fg"><label>اسم المعلم <span>*</span></label><input class="fi" type="text"></div>
+      <div class="fg"><label>اسم الجامع</label><input class="fi" type="text"></div>
+      <div class="fg"><label>المناسبة</label><input class="fi" type="text"></div>
+      <div class="fg"><label>البريد الإلكتروني</label><input class="fi" type="email"></div>
+    </div>
+    <div class="modal-foot"><button class="btn btn-g" onclick="closeForm('teacher-cert')">إلغاء</button><button class="btn btn-p" onclick="submitForm('teacher-cert')">📤 إنشاء</button></div>
+  </div>
+</div>
+<div class="overlay" id="modal-huffaz">
+  <div class="modal">
+    <div class="modal-head"><h3>⭐ تهنئة الحفاظ الجدد</h3><button class="modal-close" onclick="closeForm('huffaz')">✕</button></div>
+    <div class="modal-body">
+      <div class="fg"><label>اسم الطالب <span>*</span></label><input class="fi" type="text"></div>
+      <div class="fg"><label>اسم الجامع</label><input class="fi" type="text"></div>
+      <div class="fg"><label>عدد الأجزاء</label><select class="fi"><option>30 جزءاً كاملاً</option><option>20 جزءاً</option><option>10 أجزاء</option><option>5 أجزاء</option></select></div>
+    </div>
+    <div class="modal-foot"><button class="btn btn-g" onclick="closeForm('huffaz')">إلغاء</button><button class="btn btn-p" onclick="submitForm('huffaz')">📤 إنشاء الشهادة</button></div>
+  </div>
+</div>
+
+<!-- MODAL: إضافة سنة -->
+<div class="overlay" id="modal-add-year">
+  <div class="modal" style="max-width:380px">
+    <div class="modal-head">
+      <h3>📅 إضافة سنة جديدة</h3>
+      <button class="modal-close" onclick="closeAddYearModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="fg">
+        <label>رقم السنة الميلادية أو الهجرية <span>*</span></label>
+        <input class="fi" type="number" id="new-year-input" placeholder="مثال: 2026 أو 1447" min="1300" max="2100"
+          onkeydown="if(event.key==='Enter') confirmAddYear()">
+      </div>
+      <p id="add-year-err" style="color:var(--danger);font-size:12px;font-weight:700;display:none;margin-top:-8px"></p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-g" onclick="closeAddYearModal()">إلغاء</button>
+      <button class="btn btn-p" onclick="confirmAddYear()">✅ إضافة</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════
+// DATA STORE — مرن لأي عدد من السنوات
+// ═══════════════════════════════════════════════════════
+const DB = {
+  years: {
+    2024: {
+      masajid:68, halaq:266, students:3773, teachers:266, huffaz:43,
+      stuSa:1567, stuNs:2206, tchSa:67, tchNs:199, supSa:36, supNs:19,
+      hufSa:3, hufNs:40, hafz:2965, talqin:790, otherSys:18,
+      ajzaa:0, successRate:0,
+      halaqSupported:131, halaqUnsupported:9, halaqStopped:2, supervisors:55,
+      rev1:849211, rev2:789696, rev3:1017464, rev4:0,
+      exp1:748355, exp2:762610, exp3:925796, exp4:0,
+      hoods:[
+        {name:'خ - شمالية',v:515},{name:'الإسكان',v:380},{name:'الثقبة',v:367},
+        {name:'الحزام',v:326},{name:'م - العمال',v:258},{name:'الدانة',v:171},
+        {name:'العقربية',v:156},{name:'الجسر',v:140},{name:'الظهران',v:140},{name:'البايونية',v:127}
+      ]
+    },
+    2025: {
+      masajid:74, halaq:278, students:3926, teachers:299, huffaz:61,
+      stuSa:0, stuNs:0, tchSa:0, tchNs:0, supSa:0, supNs:0,
+      hufSa:0, hufNs:0, hafz:0, talqin:0, otherSys:0,
+      ajzaa:7500, successRate:88.75,
+      halaqSupported:0, halaqUnsupported:0, halaqStopped:0, supervisors:0,
+      rev1:0, rev2:0, rev3:0, rev4:0, exp1:0, exp2:0, exp3:0, exp4:0,
+      hoods:[
+        {name:'خ - شمالية',v:515},{name:'الإسكان',v:380},{name:'الثقبة',v:367},
+        {name:'الحزام',v:326},{name:'م - العمال',v:258},{name:'الدانة',v:171},
+        {name:'العقربية',v:156},{name:'الجسر',v:140},{name:'الظهران',v:140},{name:'البايونية',v:127}
+      ]
+    }
+  },
+  kpis: [
+    {code:'(ع1-1)', name:'دارسو البرامج التعليمية — ذكور', cat:'edu', target:1519, achieved:1560, pct:102.7},
+    {code:'(ع1-2)', name:'دارسو البرامج التعليمية — إناث', cat:'edu', target:1977, achieved:1980, pct:100.2},
+    {code:'(ع1-3)', name:'دارسو البرامج الإلكترونية', cat:'edu', target:175, achieved:172, pct:98.4},
+    {code:'(ع1-4)', name:'الدارسون في البرامج المجتمعية', cat:'edu', target:398, achieved:399, pct:100.3},
+    {code:'(ع1-5)', name:'عدد برامج الجمعية المقدمة للمجتمع', cat:'edu', target:18, achieved:22, pct:119.6},
+    {code:'(ع1-6)', name:'المستفيدون من برامج الجمعية', cat:'edu', target:2818, achieved:2820, pct:100.1},
+    {code:'(ع2-1)', name:'نسبة النجاح في طلاب الجمعية', cat:'edu', target:95, achieved:88.75, pct:93.4},
+    {code:'(ع2-2)', name:'الحفظة الذين اجتازوا الاختبار الختامي', cat:'edu', target:36, achieved:64, pct:177.8},
+    {code:'(ع2-4)', name:'الأجزاء المحفوظة خلال العام', cat:'edu', target:7000, achieved:7500, pct:107.1},
+    {code:'(ع3-1)', name:'نسبة رضا المستفيدين عن البرامج التعليمية', cat:'edu', target:95, achieved:97.25, pct:102.4},
+    {code:'(ع3-2)', name:'المستفيدون من الزيارات الميدانية', cat:'edu', target:437, achieved:500, pct:114.4},
+    {code:'(ع3-3)', name:'نسبة الزيادة في اللقاءات مع أولياء الأمور', cat:'edu', target:23, achieved:24, pct:104.3},
+    {code:'(ع4-1)', name:'أساليب وطرق التعلم الفاعلة المستخدمة', cat:'edu', target:14, achieved:16, pct:115.9},
+    {code:'(ع4-2)', name:'الأساليب التعليمية المستحدثة', cat:'edu', target:8, achieved:8, pct:100},
+    {code:'(د1-2)', name:'نسبة أتمتة العمليات والأنظمة التعليمية', cat:'ops', target:3, achieved:3, pct:100},
+    {code:'(د1-3)', name:'اللوائح والأنظمة التي تم تحديثها', cat:'ops', target:3, achieved:3, pct:100},
+    {code:'(د2-3)', name:'العمليات التي تم تحسينها', cat:'ops', target:4, achieved:4, pct:100},
+    {code:'(د3-1)', name:'نسبة الزيادة في عدد المتطوعين', cat:'ops', target:85, achieved:100, pct:117.5},
+    {code:'(د3-2)', name:'نسبة رضا المتطوعين', cat:'ops', target:98, achieved:98, pct:100},
+    {code:'(د4-2)', name:'عدد المناسبات الاجتماعية', cat:'ops', target:3, achieved:4, pct:133.3},
+    {code:'(د4-3)', name:'البيئات والخدمات المحسّنة', cat:'ops', target:11, achieved:11, pct:100},
+    {code:'(م2-1)', name:'نسبة الزيادة في الموارد المالية الثابتة', cat:'fin', target:4000000, achieved:3092493, pct:77.3},
+    {code:'(م2-2)', name:'الزيادة في إيرادات الخدمات', cat:'fin', target:650000, achieved:550137, pct:84.6},
+    {code:'(م3-1)', name:'الشراكات المبرمة', cat:'fin', target:8, achieved:9, pct:111.8},
+    {code:'(ن1-1)', name:'ساعات التدريب للعاملين', cat:'hr', target:2, achieved:2, pct:100},
+    {code:'(ن1-2)', name:'ساعات برامج المتطوعين', cat:'hr', target:75, achieved:80, pct:107.0},
+    {code:'(ن2-1)', name:'اللقاءات والبرامج لتحقيق الرضا الوظيفي', cat:'hr', target:22, achieved:22, pct:100.7},
+    {code:'(ن2-2)', name:'الرسائل البريدية المتضمنة للأداء', cat:'hr', target:3, achieved:1, pct:33.3}
+  ]
+};
+
+// ═══════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════
+const fmt  = n => typeof n==='number' ? Math.round(n).toLocaleString('en-US') : 0;
+const fmtF = n => typeof n==='number' ? n.toLocaleString('en-US',{maximumFractionDigits:0}) : 0;
+const sortedYears = () => Object.keys(DB.years).map(Number).sort((a,b)=>a-b);
+const latestYear  = () => Math.max(...sortedYears());
+const prevYear    = y => { const ys=sortedYears(); const i=ys.indexOf(+y); return i>0?ys[i-1]:null; };
+const emptyYear   = () => ({
+  masajid:0,halaq:0,students:0,teachers:0,huffaz:0,
+  stuSa:0,stuNs:0,tchSa:0,tchNs:0,supSa:0,supNs:0,hufSa:0,hufNs:0,
+  hafz:0,talqin:0,otherSys:0,ajzaa:0,successRate:0,
+  halaqSupported:0,halaqUnsupported:0,halaqStopped:0,supervisors:0,
+  rev1:0,rev2:0,rev3:0,rev4:0,exp1:0,exp2:0,exp3:0,exp4:0,hoods:[]
+});
+
+function getPctCls(p){ if(p>=100)return 'exceed'; if(p>=90)return 'ok'; if(p>=70)return 'wn'; return 'low'; }
+function showToast(msg){ const t=document.getElementById('toast');t.textContent='✅ '+msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500); }
+
+// ═══════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════
+const pageRenderers = {
+  home:    () => renderHome(latestYear()),
+  edu:     () => renderEdu(latestYear()),
+  admin:   () => renderAdmin(latestYear()),
+  finance: () => renderFinance(latestYear()),
+  kpi:     () => { renderKpis('all'); document.querySelectorAll('.cat-btn').forEach((b,i)=>b.classList.toggle('active',i===0)); },
+  ctrl:    () => initCtrl()
+};
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const pg=document.getElementById('page-'+id); if(pg) pg.classList.add('active');
+  const nb=document.querySelector('[data-p="'+id+'"]'); if(nb) nb.classList.add('active');
+  else { const h=document.querySelector('[data-p="landing"]'); if(h) h.classList.add('active'); }
+  if(pageRenderers[id]) pageRenderers[id]();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ═══════════════════════════════════════════════════════
+// YEAR TOGGLE BUILDER — ديناميكي
+// ═══════════════════════════════════════════════════════
+function buildYrToggle(containerId, activeYear, onSelectFn) {
+  const el=document.getElementById(containerId); if(!el) return;
+  el.className='yr-toggle';
+  el.innerHTML=sortedYears().map(y=>`
+    <button class="yr-btn${y===+activeYear?' active':''}" onclick="(${onSelectFn.toString()})(${y})">${y}</button>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+// HOME PAGE
+// ═══════════════════════════════════════════════════════
+function renderHome(y) {
+  const d=DB.years[y]; const py=prevYear(y); const p=py?DB.years[py]:null;
+  document.getElementById('home-badge').textContent='عام '+y;
+  buildYrToggle('home-yr-toggle', y, yr=>renderHome(yr));
+
+  const chg = (cur,prev,prevY) => {
+    if(!prev&&prev!==0) return `<div class="stat-chg ne">—</div>`;
+    const diff=cur-prev; const cls=diff>0?'up':diff<0?'dn':'ne';
+    const arr=diff>0?'↑ +':diff<0?'↓ ':'';
+    return `<div class="stat-chg ${cls}">${arr}${fmt(Math.abs(diff))} مقارنةً بـ ${prevY}</div>`;
+  };
+
+  document.getElementById('home-content').innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card"><div class="bg-icon">🕌</div><div class="stat-lbl">إجمالي المساجد</div><div class="stat-val">${fmt(d.masajid)}</div>${chg(d.masajid,p?.masajid,py)}</div>
+      <div class="stat-card ac"><div class="bg-icon">📖</div><div class="stat-lbl">إجمالي الحلق</div><div class="stat-val">${fmt(d.halaq)}</div>${chg(d.halaq,p?.halaq,py)}</div>
+      <div class="stat-card md"><div class="bg-icon">👤</div><div class="stat-lbl">إجمالي الطلاب</div><div class="stat-val">${fmt(d.students)}</div>${chg(d.students,p?.students,py)}</div>
+      <div class="stat-card"><div class="bg-icon">👨‍🏫</div><div class="stat-lbl">إجمالي المعلمين</div><div class="stat-val">${fmt(d.teachers)}</div>${chg(d.teachers,p?.teachers,py)}</div>
+      <div class="stat-card ac"><div class="bg-icon">⭐</div><div class="stat-lbl">الحفاظ الجدد</div><div class="stat-val">${fmt(d.huffaz)}</div>${chg(d.huffaz,p?.huffaz,py)}</div>
+      <div class="stat-card md"><div class="bg-icon">🏘️</div><div class="stat-lbl">الأحياء المخدومة</div><div class="stat-val">${d.hoods.length||0}</div><div class="stat-chg ne">◆ أحياء</div></div>
+    </div>
+
+    ${p?`<div class="card">
+      <div class="card-title"><div class="ct-icon">📈</div>مقارنة ${py} — ${y}</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px">
+        ${[['المساجد','masajid'],['الحلق','halaq'],['الطلاب','students'],['المعلمين','teachers'],['الحفاظ','huffaz']].map(([lbl,k])=>{
+          const diff=d[k]-p[k]; const pct=p[k]>0?((diff/p[k])*100).toFixed(1):0;
+          const cls=diff>=0?'up':'dn';
+          return `<div class="cmp-card">
+            <div class="cmp-title">${lbl}</div>
+            <div class="cmp-row">
+              <div><div class="cmp-yr">${py}</div><div class="cmp-num">${fmt(p[k])}</div></div>
+              <div class="cmp-arr ${cls}">${diff>=0?'↑':'↓'}</div>
+              <div><div class="cmp-yr">${y}</div><div class="cmp-num">${fmt(d[k])}</div></div>
+            </div>
+            <div class="cmp-diff ${cls}">${diff>=0?'+':''}${fmt(diff)} (${pct}%)</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`:''}
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title"><div class="ct-icon">📍</div>أعلى الأحياء بعدد الطلاب — ${y}</div>
+        ${d.hoods.length?d.hoods.slice(0,10).map(h=>`
+          <div class="bar-row"><div class="bar-lbl">${h.name}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${(h.v/d.hoods[0].v*100).toFixed(1)}%"></div></div>
+          <div class="bar-num">${h.v}</div></div>`).join(''):'<p style="color:var(--tl);font-size:13px">لا توجد بيانات</p>'}
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="ct-icon">📋</div>حالة الحلقات — ${y}</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          ${[['مدعومة',d.halaqSupported,'var(--success)'],['غير مدعومة',d.halaqUnsupported,'var(--warn)'],['متوقفة',d.halaqStopped,'var(--danger)']].map(([lbl,val,clr])=>`
+          <div style="display:flex;align-items:center;gap:12px;background:var(--off);border-radius:10px;padding:12px 16px">
+            <div style="width:12px;height:12px;border-radius:50%;background:${clr};flex-shrink:0"></div>
+            <div style="font-size:22px;font-weight:900;color:var(--primary)">${val||0}</div>
+            <div style="font-size:11px;color:var(--tl);font-weight:700">${lbl}</div>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════
+// EDU PAGE
+// ═══════════════════════════════════════════════════════
+function renderEdu(y) {
+  const d=DB.years[y]; const py=prevYear(y); const p=py?DB.years[py]:null;
+  document.getElementById('edu-badge').textContent='عام '+y;
+  buildYrToggle('edu-yr-toggle', y, yr=>renderEdu(yr));
+  const tot=+(d.hafz||0)+(d.talqin||0)+(d.otherSys||0);
+  const C=2*Math.PI*48; // circumference r=48
+
+  document.getElementById('edu-content').innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card"><div class="bg-icon">📚</div><div class="stat-lbl">إجمالي الطلاب</div><div class="stat-val">${fmt(d.students)}</div>${p?`<div class="stat-chg up">↑ +${fmt(d.students-p.students)}</div>`:'<div class="stat-chg ne">—</div>'}</div>
+      <div class="stat-card ac"><div class="bg-icon">📖</div><div class="stat-lbl">إجمالي الحلق</div><div class="stat-val">${fmt(d.halaq)}</div>${p?`<div class="stat-chg up">↑ +${fmt(d.halaq-p.halaq)}</div>`:'<div class="stat-chg ne">—</div>'}</div>
+      <div class="stat-card md"><div class="bg-icon">⭐</div><div class="stat-lbl">الحفاظ الجدد</div><div class="stat-val">${fmt(d.huffaz)}</div>${p?`<div class="stat-chg up">↑ +${fmt(d.huffaz-p.huffaz)}</div>`:'<div class="stat-chg ne">—</div>'}</div>
+      <div class="stat-card"><div class="bg-icon">📝</div><div class="stat-lbl">نسبة النجاح</div><div class="stat-val">${d.successRate?d.successRate+'%':'—'}</div><div class="stat-chg ${d.successRate>=95?'up':'dn'}">${d.successRate?(d.successRate>=95?'↑ فوق':'↓ دون')+' هدف 95%':'—'}</div></div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title"><div class="ct-icon">🎯</div>أنظمة الدراسة — ${y}</div>
+        ${tot>0?`<div class="donut-wrap">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="48" fill="none" stroke="var(--border)" stroke-width="22"/>
+            <circle cx="60" cy="60" r="48" fill="none" stroke="var(--primary)" stroke-width="22"
+              stroke-dasharray="${(C*d.hafz/tot).toFixed(1)} ${(C*(1-d.hafz/tot)).toFixed(1)}" stroke-dashoffset="75.4" transform="rotate(-90 60 60)"/>
+            <circle cx="60" cy="60" r="48" fill="none" stroke="var(--cyan)" stroke-width="22"
+              stroke-dasharray="${(C*d.talqin/tot).toFixed(1)} ${(C*(1-d.talqin/tot)).toFixed(1)}"
+              stroke-dashoffset="${(-(C*d.hafz/tot)+75.4-C).toFixed(1)}" transform="rotate(-90 60 60)"/>
+            <text x="60" y="64" text-anchor="middle" font-size="13" font-weight="700" fill="var(--primary)" font-family="Tahoma">${fmt(tot)}</text>
+          </svg>
+          <div class="legend">
+            <div class="leg-item"><div class="leg-dot" style="background:var(--primary)"></div><span>الحفظ — <strong>${fmt(d.hafz)}</strong> (${((d.hafz/tot)*100).toFixed(1)}%)</span></div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--cyan)"></div><span>التلقين — <strong>${fmt(d.talqin)}</strong> (${((d.talqin/tot)*100).toFixed(1)}%)</span></div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--border)"></div><span>أخرى — <strong>${fmt(d.otherSys||0)}</strong></span></div>
+          </div>
+        </div>`:'<p style="color:var(--tl);font-size:13px">لا توجد بيانات أنظمة الدراسة</p>'}
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="ct-icon">📊</div>نمو الحفاظ${p?' — '+py+' / '+y:''}</div>
+        ${p?`<div style="display:flex;flex-direction:column;gap:12px">
+          ${[py,y].map(yr=>{
+            const dd=DB.years[yr]; const mx=Math.max(p.huffaz,d.huffaz,1);
+            return `<div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px">
+                <span style="color:var(--tl);font-weight:700">${yr}</span>
+                <span style="font-weight:900;color:var(--primary)">${fmt(dd.huffaz)} حافظاً</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="width:${(dd.huffaz/mx*100).toFixed(1)}%;${yr==y?'background:linear-gradient(90deg,var(--success),#4ade80)':''}"></div></div>
+            </div>`;
+          }).join('')}
+          ${d.ajzaa?`<div style="background:rgba(96,196,228,.08);border-radius:8px;padding:12px;border:1px solid rgba(96,196,228,.2)">
+            <div style="font-size:11px;color:var(--tl);font-weight:700;margin-bottom:4px">الأجزاء المحفوظة ${y}</div>
+            <div style="font-size:26px;font-weight:900;color:var(--primary)">${fmt(d.ajzaa)} وجه</div>
+          </div>`:''}
+        </div>`:
+        `<div style="font-size:30px;font-weight:900;color:var(--primary);padding:20px 0">${fmt(d.huffaz)} حافظاً</div>`}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="ct-icon">📋</div>المؤشرات التعليمية التفصيلية</div>
+      <div style="overflow-x:auto">
+        <table class="tbl">
+          <thead><tr><th>المؤشر</th><th>${py||'السابق'}</th><th>${y}</th><th>التغيير</th></tr></thead>
+          <tbody>
+            ${[['المساجد','masajid'],['الحلق','halaq'],['الطلاب','students'],['المعلمين','teachers'],['الحفاظ','huffaz']].map(([lbl,k])=>{
+              const cur=d[k]||0; const prv=p?p[k]||0:null;
+              const diff=prv!==null?cur-prv:null;
+              return `<tr><td>${lbl}</td><td>${prv!==null?fmt(prv):'—'}</td><td><strong>${fmt(cur)}</strong></td>
+                <td>${diff!==null?`<span style="color:${diff>=0?'var(--success)':'var(--danger)'};font-weight:700">${diff>=0?'+':''}${fmt(diff)}</span>`:'—'}</td></tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════
+// ADMIN PAGE
+// ═══════════════════════════════════════════════════════
+function renderAdmin(y) {
+  const d=DB.years[y]; const py=prevYear(y); const p=py?DB.years[py]:null;
+  document.getElementById('admin-badge').textContent='عام '+y;
+  buildYrToggle('admin-yr-toggle', y, yr=>renderAdmin(yr));
+
+  const donut = (sa, ns, total) => {
+    if (!total) return `<p style="color:var(--tl);font-size:13px;padding:12px 0">لا توجد بيانات</p>`;
+    const sz=140, r=52, cx=70, cy=70, sw=20;
+    const C = 2 * Math.PI * r;
+    const saPct = sa / total;
+    const nsPct = ns / total;
+    // القوس الأول: سعوديون — يبدأ من الأعلى (-90°)
+    const saDash  = (C * saPct).toFixed(2);
+    const saGap   = (C * (1 - saPct)).toFixed(2);
+    // القوس الثاني: غير سعوديين — offset = -(C * saPct) + C = C*(1-saPct) ... نستخدم rotate بدلاً
+    const nsDash  = (C * nsPct).toFixed(2);
+    const nsGap   = (C * (1 - nsPct)).toFixed(2);
+    const nsRot   = -90 + 360 * saPct; // زاوية بداية القوس الثاني
+    return `<div class="donut-wrap">
+      <svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}">
+        <!-- خلفية -->
+        <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--border)" stroke-width="${sw}"/>
+        <!-- سعوديون -->
+        <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--primary)" stroke-width="${sw}"
+          stroke-dasharray="${saDash} ${saGap}"
+          transform="rotate(-90 ${cx} ${cy})"/>
+        <!-- غير سعوديين -->
+        <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--cyan)" stroke-width="${sw}"
+          stroke-dasharray="${nsDash} ${nsGap}"
+          transform="rotate(${nsRot.toFixed(2)} ${cx} ${cy})"/>
+        <!-- النص المركزي -->
+        <text x="${cx}" y="${cy-6}" text-anchor="middle" font-size="13" font-weight="900" fill="var(--primary)" font-family="Tahoma,Arial">${fmt(total)}</text>
+        <text x="${cx}" y="${cy+10}" text-anchor="middle" font-size="9" fill="var(--tl)" font-family="Tahoma,Arial">الإجمالي</text>
+      </svg>
+      <div class="legend">
+        <div class="leg-item"><div class="leg-dot" style="background:var(--primary)"></div>
+          <div><div style="font-weight:700;font-size:13px">${fmt(sa)}</div><div style="font-size:11px;color:var(--tl)">سعوديون (${total>0?((sa/total)*100).toFixed(1):0}%)</div></div>
+        </div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--cyan)"></div>
+          <div><div style="font-weight:700;font-size:13px">${fmt(ns)}</div><div style="font-size:11px;color:var(--tl)">غير سعوديين (${total>0?((ns/total)*100).toFixed(1):0}%)</div></div>
+        </div>
+      </div>
+    </div>`;
+  };
+
+  document.getElementById('admin-content').innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-lbl">إجمالي المعلمين</div><div class="stat-val">${fmt(d.teachers)}</div>${p?`<div class="stat-chg up">↑ +${fmt(d.teachers-p.teachers)}</div>`:'<div class="stat-chg ne">—</div>'}</div>
+      <div class="stat-card ac"><div class="stat-lbl">إجمالي المشرفين</div><div class="stat-val">${fmt(d.supervisors||0)}</div><div class="stat-chg ne">${fmt(d.supSa||0)} سعودي + ${fmt(d.supNs||0)} غير سعودي</div></div>
+      <div class="stat-card md"><div class="stat-lbl">إجمالي الطلاب</div><div class="stat-val">${fmt(d.students)}</div><div class="stat-chg ne">${fmt(d.stuSa||0)} سعودي + ${fmt(d.stuNs||0)} غير سعودي</div></div>
+    </div>
+    <div class="two-col">
+      <div class="card"><div class="card-title"><div class="ct-icon">👨‍🏫</div>المعلمون حسب الجنسية — ${y}</div>${donut(d.tchSa||0,d.tchNs||0,d.teachers)}</div>
+      <div class="card"><div class="card-title"><div class="ct-icon">👨‍🎓</div>الطلاب حسب الجنسية — ${y}</div>${donut(d.stuSa||0,d.stuNs||0,d.students)}</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="ct-icon">📋</div>تفاصيل الكوادر — ${y}</div>
+      <div style="overflow-x:auto"><table class="tbl">
+        <thead><tr><th>الفئة</th><th>سعودي</th><th>غير سعودي</th><th>الإجمالي</th><th>نسبة السعوديين</th></tr></thead>
+        <tbody>
+          ${[['المعلمون',d.tchSa||0,d.tchNs||0,d.teachers],['المشرفون',d.supSa||0,d.supNs||0,d.supervisors||0],['الطلاب',d.stuSa||0,d.stuNs||0,d.students],['الحفاظ',d.hufSa||0,d.hufNs||0,d.huffaz]].map(([lbl,sa,ns,tot])=>{
+            const pct=tot>0?((sa/tot)*100).toFixed(1):0;
+            return `<tr><td><strong>${lbl}</strong></td><td>${fmt(sa)}</td><td>${fmt(ns)}</td><td><strong>${fmt(tot)}</strong></td>
+              <td><div style="display:flex;align-items:center;gap:8px"><div class="bar-track" style="width:80px;flex:none"><div class="bar-fill" style="width:${pct}%"></div></div><span style="font-weight:700;color:var(--primary)">${pct}%</span></div></td></tr>`;
+          }).join('')}
+        </tbody>
+      </table></div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════
+// FINANCE PAGE
+// ═══════════════════════════════════════════════════════
+function renderFinance(y) {
+  const d=DB.years[y];
+  document.getElementById('fin-badge').textContent='عام '+y;
+  document.getElementById('fin-title').textContent='الشؤون المالية — '+y;
+  buildYrToggle('fin-yr-toggle', y, yr=>renderFinance(yr));
+
+  const totRev=(d.rev1||0)+(d.rev2||0)+(d.rev3||0)+(d.rev4||0);
+  const totExp=(d.exp1||0)+(d.exp2||0)+(d.exp3||0)+(d.exp4||0);
+  const surplus=totRev-totExp;
+  const maxQ=Math.max(d.rev1||0,d.rev2||0,d.rev3||0,d.rev4||0,d.exp1||0,d.exp2||0,d.exp3||0,d.exp4||0,1);
+  const bh=v=>Math.max(4,Math.round(v/maxQ*100));
+  const finKpis=DB.kpis.filter(k=>k.cat==='fin');
+
+  // مؤشر هدف الإيرادات من KPI (م2-1)
+  const revKpi = DB.kpis.find(k=>k.code==='(م2-1)');
+  const revTarget = revKpi ? revKpi.target : 0;
+  const revPct = revTarget>0 ? Math.min((totRev/revTarget*100),100).toFixed(1) : 0;
+
+  // مقارنة بالسنة السابقة
+  const py=prevYear(y); const p=py?DB.years[py]:null;
+  const prevTotRev = p?(p.rev1||0)+(p.rev2||0)+(p.rev3||0)+(p.rev4||0):null;
+  const prevTotExp = p?(p.exp1||0)+(p.exp2||0)+(p.exp3||0)+(p.exp4||0):null;
+
+  document.getElementById('fin-content').innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card ac"><div class="bg-icon">💰</div><div class="stat-lbl">إجمالي الإيرادات</div><div class="stat-val" style="font-size:22px">${fmtF(totRev)}</div>
+        ${prevTotRev?`<div class="stat-chg ${totRev>=prevTotRev?'up':'dn'}">${totRev>=prevTotRev?'↑ +':'↓ '}${fmtF(Math.abs(totRev-prevTotRev))} عن ${py}</div>`:'<div class="stat-chg ne">ر.س</div>'}
+      </div>
+      <div class="stat-card"><div class="bg-icon">📤</div><div class="stat-lbl">إجمالي المصروفات</div><div class="stat-val" style="font-size:22px">${fmtF(totExp)}</div>
+        ${prevTotExp?`<div class="stat-chg ${totExp<=prevTotExp?'up':'dn'}">${totExp<=prevTotExp?'↓ -':'↑ +'}${fmtF(Math.abs(totExp-prevTotExp))} عن ${py}</div>`:'<div class="stat-chg ne">ر.س</div>'}
+      </div>
+      <div class="stat-card md"><div class="bg-icon">📊</div><div class="stat-lbl">${surplus>=0?'الفائض':'العجز'}</div><div class="stat-val" style="font-size:22px">${fmtF(Math.abs(surplus))}</div>
+        <div class="stat-chg ${surplus>=0?'up':'dn'}">${totRev>0?(Math.abs(surplus)/totRev*100).toFixed(1):0}% هامش</div>
+      </div>
+      ${revTarget?`<div class="stat-card"><div class="bg-icon">🎯</div><div class="stat-lbl">تحقق هدف الإيرادات</div><div class="stat-val" style="font-size:28px">${revPct}%</div>
+        <div class="stat-chg ${revPct>=100?'up':revPct>=80?'ne':'dn'}">الهدف: ${fmtF(revTarget)} ر.س</div>
+      </div>`:''}
+    </div>
+
+    ${revTarget?`<div class="card" style="margin-bottom:16px">
+      <div class="card-title"><div class="ct-icon">🎯</div>نسبة تحقق هدف الإيرادات السنوي</div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px">
+            <span style="color:var(--tl);font-weight:700">المتحقق: ${fmtF(totRev)} ر.س</span>
+            <span style="font-weight:900;color:${+revPct>=100?'var(--success)':+revPct>=80?'var(--warn)':'var(--danger)'};">${revPct}%</span>
+          </div>
+          <div class="prog-track" style="height:14px;border-radius:7px">
+            <div class="prog-fill ${getPctCls(+revPct)}" style="width:${revPct}%;height:100%;border-radius:7px"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--tl);margin-top:5px">
+            <span>0</span><span>الهدف: ${fmtF(revTarget)} ر.س</span>
+          </div>
+        </div>
+        <div style="text-align:center;background:var(--off);border-radius:12px;padding:14px 20px;min-width:120px">
+          <div style="font-size:11px;color:var(--tl);font-weight:700;margin-bottom:4px">المتبقي لتحقيق الهدف</div>
+          <div style="font-size:20px;font-weight:900;color:${totRev>=revTarget?'var(--success)':'var(--danger)'}">${totRev>=revTarget?'تم ✓':fmtF(revTarget-totRev)+' ر.س'}</div>
+        </div>
+      </div>
+    </div>`:''}
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title"><div class="ct-icon">📅</div>الإيرادات والمصروفات ربعياً — ${y}</div>
+        ${totRev+totExp>0?`<div class="fin-qtrs">
+          ${[1,2,3,4].map(q=>{
+            const rv=d['rev'+q]||0; const ex=d['exp'+q]||0; const nd=rv+ex===0;
+            return `<div class="fin-q">
+              <div class="fin-q-lbl">ر${q}</div>
+              <div class="fin-bars" style="height:100px;align-items:flex-end">
+                <div class="fin-bar rev" style="height:${nd?4:bh(rv)}px;opacity:${nd?.2:1}"></div>
+                <div class="fin-bar exp" style="height:${nd?4:bh(ex)}px;opacity:${nd?.2:1}"></div>
+              </div>
+              <div class="fin-q-vals">
+                <div style="color:var(--primary)">${nd?'—':fmtF(rv)}</div>
+                <div style="color:var(--danger)">${nd?'—':fmtF(ex)}</div>
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+        <div style="display:flex;gap:12px;margin-top:12px;font-size:11px;color:var(--tl)">
+          <span><span style="display:inline-block;width:10px;height:10px;background:var(--primary);border-radius:2px;margin-left:4px"></span>إيرادات</span>
+          <span><span style="display:inline-block;width:10px;height:10px;background:rgba(192,57,43,.55);border-radius:2px;margin-left:4px"></span>مصروفات</span>
+        </div>`:
+        '<p style="color:var(--tl);font-size:13px">لا توجد بيانات مالية</p>'}
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="ct-icon">🎯</div>المؤشرات المالية</div>
+        ${finKpis.map(k=>{
+          const pc=getPctCls(k.pct);
+          const colors={exceed:'var(--success)',ok:'var(--primary)',wn:'var(--warn)',low:'var(--danger)'};
+          return `<div style="background:var(--off);border-radius:10px;padding:12px;margin-bottom:10px">
+            <div style="font-size:11px;color:var(--tl);font-weight:700;margin-bottom:4px">${k.name} ${k.code}</div>
+            <div class="prog-track" style="margin-bottom:6px"><div class="prog-fill ${pc}" style="width:${Math.min(k.pct,100)}%"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px">
+              <span>${fmtF(k.achieved)}</span>
+              <span style="color:${colors[pc]};font-weight:700">${k.pct}%</span>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="ct-icon">📋</div>الجدول التفصيلي ربعياً — ${y}</div>
+      <div style="overflow-x:auto">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>البيان</th>
+              <th>الربع الأول</th><th>الربع الثاني</th><th>الربع الثالث</th><th>الربع الرابع</th>
+              <th>الإجمالي</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>الإيرادات</strong></td>
+              ${[1,2,3,4].map(q=>`<td style="color:var(--primary);font-weight:600">${d['rev'+q]?fmtF(d['rev'+q]):'—'}</td>`).join('')}
+              <td style="font-weight:900;color:var(--primary)">${fmtF(totRev)}</td>
+            </tr>
+            <tr>
+              <td><strong>المصروفات</strong></td>
+              ${[1,2,3,4].map(q=>`<td style="color:var(--danger);font-weight:600">${d['exp'+q]?fmtF(d['exp'+q]):'—'}</td>`).join('')}
+              <td style="font-weight:900;color:var(--danger)">${fmtF(totExp)}</td>
+            </tr>
+            <tr style="background:rgba(45,122,85,.05)">
+              <td><strong>الفائض/العجز</strong></td>
+              ${[1,2,3,4].map(q=>{
+                const s=(d['rev'+q]||0)-(d['exp'+q]||0);
+                const hasData=(d['rev'+q]||0)+(d['exp'+q]||0)>0;
+                return `<td style="font-weight:700;color:${s>=0?'var(--success)':'var(--danger)'}">${hasData?(s>=0?'+':'')+fmtF(s):'—'}</td>`;
+              }).join('')}
+              <td style="font-weight:900;color:${surplus>=0?'var(--success)':'var(--danger)'}">${surplus>=0?'+':''}${fmtF(surplus)}</td>
+            </tr>
+            ${p&&prevTotRev?`<tr>
+              <td><strong>إيرادات ${py}</strong></td>
+              ${[1,2,3,4].map(q=>`<td style="color:var(--tl)">${p['rev'+q]?fmtF(p['rev'+q]):'—'}</td>`).join('')}
+              <td style="font-weight:700;color:var(--tl)">${fmtF(prevTotRev)}</td>
+            </tr>
+            <tr>
+              <td><strong>النمو عن ${py}</strong></td>
+              ${[1,2,3,4].map(q=>{
+                const cur=d['rev'+q]||0; const prv=p['rev'+q]||0;
+                const diff=cur-prv; const hasData=cur+prv>0;
+                return `<td style="font-weight:700;color:${diff>=0?'var(--success)':'var(--danger)'}">${hasData?(diff>=0?'↑ +':'↓ ')+fmtF(Math.abs(diff)):'—'}</td>`;
+              }).join('')}
+              <td style="font-weight:700;color:${totRev-prevTotRev>=0?'var(--success)':'var(--danger)'}">${totRev-prevTotRev>=0?'↑ +':'↓ '}${fmtF(Math.abs(totRev-prevTotRev))}</td>
+            </tr>`:''}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════
+// KPI PAGE
+// ═══════════════════════════════════════════════════════
+function renderKpis(cat) {
+  const container=document.getElementById('kpi-container'); if(!container) return;
+  const filtered=cat==='all'?DB.kpis:DB.kpis.filter(k=>k.cat===cat);
+  const fN=n=>typeof n==='number'&&n>999?n.toLocaleString('en-US'):n;
+  container.innerHTML=filtered.map(k=>{
+    const pc=getPctCls(k.pct);
+    return `<div class="kpi-card ${k.cat}">
+      <div class="kpi-top"><div class="kpi-name">${k.name}</div><div class="kpi-code">${k.code}</div></div>
+      <div class="kpi-nums"><span>هدف: <strong>${fN(k.target)}</strong></span><span>تحقق: <strong>${fN(k.achieved)}</strong></span><span class="kpi-pct ${pc}">${k.pct}%</span></div>
+      <div class="prog-track"><div class="prog-fill ${pc}" style="width:${Math.min(k.pct,100)}%"></div></div>
+    </div>`;
+  }).join('');
+  const e=document.getElementById('kpi-exceed'); if(e) e.textContent=DB.kpis.filter(k=>k.pct>=100).length;
+  const o=document.getElementById('kpi-ok');    if(o) o.textContent=DB.kpis.filter(k=>k.pct>=90&&k.pct<100).length;
+  const l=document.getElementById('kpi-low');   if(l) l.textContent=DB.kpis.filter(k=>k.pct<90).length;
+  const b=document.getElementById('kpi-badge'); if(b) b.textContent=DB.kpis.length+' مؤشراً';
+}
+
+function filterKpi(cat,btn) {
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  renderKpis(cat);
+}
+
+// ═══════════════════════════════════════════════════════
+// CONTROL PANEL
+// ═══════════════════════════════════════════════════════
+let ctrlYear = latestYear();
+
+function initCtrl() {
+  ctrlYear = latestYear();
+  rebuildCtrlYrToggle();
+  loadCtrlFields(ctrlYear);
+  buildKpiEditTable();
+}
+
+function rebuildCtrlYrToggle() {
+  const el=document.getElementById('ctrl-yr-toggle'); if(!el) return;
+  el.innerHTML=sortedYears().map(y=>`
+    <button class="yr-btn${y===ctrlYear?' active':''}" onclick="selectCtrlYear(${y})">${y}</button>
+  `).join('');
+}
+
+function selectCtrlYear(y) {
+  ctrlYear=y;
+  rebuildCtrlYrToggle();
+  loadCtrlFields(y);
+}
+
+function loadCtrlFields(y) {
+  const d=DB.years[y]||{}; 
+  const lbl=document.getElementById('ctrl-year-label'); if(lbl) lbl.textContent='عام '+y;
+  const set=(id,val)=>{ const el=document.getElementById(id); if(el) el.value=val||0; };
+  set('c-masajid',d.masajid); set('c-halaq',d.halaq);
+  set('c-halaq-s',d.halaqSupported); set('c-halaq-u',d.halaqUnsupported); set('c-halaq-p',d.halaqStopped);
+  set('c-students',d.students); set('c-stu-sa',d.stuSa); set('c-stu-ns',d.stuNs);
+  set('c-hafz',d.hafz); set('c-talqin',d.talqin); set('c-other-sys',d.otherSys);
+  set('c-success',d.successRate);
+  set('c-teachers',d.teachers); set('c-tch-sa',d.tchSa); set('c-tch-ns',d.tchNs);
+  set('c-supervisors',d.supervisors); set('c-sup-sa',d.supSa); set('c-sup-ns',d.supNs);
+  set('c-huffaz',d.huffaz); set('c-huf-sa',d.hufSa); set('c-huf-ns',d.hufNs); set('c-ajzaa',d.ajzaa);
+  set('c-rev1',d.rev1); set('c-rev2',d.rev2); set('c-rev3',d.rev3); set('c-rev4',d.rev4);
+  set('c-exp1',d.exp1); set('c-exp2',d.exp2); set('c-exp3',d.exp3); set('c-exp4',d.exp4);
+  buildHoodsCtrl(d.hoods||[]);
+}
+
+function buildHoodsCtrl(hoods) {
+  const el=document.getElementById('hoods-ctrl'); if(!el) return;
+  el.innerHTML=hoods.map((h,i)=>`
+    <div class="hood-row">
+      <input class="hood-inp" type="text" id="hood-n-${i}" value="${h.name}" placeholder="اسم الحي">
+      <input class="hood-inp" type="number" id="hood-v-${i}" value="${h.v}" min="0" style="text-align:center">
+      <button class="del-btn" onclick="removeHood(${i})">✕</button>
+    </div>
+  `).join('');
+}
+
+function addHood() {
+  const d=DB.years[ctrlYear]; if(!d.hoods) d.hoods=[];
+  d.hoods.push({name:'حي جديد',v:0});
+  buildHoodsCtrl(d.hoods);
+}
+
+function removeHood(i) {
+  // collect current state first, then remove
+  collectHoods();
+  DB.years[ctrlYear].hoods.splice(i,1);
+  buildHoodsCtrl(DB.years[ctrlYear].hoods);
+}
+
+function collectHoods() {
+  const hoods=[];
+  let i=0;
+  while(document.getElementById('hood-n-'+i)) {
+    hoods.push({name:document.getElementById('hood-n-'+i).value||'—', v:+document.getElementById('hood-v-'+i).value||0});
+    i++;
+  }
+  DB.years[ctrlYear].hoods=hoods.sort((a,b)=>b.v-a.v);
+}
+
+function saveYearData() {
+  const y=ctrlYear;
+  if(!DB.years[y]) DB.years[y]=emptyYear();
+  const d=DB.years[y];
+  const get=id=>+document.getElementById(id)?.value||0;
+  const getF=id=>parseFloat(document.getElementById(id)?.value)||0;
+  d.masajid=get('c-masajid'); d.halaq=get('c-halaq');
+  d.halaqSupported=get('c-halaq-s'); d.halaqUnsupported=get('c-halaq-u'); d.halaqStopped=get('c-halaq-p');
+  d.students=get('c-students'); d.stuSa=get('c-stu-sa'); d.stuNs=get('c-stu-ns');
+  d.hafz=get('c-hafz'); d.talqin=get('c-talqin'); d.otherSys=get('c-other-sys');
+  d.successRate=getF('c-success');
+  d.teachers=get('c-teachers'); d.tchSa=get('c-tch-sa'); d.tchNs=get('c-tch-ns');
+  d.supervisors=get('c-supervisors'); d.supSa=get('c-sup-sa'); d.supNs=get('c-sup-ns');
+  d.huffaz=get('c-huffaz'); d.hufSa=get('c-huf-sa'); d.hufNs=get('c-huf-ns'); d.ajzaa=get('c-ajzaa');
+  d.rev1=get('c-rev1'); d.rev2=get('c-rev2'); d.rev3=get('c-rev3'); d.rev4=get('c-rev4');
+  d.exp1=get('c-exp1'); d.exp2=get('c-exp2'); d.exp3=get('c-exp3'); d.exp4=get('c-exp4');
+  collectHoods();
+  showToast('تم حفظ بيانات عام '+y+' — جميع الأقسام محدَّثة');
+}
+
+function openAddYearModal() {
+  const inp = document.getElementById('new-year-input');
+  const err = document.getElementById('add-year-err');
+  if(inp) inp.value = '';
+  if(err) err.style.display = 'none';
+  document.getElementById('modal-add-year').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => { if(inp) inp.focus(); }, 100);
+}
+
+function closeAddYearModal() {
+  document.getElementById('modal-add-year').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function confirmAddYear() {
+  const inp = document.getElementById('new-year-input');
+  const err = document.getElementById('add-year-err');
+  const yNum = +inp.value;
+  if(!inp.value || isNaN(yNum) || yNum < 1300 || yNum > 2100) {
+    err.textContent = 'أدخل سنة صحيحة بين 1300 و 2100';
+    err.style.display = 'block'; return;
+  }
+  if(DB.years[yNum]) {
+    err.textContent = 'هذه السنة موجودة مسبقاً';
+    err.style.display = 'block'; return;
+  }
+  DB.years[yNum] = emptyYear();
+  ctrlYear = yNum;
+  closeAddYearModal();
+  rebuildCtrlYrToggle();
+  loadCtrlFields(yNum);
+  showToast('تمت إضافة عام ' + yNum + ' — يمكنك الآن إدخال البيانات');
+}
+
+function buildKpiEditTable() {
+  const tb=document.getElementById('kpi-edit-body'); if(!tb) return;
+  const catL={edu:'تعليمي',ops:'تشغيلي',fin:'مالي',hr:'بشري'};
+  tb.innerHTML=DB.kpis.map((k,i)=>{
+    const clr={exceed:'var(--success)',ok:'var(--primary)',wn:'var(--warn)',low:'var(--danger)'}[getPctCls(k.pct)];
+    return `<tr>
+      <td><strong>${k.code}</strong></td>
+      <td style="min-width:160px;font-size:11px;line-height:1.4">${k.name}</td>
+      <td><span class="cat-bdg ${k.cat}">${catL[k.cat]}</span></td>
+      <td style="text-align:center">${k.target>999?k.target.toLocaleString('en-US'):k.target}</td>
+      <td><input type="number" id="kpi-a-${i}" value="${k.achieved}" min="0" onchange="recalcKpi(${i})"></td>
+      <td><strong id="kpi-p-${i}" style="color:${clr}">${k.pct}%</strong></td>
+    </tr>`;
+  }).join('');
+}
+
+function recalcKpi(i) {
+  const ach=+document.getElementById('kpi-a-'+i)?.value||0;
+  const pct=DB.kpis[i].target>0?Math.round(ach/DB.kpis[i].target*1000)/10:0;
+  const clr={exceed:'var(--success)',ok:'var(--primary)',wn:'var(--warn)',low:'var(--danger)'}[getPctCls(pct)];
+  const el=document.getElementById('kpi-p-'+i); if(el){el.textContent=pct+'%';el.style.color=clr;}
+}
+
+function saveKpis() {
+  DB.kpis.forEach((k,i)=>{
+    const ach=+document.getElementById('kpi-a-'+i)?.value||0;
+    k.achieved=ach; k.pct=k.target>0?Math.round(ach/k.target*1000)/10:0;
+  });
+  showToast('تم حفظ مؤشرات الأداء — صفحة KPI محدَّثة');
+}
+
+// ═══════════════════════════════════════════════════════
+// EXCEL UPLOAD — يقرأ جميع السنوات
+// ═══════════════════════════════════════════════════════
+function handleDrop(e) {
+  e.preventDefault(); document.getElementById('upload-zone').classList.remove('drag');
+  if(e.dataTransfer.files.length) handleMultiUpload(e.dataTransfer.files);
+}
+
+function handleMultiUpload(files) {
+  if(!files||!files.length) return;
+  const res=document.getElementById('upload-res');
+  res.style.display='block'; res.className='upload-res'; res.textContent='جاري قراءة الملفات...';
+  if(typeof XLSX==='undefined'){
+    res.className='upload-res err'; res.textContent='مكتبة Excel غير محملة. تحقق من الاتصال بالإنترنت.'; return;
+  }
+  const msgs=[]; let pending=0;
+  Array.from(files).forEach(file=>{
+    if(!file.name.match(/\.xlsx?$/i)) return;
+    pending++;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      try {
+        const wb=XLSX.read(ev.target.result,{type:'binary'});
+        // تحديد نوع الملف من اسمه أو محتواه
+        const isKpi=file.name.includes('مستهدف')||file.name.includes('استراتيج')||file.name.toLowerCase().includes('kpi');
+        msgs.push((isKpi?'📋 ':'📊 ')+file.name+': '+(isKpi?parseKpiFile(wb):parseStatsFile(wb)));
+      } catch(err) { msgs.push('❌ '+file.name+': '+err.message); }
+      pending--;
+      if(pending===0) {
+        initCtrl(); // إعادة بناء لوحة التحكم بالسنوات الجديدة
+        res.className='upload-res ok';
+        res.innerHTML=msgs.join('<br>')+'<br><small>✅ جميع الأقسام جاهزة للعرض. راجع الأرقام وعدّل ما يلزم ثم اضغط حفظ.</small>';
+      }
+    };
+    reader.readAsBinaryString(file);
+  });
+  if(pending===0){ res.className='upload-res err'; res.textContent='لم يُعثر على ملفات Excel صالحة.'; }
+}
+
+// يقرأ جميع السنوات من ملف الإحصائيات
+function parseStatsFile(wb) {
+  const ws=wb.Sheets[wb.SheetNames[0]]; if(!ws) return 'لم يُعثر على بيانات.';
+  const rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:null});
+  const seen={};
+  rows.slice(1).forEach(row=>{
+    const yr=parseInt(row[0]);
+    if(!yr||isNaN(yr)||yr<1300||yr>2100) return;
+    if(!seen[yr]) {
+      seen[yr]=true;
+      if(!DB.years[yr]) DB.years[yr]=emptyYear();
+      const d=DB.years[yr];
+      const n=i=>typeof row[i]==='number'?Math.round(row[i]):0;
+      const f=i=>typeof row[i]==='number'?row[i]:0;
+      d.masajid=n(9); d.halaq=n(10);
+      d.stuSa=n(11); d.stuNs=n(12); d.students=n(13);
+      d.talqin=n(14); d.hafz=n(15); d.otherSys=n(16);
+      d.hufSa=n(17); d.hufNs=n(18); d.huffaz=n(19);
+      d.halaqSupported=n(20); d.halaqUnsupported=n(21);
+      d.supSa=n(25); d.supNs=n(26); d.supervisors=n(27);
+      d.tchSa=n(28); d.tchNs=n(29); d.teachers=n(30);
+      d.rev1=f(41); d.rev2=f(42); d.rev3=f(43); d.rev4=f(44);
+      d.exp1=f(46); d.exp2=f(47); d.exp3=f(48); d.exp4=f(49);
+    }
+  });
+  const found=Object.keys(seen).sort().join('، ');
+  return found?'تم قراءة بيانات: '+found:'لم يُعثر على سنوات';
+}
+
+// يُحدِّث مؤشرات الأداء من ملف KPI
+function parseKpiFile(wb) {
+  const ws=wb.Sheets[wb.SheetNames[0]]; if(!ws) return 'لم يُعثر على بيانات.';
+  const rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:null});
+  let updated=0;
+  rows.slice(4).forEach(row=>{
+    const code=row[0]?String(row[0]).trim():null; if(!code) return;
+    const idx=DB.kpis.findIndex(k=>k.code.replace(/[\(\)\s]/g,'')===code.replace(/[\(\)\s]/g,''));
+    if(idx===-1) return;
+    if(typeof row[6]==='number') DB.kpis[idx].target=Math.round(row[6]*100)/100;
+    if(typeof row[7]==='number') DB.kpis[idx].achieved=row[7];
+    if(typeof row[8]==='number') DB.kpis[idx].pct=Math.round(row[8]*1000)/10;
+    updated++;
+  });
+  return 'تم تحديث '+updated+' مؤشراً';
+}
+
+// ═══════════════════════════════════════════════════════
+// EXCEL EXPORT
+// ═══════════════════════════════════════════════════════
+
+function exportStatsExcel() {
+  if(typeof XLSX==='undefined'){ alert('مكتبة Excel غير محملة. تأكد من الاتصال بالإنترنت.'); return; }
+
+  const wb = XLSX.utils.book_new();
+
+  // ── ورقة 1: البيانات بترتيب ثابت — كل عمود له موضعه الصحيح ──
+  // الترتيب يطابق parseStatsFile تماماً
+  const cols = [
+    { key:'year',           label:'السنة' },             // 0  = A
+    { key:null,             label:'' },                   // 1  = B
+    { key:null,             label:'' },                   // 2  = C
+    { key:null,             label:'' },                   // 3  = D
+    { key:null,             label:'' },                   // 4  = E
+    { key:null,             label:'' },                   // 5  = F
+    { key:null,             label:'' },                   // 6  = G
+    { key:null,             label:'' },                   // 7  = H
+    { key:null,             label:'' },                   // 8  = I
+    { key:'masajid',        label:'إجمالي المساجد' },     // 9  = J
+    { key:'halaq',          label:'إجمالي الحلق' },       // 10 = K
+    { key:'stuSa',          label:'طلاب سعوديون' },       // 11 = L
+    { key:'stuNs',          label:'طلاب غير سعوديين' },   // 12 = M
+    { key:'students',       label:'إجمالي الطلاب' },      // 13 = N
+    { key:'talqin',         label:'نظام التلقين' },        // 14 = O
+    { key:'hafz',           label:'نظام الحفظ' },          // 15 = P
+    { key:'otherSys',       label:'أنظمة أخرى' },          // 16 = Q
+    { key:'hufSa',          label:'حفاظ سعوديون' },        // 17 = R
+    { key:'hufNs',          label:'حفاظ غير سعوديين' },    // 18 = S
+    { key:'huffaz',         label:'إجمالي الحفاظ' },        // 19 = T
+    { key:'halaqSupported', label:'حلق مدعومة' },           // 20 = U
+    { key:'halaqUnsupported',label:'حلق غير مدعومة' },      // 21 = V
+    { key:null,             label:'' },                    // 22 = W
+    { key:null,             label:'' },                    // 23 = X
+    { key:null,             label:'' },                    // 24 = Y
+    { key:'supSa',          label:'مشرفون سعوديون' },       // 25 = Z
+    { key:'supNs',          label:'مشرفون غير سعوديين' },   // 26 = AA
+    { key:'supervisors',    label:'إجمالي المشرفين' },       // 27 = AB
+    { key:'tchSa',          label:'معلمون سعوديون' },        // 28 = AC
+    { key:'tchNs',          label:'معلمون غير سعوديين' },    // 29 = AD
+    { key:'teachers',       label:'إجمالي المعلمين' },        // 30 = AE
+    { key:null,             label:'' },                    // 31
+    { key:null,             label:'' },                    // 32
+    { key:null,             label:'' },                    // 33
+    { key:null,             label:'' },                    // 34
+    { key:null,             label:'' },                    // 35
+    { key:null,             label:'' },                    // 36
+    { key:null,             label:'' },                    // 37
+    { key:null,             label:'' },                    // 38
+    { key:null,             label:'' },                    // 39
+    { key:null,             label:'' },                    // 40
+    { key:'rev1',           label:'إيرادات الربع 1' },      // 41 = AP
+    { key:'rev2',           label:'إيرادات الربع 2' },      // 42 = AQ
+    { key:'rev3',           label:'إيرادات الربع 3' },      // 43 = AR
+    { key:'rev4',           label:'إيرادات الربع 4' },      // 44 = AS
+    { key:'_totRev',        label:'إجمالي الإيرادات' },     // 45 = AT
+    { key:'exp1',           label:'مصروفات الربع 1' },      // 46 = AU
+    { key:'exp2',           label:'مصروفات الربع 2' },      // 47 = AV
+    { key:'exp3',           label:'مصروفات الربع 3' },      // 48 = AW
+    { key:'exp4',           label:'مصروفات الربع 4' },      // 49 = AX
+    { key:'_totExp',        label:'إجمالي المصروفات' },     // 50 = AY
+  ];
+
+  const headers = cols.map(c => c.label);
+  const rows = [headers];
+
+  sortedYears().forEach(y => {
+    const d = DB.years[y];
+    const totRev = (d.rev1||0)+(d.rev2||0)+(d.rev3||0)+(d.rev4||0);
+    const totExp = (d.exp1||0)+(d.exp2||0)+(d.exp3||0)+(d.exp4||0);
+    const src = {...d, year:y, _totRev:totRev, _totExp:totExp};
+    const row = cols.map(c => c.key ? (src[c.key]||0) : '');
+    rows.push(row);
+  });
+
+  const ws1 = XLSX.utils.aoa_to_sheet(rows);
+  // عرض الأعمدة — الأعمدة الفارغة أضيق
+  ws1['!cols'] = cols.map(c => ({wch: c.label ? 18 : 4}));
+  XLSX.utils.book_append_sheet(wb, ws1, 'الورقة1');
+
+  // ── ورقة 2: توزيع الأحياء ──
+  const hoodsRows = [['السنة','الحي','عدد الطلاب']];
+  sortedYears().forEach(y => {
+    (DB.years[y].hoods||[]).forEach(h => hoodsRows.push([y, h.name, h.v]));
+  });
+  const ws2 = XLSX.utils.aoa_to_sheet(hoodsRows);
+  ws2['!cols'] = [{wch:10},{wch:20},{wch:14}];
+  XLSX.utils.book_append_sheet(wb, ws2, 'الأحياء');
+
+  // ── ورقة 3: ملخص بالأرقام الرئيسية ──
+  const summaryRows = [
+    ['السنة','المساجد','الحلق','الطلاب','المعلمين','الحفاظ','الإيرادات','المصروفات','الفائض/العجز','نسبة النجاح%','الأجزاء المحفوظة']
+  ];
+  sortedYears().forEach(y => {
+    const d=DB.years[y];
+    const totRev=(d.rev1||0)+(d.rev2||0)+(d.rev3||0)+(d.rev4||0);
+    const totExp=(d.exp1||0)+(d.exp2||0)+(d.exp3||0)+(d.exp4||0);
+    summaryRows.push([y,d.masajid||0,d.halaq||0,d.students||0,d.teachers||0,d.huffaz||0,totRev,totExp,totRev-totExp,d.successRate||0,d.ajzaa||0]);
+  });
+  const ws3 = XLSX.utils.aoa_to_sheet(summaryRows);
+  ws3['!cols'] = summaryRows[0].map(()=>({wch:18}));
+  XLSX.utils.book_append_sheet(wb, ws3, 'ملخص');
+
+  XLSX.writeFile(wb, 'احصائيات_فرع_الخبر.xlsx');
+  showToast('تم تصدير ملف الإحصائيات بنجاح');
+}
+
+function exportKpiExcel() {
+  if(typeof XLSX==='undefined'){ alert('مكتبة Excel غير محملة. تأكد من الاتصال بالإنترنت.'); return; }
+
+  const wb = XLSX.utils.book_new();
+  const catL = {edu:'تعليمي', ops:'تشغيلي', fin:'مالي', hr:'بشري'};
+
+  // الصفوف الأولى كـ header (لتتطابق مع parseKpiFile التي تبدأ من الصف 5)
+  const rows = [
+    ['جمعية تحفيظ القرآن الكريم بالمنطقة الشرقية — فرع الخبر'],
+    ['رصد مستهدفات الخطة الاستراتيجية'],
+    [''],
+    [''],
+    // الصف 5 (index 4) — العناوين
+    ['الكود','المحور','اسم المؤشر','','','','الهدف','المحقق','نسبة التحقق','الحالة']
+  ];
+
+  DB.kpis.forEach(k => {
+    const pct = k.pct / 100; // نخزّن كـ 0-1 لأن parseKpiFile يضرب ×1000/10
+    const status = k.pct>=100?'متحقق':k.pct>=90?'قريب':'تحت المتابعة';
+    rows.push([
+      k.code,          // A - col 0
+      catL[k.cat]||'', // B
+      k.name,          // C
+      '','','',
+      k.target,        // G - col 6
+      k.achieved,      // H - col 7
+      pct,             // I - col 8 (0-1)
+      status
+    ]);
+  });
+
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+
+  // تنسيق عمود نسبة التحقق كنسبة مئوية
+  const range = XLSX.utils.decode_range(ws['!ref']);
+  for(let r=5; r<=range.e.r; r++) {
+    const cell = ws[XLSX.utils.encode_cell({r, c:8})];
+    if(cell) cell.z = '0.0%';
+  }
+
+  ws['!cols'] = [
+    {wch:10},{wch:10},{wch:45},{wch:5},{wch:5},{wch:5},
+    {wch:14},{wch:14},{wch:14},{wch:14}
+  ];
+
+  // دمج خلية العنوان
+  ws['!merges'] = [{s:{r:0,c:0},e:{r:0,c:9}},{s:{r:1,c:0},e:{r:1,c:9}}];
+
+  XLSX.utils.book_append_sheet(wb, ws, 'فرع الخبر');
+  XLSX.writeFile(wb, 'رصد_مستهدفات_الخطة_الاستراتيجية.xlsx');
+  showToast('تم تصدير ملف مؤشرات الأداء بنجاح');
+}
+
+// ═══════════════════════════════════════════════════════
+// FORMS
+// ═══════════════════════════════════════════════════════
+function openForm(id){ document.getElementById('modal-'+id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeForm(id){ document.getElementById('modal-'+id).classList.remove('open'); document.body.style.overflow=''; }
+function submitForm(id){ closeForm(id); showToast('تم الحفظ — سيتم الربط بـ Google Sheets'); }
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o){o.classList.remove('open');document.body.style.overflow='';}}));
+</script>
+</body>
+</html>
