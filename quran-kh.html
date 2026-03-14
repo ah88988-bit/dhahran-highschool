@@ -291,7 +291,7 @@ window.__EXPORTED_DB__ = {"years":{"2024":{"masajid":68,"halaq":266,"students":3
 <main class="main">
 
 <!-- LANDING -->
-<div class="page" id="page-landing">
+<div class="page active" id="page-landing">
   <div class="landing">
     <div class="landing-hero">
       <h2>بوابة فرع الخبر</h2>
@@ -323,9 +323,207 @@ window.__EXPORTED_DB__ = {"years":{"2024":{"masajid":68,"halaq":266,"students":3
 <!-- HOME -->
 <div class="page" id="page-home">
   <button class="back-btn" onclick="showPage('landing')">← الرئيسية</button>
-  <div class="sec-hdr"><h2>نظرة عامة — فرع الخبر</h2><div class="sec-div"></div><div class="sec-badge" id="home-badge">—</div></div>
-  <div id="home-yr-toggle"></div>
-  <div id="home-content"></div>
+  <div class="sec-hdr"><h2>نظرة عامة — فرع الخبر</h2><div class="sec-div"></div><div class="sec-badge" id="home-badge">عام 2025</div></div>
+  <div id="home-yr-toggle" class="yr-toggle">
+    <button class="yr-btn" onclick="(yr=&gt;renderHome(yr))(2024)">2024</button>
+  
+    <button class="yr-btn active" onclick="(yr=&gt;renderHome(yr))(2025)">2025</button>
+  </div>
+  <div id="home-content">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="bg-icon">🕌</div><div class="stat-lbl">إجمالي المساجد</div><div class="stat-val">82</div><div class="stat-chg up">↑ +14 مقارنةً بـ 2024</div></div>
+      <div class="stat-card ac"><div class="bg-icon">📖</div><div class="stat-lbl">إجمالي الحلق</div><div class="stat-val">306</div><div class="stat-chg up">↑ +40 مقارنةً بـ 2024</div></div>
+      <div class="stat-card md"><div class="bg-icon">👤</div><div class="stat-lbl">إجمالي الطلاب</div><div class="stat-val">4,698</div><div class="stat-chg up">↑ +925 مقارنةً بـ 2024</div></div>
+      <div class="stat-card"><div class="bg-icon">👨‍🏫</div><div class="stat-lbl">إجمالي المعلمين</div><div class="stat-val">306</div><div class="stat-chg up">↑ +40 مقارنةً بـ 2024</div></div>
+      <div class="stat-card ac"><div class="bg-icon">⭐</div><div class="stat-lbl">الحفاظ الجدد</div><div class="stat-val">66</div><div class="stat-chg up">↑ +23 مقارنةً بـ 2024</div></div>
+      <div class="stat-card md"><div class="bg-icon">🏘️</div><div class="stat-lbl">الأحياء المخدومة</div><div class="stat-val">33</div><div class="stat-chg ne">◆ أحياء</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="ct-icon">📈</div>مقارنة 2024 — 2025</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px">
+        <div class="cmp-card">
+            <div class="cmp-title">المساجد</div>
+            <div class="cmp-row">
+              <div><div class="cmp-yr">2024</div><div class="cmp-num">68</div></div>
+              <div class="cmp-arr up">↑</div>
+              <div><div class="cmp-yr">2025</div><div class="cmp-num">82</div></div>
+            </div>
+            <div class="cmp-diff up">+14 (20.6%)</div>
+          </div><div class="cmp-card">
+            <div class="cmp-title">الحلق</div>
+            <div class="cmp-row">
+              <div><div class="cmp-yr">2024</div><div class="cmp-num">266</div></div>
+              <div class="cmp-arr up">↑</div>
+              <div><div class="cmp-yr">2025</div><div class="cmp-num">306</div></div>
+            </div>
+            <div class="cmp-diff up">+40 (15.0%)</div>
+          </div><div class="cmp-card">
+            <div class="cmp-title">الطلاب</div>
+            <div class="cmp-row">
+              <div><div class="cmp-yr">2024</div><div class="cmp-num">3,773</div></div>
+              <div class="cmp-arr up">↑</div>
+              <div><div class="cmp-yr">2025</div><div class="cmp-num">4,698</div></div>
+            </div>
+            <div class="cmp-diff up">+925 (24.5%)</div>
+          </div><div class="cmp-card">
+            <div class="cmp-title">المعلمين</div>
+            <div class="cmp-row">
+              <div><div class="cmp-yr">2024</div><div class="cmp-num">266</div></div>
+              <div class="cmp-arr up">↑</div>
+              <div><div class="cmp-yr">2025</div><div class="cmp-num">306</div></div>
+            </div>
+            <div class="cmp-diff up">+40 (15.0%)</div>
+          </div><div class="cmp-card">
+            <div class="cmp-title">الحفاظ</div>
+            <div class="cmp-row">
+              <div><div class="cmp-yr">2024</div><div class="cmp-num">43</div></div>
+              <div class="cmp-arr up">↑</div>
+              <div><div class="cmp-yr">2025</div><div class="cmp-num">66</div></div>
+            </div>
+            <div class="cmp-diff up">+23 (53.5%)</div>
+          </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title"><div class="ct-icon">📍</div>توزيع الأحياء بعدد الطلاب — 2025</div>
+        <div class="bar-row">
+              <div class="bar-lbl" title="خ الشمالية">خ الشمالية</div>
+              <div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">709</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">17.3%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="الاسكان">الاسكان</div>
+              <div class="bar-track"><div class="bar-fill" style="width:70.5%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">500</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">12.2%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="الحزام">الحزام</div>
+              <div class="bar-track"><div class="bar-fill" style="width:60.1%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">426</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">10.4%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="الإسكان">الإسكان</div>
+              <div class="bar-track"><div class="bar-fill" style="width:43.6%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">309</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">7.5%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="م العمال">م العمال</div>
+              <div class="bar-track"><div class="bar-fill" style="width:40.3%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">286</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">7.0%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="العزيزية">العزيزية</div>
+              <div class="bar-track"><div class="bar-fill" style="width:30.3%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">215</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">5.2%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="الثقبة">الثقبة</div>
+              <div class="bar-track"><div class="bar-fill" style="width:28.5%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">202</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">4.9%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="البندرية">البندرية</div>
+              <div class="bar-track"><div class="bar-fill" style="width:20.3%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">144</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">3.5%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="العقربية">العقربية</div>
+              <div class="bar-track"><div class="bar-fill" style="width:18.6%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">132</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">3.2%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="العليا">العليا</div>
+              <div class="bar-track"><div class="bar-fill" style="width:17.2%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">122</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">3.0%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="العربية">العربية</div>
+              <div class="bar-track"><div class="bar-fill" style="width:15.5%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">110</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">2.7%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="الجامعة">الجامعة</div>
+              <div class="bar-track"><div class="bar-fill" style="width:12.8%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">91</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">2.2%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="الخزامى">الخزامى</div>
+              <div class="bar-track"><div class="bar-fill" style="width:11.8%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">84</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">2.0%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="الدوحة">الدوحة</div>
+              <div class="bar-track"><div class="bar-fill" style="width:11.3%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">80</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">2.0%</span>
+              </div>
+            </div><div class="bar-row">
+              <div class="bar-lbl" title="الهدا">الهدا</div>
+              <div class="bar-track"><div class="bar-fill" style="width:11.3%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">80</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">2.0%</span>
+              </div>
+            </div>
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;gap:16px;font-size:11px;color:var(--tl)">
+            <span>الأحياء: <strong style="color:var(--primary)">33</strong></span>
+            <span>إجمالي الطلاب: <strong style="color:var(--primary)">4,141</strong></span>
+            <span style="font-size:10px;color:var(--tl)">* محسوبة من بيانات المساجد</span>
+          </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="ct-icon">📋</div>حالة الحلقات — 2025</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          
+          <div style="display:flex;align-items:center;gap:12px;background:var(--off);border-radius:10px;padding:12px 16px">
+            <div style="width:12px;height:12px;border-radius:50%;background:var(--success);flex-shrink:0"></div>
+            <div style="font-size:22px;font-weight:900;color:var(--primary)">0</div>
+            <div style="font-size:11px;color:var(--tl);font-weight:700">مدعومة</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--off);border-radius:10px;padding:12px 16px">
+            <div style="width:12px;height:12px;border-radius:50%;background:var(--warn);flex-shrink:0"></div>
+            <div style="font-size:22px;font-weight:900;color:var(--primary)">0</div>
+            <div style="font-size:11px;color:var(--tl);font-weight:700">غير مدعومة</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--off);border-radius:10px;padding:12px 16px">
+            <div style="width:12px;height:12px;border-radius:50%;background:var(--danger);flex-shrink:0"></div>
+            <div style="font-size:22px;font-weight:900;color:var(--primary)">0</div>
+            <div style="font-size:11px;color:var(--tl);font-weight:700">متوقفة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- EDU -->
@@ -396,7 +594,7 @@ window.__EXPORTED_DB__ = {"years":{"2024":{"masajid":68,"halaq":266,"students":3
       <div class="card-title">
         <div class="ct-icon">🕌</div>
         تفاصيل المساجد والحلق — 2025
-        <span style="margin-right:auto;font-size:12px;color:var(--tl);font-weight:400" id="mosque-count-2025">71 / 71 مسجد</span>
+        <span style="margin-right:auto;font-size:12px;color:var(--tl);font-weight:400" id="mosque-count-2025">71 مسجد</span>
       </div>
       
 
@@ -439,7 +637,7 @@ window.__EXPORTED_DB__ = {"years":{"2024":{"masajid":68,"halaq":266,"students":3
         </div>
 
         <!-- زر إعادة تعيين -->
-        <button onclick="resetMosqueFilters('2025')" style="padding: 6px 12px; border: 1.5px solid var(--border); border-radius: 20px; background: rgb(255, 255, 255); color: var(--tl); font-family: inherit; font-size: 11px; font-weight: 700; cursor: pointer; transition: 0.18s;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background='#fff'">↺ إعادة تعيين</button>
+        <button onclick="resetMosqueFilters('2025')" style="padding:6px 12px;border:1.5px solid var(--border);border-radius:20px;background:#fff;color:var(--tl);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;transition:all .18s" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background='#fff'">↺ إعادة تعيين</button>
       </div>
 
       <!-- الجدول -->
@@ -457,231 +655,233 @@ window.__EXPORTED_DB__ = {"years":{"2024":{"masajid":68,"halaq":266,"students":3
             </tr>
           </thead>
           <tbody id="mosque-tbody-2025">
-    <tr data-status="active" data-name="هيلة الغنام" data-hood="الحمرا" data-halaq="1" data-periods="1" data-students="14" data-index="0">
-      <td style="color:var(--tl);font-size:11px">1</td>
-      <td><strong>هيلة الغنام</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الحمرا</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">14</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="ناصر خباب القحطاني" data-hood="الخزامي" data-halaq="1" data-periods="1" data-students="10" data-index="1">
-      <td style="color:var(--tl);font-size:11px">2</td>
-      <td><strong>ناصر خباب القحطاني</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الخزامي</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">10</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="عبدالله بن رواحة" data-hood="م العمال" data-halaq="5" data-periods="1" data-students="49" data-index="2">
-      <td style="color:var(--tl);font-size:11px">3</td>
-      <td><strong>عبدالله بن رواحة</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">م العمال</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">5</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">49</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="الخريجي" data-hood="البندرية" data-halaq="5" data-periods="1" data-students="62" data-index="3">
-      <td style="color:var(--tl);font-size:11px">4</td>
-      <td><strong>الخريجي</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">البندرية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">5</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">62</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="قوى الأمن" data-hood="الظهران" data-halaq="5" data-periods="1" data-students="65" data-index="4">
-      <td style="color:var(--tl);font-size:11px">5</td>
-      <td><strong>قوى الأمن</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الظهران</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">5</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">65</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="فاطمة النعيمي" data-hood="الراكة" data-halaq="1" data-periods="1" data-students="22" data-index="5">
-      <td style="color:var(--tl);font-size:11px">6</td>
-      <td><strong>فاطمة النعيمي</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الراكة</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">22</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="المعالي" data-hood="البحر" data-halaq="2" data-periods="1" data-students="26" data-index="6">
-      <td style="color:var(--tl);font-size:11px">7</td>
-      <td><strong>المعالي</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">البحر</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">26</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="منيرة السهلي" data-hood="العزيزية" data-halaq="5" data-periods="3" data-students="56" data-index="7">
-      <td style="color:var(--tl);font-size:11px">8</td>
-      <td><strong>منيرة السهلي</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">العزيزية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">5</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">3</td>
-      <td style="text-align:center;font-weight:700">56</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="لؤلؤة التويجري" data-hood="العزيزية" data-halaq="3" data-periods="3" data-students="45" data-index="8">
-      <td style="color:var(--tl);font-size:11px">9</td>
-      <td><strong>لؤلؤة التويجري</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">العزيزية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">3</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">3</td>
-      <td style="text-align:center;font-weight:700">45</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="بابيضان" data-hood="خ الشمالية" data-halaq="5" data-periods="3" data-students="70" data-index="9">
-      <td style="color:var(--tl);font-size:11px">10</td>
-      <td><strong>بابيضان</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">خ الشمالية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">5</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">3</td>
-      <td style="text-align:center;font-weight:700">70</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="قماشة المجحد" data-hood="أجيال" data-halaq="4" data-periods="3" data-students="55" data-index="10">
-      <td style="color:var(--tl);font-size:11px">11</td>
-      <td><strong>قماشة المجحد</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">أجيال</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">4</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">3</td>
-      <td style="text-align:center;font-weight:700">55</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="الذاكرين" data-hood="البحر" data-halaq="1" data-periods="1" data-students="10" data-index="11">
-      <td style="color:var(--tl);font-size:11px">12</td>
-      <td><strong>الذاكرين</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">البحر</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">10</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="منيرة الخالدي" data-hood="العزيزية" data-halaq="2" data-periods="2" data-students="35" data-index="12">
-      <td style="color:var(--tl);font-size:11px">13</td>
-      <td><strong>منيرة الخالدي</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">العزيزية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">2</td>
-      <td style="text-align:center;font-weight:700">35</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="صالح الحربي" data-hood="اجبال" data-halaq="2" data-periods="2" data-students="29" data-index="13">
-      <td style="color:var(--tl);font-size:11px">14</td>
-      <td><strong>صالح الحربي</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">اجبال</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">2</td>
-      <td style="text-align:center;font-weight:700">29</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="ابن عثيمين" data-hood="الثقبة" data-halaq="3" data-periods="1" data-students="75" data-index="14">
-      <td style="color:var(--tl);font-size:11px">15</td>
-      <td><strong>ابن عثيمين</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الثقبة</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">3</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">75</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="التقوي" data-hood="الثقبة" data-halaq="2" data-periods="2" data-students="22" data-index="15">
-      <td style="color:var(--tl);font-size:11px">16</td>
-      <td><strong>التقوي</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الثقبة</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">2</td>
-      <td style="text-align:center;font-weight:700">22</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="الحسين بن علي" data-hood="الثقبة" data-halaq="4" data-periods="1" data-students="39" data-index="16">
-      <td style="color:var(--tl);font-size:11px">17</td>
-      <td><strong>الحسين بن علي</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الثقبة</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">4</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">39</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="الفاروق" data-hood="خ الشمالية" data-halaq="7" data-periods="1" data-students="95" data-index="17">
-      <td style="color:var(--tl);font-size:11px">18</td>
-      <td><strong>الفاروق</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">خ الشمالية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">7</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">95</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="المدينة المنورة" data-hood="البايونية" data-halaq="1" data-periods="1" data-students="12" data-index="18">
-      <td style="color:var(--tl);font-size:11px">19</td>
-      <td><strong>المدينة المنورة</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">البايونية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">12</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="الهداية" data-hood="خ الشمالية" data-halaq="4" data-periods="1" data-students="42" data-index="19">
-      <td style="color:var(--tl);font-size:11px">20</td>
-      <td><strong>الهداية</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">خ الشمالية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">4</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">42</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="أبو عبيدة" data-hood="الثقبة" data-halaq="2" data-periods="2" data-students="49" data-index="20">
-      <td style="color:var(--tl);font-size:11px">21</td>
-      <td><strong>أبو عبيدة</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الثقبة</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">2</td>
-      <td style="text-align:center;font-weight:700">49</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="عمر بن عبدالعزيز" data-hood="العقربية" data-halaq="6" data-periods="1" data-students="90" data-index="21">
-      <td style="color:var(--tl);font-size:11px">22</td>
-      <td><strong>عمر بن عبدالعزيز</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">العقربية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">6</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">90</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="باطوق" data-hood="البايونية" data-halaq="1" data-periods="1" data-students="7" data-index="22">
-      <td style="color:var(--tl);font-size:11px">23</td>
-      <td><strong>باطوق</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">البايونية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">7</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="بلال بن رباح" data-hood="خ الشمالية" data-halaq="2" data-periods="1" data-students="35" data-index="23">
-      <td style="color:var(--tl);font-size:11px">24</td>
-      <td><strong>بلال بن رباح</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">خ الشمالية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">35</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr>
-    <tr data-status="active" data-name="جعفر بن أبي طالب" data-hood="خ الشمالية" data-halaq="3" data-periods="1" data-students="65" data-index="24">
-      <td style="color:var(--tl);font-size:11px">25</td>
-      <td><strong>جعفر بن أبي طالب</strong></td>
-      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">خ الشمالية</span></td>
-      <td style="text-align:center;font-weight:700;color:var(--primary)">3</td>
-      <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
-      <td style="text-align:center;font-weight:700">65</td>
-      <td><span class="bdg bdg-g">مدعوم</span></td>
-    </tr></tbody>
+            
+              <tr data-status="active" data-name="هيلة الغنام" data-hood="الحمرا" data-halaq="1" data-periods="1" data-students="14" data-index="0">
+                <td style="color:var(--tl);font-size:11px">1</td>
+                <td><strong>هيلة الغنام</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الحمرا</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">14</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="ناصر خباب القحطاني" data-hood="الخزامي" data-halaq="1" data-periods="1" data-students="10" data-index="1">
+                <td style="color:var(--tl);font-size:11px">2</td>
+                <td><strong>ناصر خباب القحطاني</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الخزامي</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">10</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="عبدالله بن رواحة" data-hood="م العمال" data-halaq="5" data-periods="1" data-students="49" data-index="2">
+                <td style="color:var(--tl);font-size:11px">3</td>
+                <td><strong>عبدالله بن رواحة</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">م العمال</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">5</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">49</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="الخريجي" data-hood="البندرية" data-halaq="5" data-periods="1" data-students="62" data-index="3">
+                <td style="color:var(--tl);font-size:11px">4</td>
+                <td><strong>الخريجي</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">البندرية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">5</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">62</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="قوى الأمن" data-hood="الظهران" data-halaq="5" data-periods="1" data-students="65" data-index="4">
+                <td style="color:var(--tl);font-size:11px">5</td>
+                <td><strong>قوى الأمن</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الظهران</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">5</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">65</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="فاطمة النعيمي" data-hood="الراكة" data-halaq="1" data-periods="1" data-students="22" data-index="5">
+                <td style="color:var(--tl);font-size:11px">6</td>
+                <td><strong>فاطمة النعيمي</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الراكة</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">22</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="المعالي" data-hood="البحر" data-halaq="2" data-periods="1" data-students="26" data-index="6">
+                <td style="color:var(--tl);font-size:11px">7</td>
+                <td><strong>المعالي</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">البحر</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">26</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="منيرة السهلي" data-hood="العزيزية" data-halaq="5" data-periods="3" data-students="56" data-index="7">
+                <td style="color:var(--tl);font-size:11px">8</td>
+                <td><strong>منيرة السهلي</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">العزيزية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">5</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">3</td>
+                <td style="text-align:center;font-weight:700">56</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="لؤلؤة التويجري" data-hood="العزيزية" data-halaq="3" data-periods="3" data-students="45" data-index="8">
+                <td style="color:var(--tl);font-size:11px">9</td>
+                <td><strong>لؤلؤة التويجري</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">العزيزية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">3</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">3</td>
+                <td style="text-align:center;font-weight:700">45</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="بابيضان" data-hood="خ الشمالية" data-halaq="5" data-periods="3" data-students="70" data-index="9">
+                <td style="color:var(--tl);font-size:11px">10</td>
+                <td><strong>بابيضان</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">خ الشمالية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">5</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">3</td>
+                <td style="text-align:center;font-weight:700">70</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="قماشة المجحد" data-hood="أجيال" data-halaq="4" data-periods="3" data-students="55" data-index="10">
+                <td style="color:var(--tl);font-size:11px">11</td>
+                <td><strong>قماشة المجحد</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">أجيال</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">4</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">3</td>
+                <td style="text-align:center;font-weight:700">55</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="الذاكرين" data-hood="البحر" data-halaq="1" data-periods="1" data-students="10" data-index="11">
+                <td style="color:var(--tl);font-size:11px">12</td>
+                <td><strong>الذاكرين</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">البحر</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">10</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="منيرة الخالدي" data-hood="العزيزية" data-halaq="2" data-periods="2" data-students="35" data-index="12">
+                <td style="color:var(--tl);font-size:11px">13</td>
+                <td><strong>منيرة الخالدي</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">العزيزية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">2</td>
+                <td style="text-align:center;font-weight:700">35</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="صالح الحربي" data-hood="اجبال" data-halaq="2" data-periods="2" data-students="29" data-index="13">
+                <td style="color:var(--tl);font-size:11px">14</td>
+                <td><strong>صالح الحربي</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">اجبال</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">2</td>
+                <td style="text-align:center;font-weight:700">29</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="ابن عثيمين" data-hood="الثقبة" data-halaq="3" data-periods="1" data-students="75" data-index="14">
+                <td style="color:var(--tl);font-size:11px">15</td>
+                <td><strong>ابن عثيمين</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الثقبة</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">3</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">75</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="التقوي" data-hood="الثقبة" data-halaq="2" data-periods="2" data-students="22" data-index="15">
+                <td style="color:var(--tl);font-size:11px">16</td>
+                <td><strong>التقوي</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الثقبة</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">2</td>
+                <td style="text-align:center;font-weight:700">22</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="الحسين بن علي" data-hood="الثقبة" data-halaq="4" data-periods="1" data-students="39" data-index="16">
+                <td style="color:var(--tl);font-size:11px">17</td>
+                <td><strong>الحسين بن علي</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الثقبة</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">4</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">39</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="الفاروق" data-hood="خ الشمالية" data-halaq="7" data-periods="1" data-students="95" data-index="17">
+                <td style="color:var(--tl);font-size:11px">18</td>
+                <td><strong>الفاروق</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">خ الشمالية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">7</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">95</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="المدينة المنورة" data-hood="البايونية" data-halaq="1" data-periods="1" data-students="12" data-index="18">
+                <td style="color:var(--tl);font-size:11px">19</td>
+                <td><strong>المدينة المنورة</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">البايونية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">12</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="الهداية" data-hood="خ الشمالية" data-halaq="4" data-periods="1" data-students="42" data-index="19">
+                <td style="color:var(--tl);font-size:11px">20</td>
+                <td><strong>الهداية</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">خ الشمالية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">4</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">42</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="أبو عبيدة" data-hood="الثقبة" data-halaq="2" data-periods="2" data-students="49" data-index="20">
+                <td style="color:var(--tl);font-size:11px">21</td>
+                <td><strong>أبو عبيدة</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">الثقبة</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">2</td>
+                <td style="text-align:center;font-weight:700">49</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="عمر بن عبدالعزيز" data-hood="العقربية" data-halaq="6" data-periods="1" data-students="90" data-index="21">
+                <td style="color:var(--tl);font-size:11px">22</td>
+                <td><strong>عمر بن عبدالعزيز</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">العقربية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">6</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">90</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="باطوق" data-hood="البايونية" data-halaq="1" data-periods="1" data-students="7" data-index="22">
+                <td style="color:var(--tl);font-size:11px">23</td>
+                <td><strong>باطوق</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">البايونية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">1</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">7</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="بلال بن رباح" data-hood="خ الشمالية" data-halaq="2" data-periods="1" data-students="35" data-index="23">
+                <td style="color:var(--tl);font-size:11px">24</td>
+                <td><strong>بلال بن رباح</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">خ الشمالية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">2</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">35</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+              <tr data-status="active" data-name="جعفر بن أبي طالب" data-hood="خ الشمالية" data-halaq="3" data-periods="1" data-students="65" data-index="24">
+                <td style="color:var(--tl);font-size:11px">25</td>
+                <td><strong>جعفر بن أبي طالب</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">خ الشمالية</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">3</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">1</td>
+                <td style="text-align:center;font-weight:700">65</td>
+                <td><span class="bdg bdg-g">مدعوم</span></td>
+              </tr>
+          </tbody>
         </table>
       </div>
 
@@ -692,7 +892,7 @@ window.__EXPORTED_DB__ = {"years":{"2024":{"masajid":68,"halaq":266,"students":3
           <span>إجمالي الطلاب: <strong style="color:var(--primary)" id="mosque-total-students-2025">4,141</strong></span>
           <span>متوسط طلاب/مسجد: <strong style="color:var(--primary)" id="mosque-avg-2025">58</strong></span>
         </div>
-        <span id="mosque-showing-2025" style="font-size:11px;color:var(--tl)">يعرض 25 من 71 (إجمالي 71)</span>
+        <span id="mosque-showing-2025" style="font-size:11px;color:var(--tl)">يعرض 1-25 من 71</span>
       </div>
 
       
@@ -806,7 +1006,7 @@ window.__EXPORTED_DB__ = {"years":{"2024":{"masajid":68,"halaq":266,"students":3
 
 
 <!-- CONTROL PANEL -->
-<div class="page active" id="page-ctrl">
+<div class="page" id="page-ctrl">
 
   <!-- شاشة الرقم السري -->
   <div id="ctrl-lock" style="display: none; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 24px;">
@@ -841,7 +1041,7 @@ window.__EXPORTED_DB__ = {"years":{"2024":{"masajid":68,"halaq":266,"students":3
         <h4>اسحب الملفين هنا أو انقر للاختيار</h4>
         <p>يُحدِّث جميع الأقسام تلقائياً لجميع السنوات الموجودة في الملف</p>
       </div>
-      <div class="upload-res" id="upload-res"></div>
+      <div class="upload-res ok" id="upload-res" style="display: block;">🕌 بيانات_المساجد.xlsx: تم إضافة 0 + تحديث 73 مسجداً<br><small>✅ جميع الأقسام جاهزة للعرض. راجع الأرقام وعدّل ما يلزم ثم اضغط حفظ.</small></div>
       <p style="font-size:11px;color:var(--tl);margin-top:8px">* مكتبة قراءة Excel تحتاج اتصال بالإنترنت عند أول تشغيل فقط.</p>
     </div>
   </div>
@@ -928,7 +1128,7 @@ window.__EXPORTED_DB__ = {"years":{"2024":{"masajid":68,"halaq":266,"students":3
       <button onclick="deleteDataYear(2025)" title="حذف عام 2025" style="background:none;border:none;cursor:pointer;font-size:12px;padding:0 8px 0 2px;color:rgba(255,255,255,.7);line-height:1;transition:color .18s" onmouseover="this.style.color='var(--danger)'" onmouseout="this.style.color='rgba(255,255,255,.7)'">✕</button>
     </div>
   </div>
-        <button onclick="openAddYearModal()" style="padding:8px 18px;border:2px dashed var(--cyan);border-radius:20px;background:rgba(96,196,228,.06);color:var(--primary);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s" onmouseover="this.style.background='rgba(96,196,228,.15)'" onmouseout="this.style.background='rgba(96,196,228,.06)'">＋ إضافة سنة جديدة</button>
+        <button onclick="openAddYearModal()" style="padding: 8px 18px; border: 2px dashed var(--cyan); border-radius: 20px; background: rgba(96, 196, 228, 0.06); color: var(--primary); font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: 0.18s;" onmouseover="this.style.background='rgba(96,196,228,.15)'" onmouseout="this.style.background='rgba(96,196,228,.06)'">＋ إضافة سنة جديدة</button>
       </div>
     </div>
   </div>
@@ -2533,7 +2733,7 @@ window.__EXPORTED_DB__ = {"years":{"2024":{"masajid":68,"halaq":266,"students":3
           </p>
         </div>
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <button onclick="deployToGitHub()" id="gh-deploy-btn" style="padding:11px 28px;background:linear-gradient(135deg,#1a1a2e,#24292f);color:#fff;border:none;border-radius:var(--rs);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .18s;display:inline-flex;align-items:center;gap:8px" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          <button onclick="deployToGitHub()" id="gh-deploy-btn" style="padding: 11px 28px; background: linear-gradient(135deg, rgb(26, 26, 46), rgb(36, 41, 47)); color: rgb(255, 255, 255); border: none; border-radius: var(--rs); font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.18s; display: inline-flex; align-items: center; gap: 8px; opacity: 1;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
             🚀 رفع الآن
           </button>
           <span id="gh-status" style="font-size:13px;font-weight:700"></span>
@@ -2842,7 +3042,7 @@ window.__EXPORTED_DB__ = {"years":{"2024":{"masajid":68,"halaq":266,"students":3
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast">✅ تم حفظ بيانات عام 2024 — جميع الأقسام محدَّثة</div>
 
 </main>
 
@@ -3060,7 +3260,7 @@ function renderHome(y) {
       <div class="stat-card md"><div class="bg-icon">👤</div><div class="stat-lbl">إجمالي الطلاب</div><div class="stat-val">${fmt(d.students)}</div>${chg(d.students,p?.students,py)}</div>
       <div class="stat-card"><div class="bg-icon">👨‍🏫</div><div class="stat-lbl">إجمالي المعلمين</div><div class="stat-val">${fmt(d.teachers)}</div>${chg(d.teachers,p?.teachers,py)}</div>
       <div class="stat-card ac"><div class="bg-icon">⭐</div><div class="stat-lbl">الحفاظ الجدد</div><div class="stat-val">${fmt(d.huffaz)}</div>${chg(d.huffaz,p?.huffaz,py)}</div>
-      <div class="stat-card md"><div class="bg-icon">🏘️</div><div class="stat-lbl">الأحياء المخدومة</div><div class="stat-val">${d.hoods.length||0}</div><div class="stat-chg ne">◆ أحياء</div></div>
+      <div class="stat-card md"><div class="bg-icon">🏘️</div><div class="stat-lbl">الأحياء المخدومة</div><div class="stat-val">${(d.mosques||[]).length ? new Set((d.mosques||[]).map(m=>m.hood).filter(Boolean)).size : (d.hoods||[]).length || 0}</div><div class="stat-chg ne">◆ أحياء</div></div>
     </div>
 
     ${p?`<div class="card">
@@ -3084,11 +3284,51 @@ function renderHome(y) {
 
     <div class="two-col">
       <div class="card">
-        <div class="card-title"><div class="ct-icon">📍</div>أعلى الأحياء بعدد الطلاب — ${y}</div>
-        ${d.hoods.length?d.hoods.slice(0,10).map(h=>`
-          <div class="bar-row"><div class="bar-lbl">${h.name}</div>
-          <div class="bar-track"><div class="bar-fill" style="width:${(h.v/d.hoods[0].v*100).toFixed(1)}%"></div></div>
-          <div class="bar-num">${h.v}</div></div>`).join(''):'<p style="color:var(--tl);font-size:13px">لا توجد بيانات</p>'}
+        <div class="card-title"><div class="ct-icon">📍</div>توزيع الأحياء بعدد الطلاب — ${y}</div>
+        ${(()=>{
+          // حساب الأحياء تلقائياً من بيانات المساجد
+          const mosques = d.mosques||[];
+          let hoodsData = [];
+          if(mosques.length) {
+            const map = {};
+            mosques.forEach(m=>{
+              if(!m.hood) return;
+              if(!map[m.hood]) map[m.hood]={name:m.hood, v:0, halaq:0, mosques:0};
+              map[m.hood].v       += m.students||0;
+              map[m.hood].halaq   += m.halaq||0;
+              map[m.hood].mosques += 1;
+            });
+            hoodsData = Object.values(map).sort((a,b)=>b.v-a.v);
+          } else {
+            // fallback للبيانات اليدوية
+            hoodsData = (d.hoods||[]).map(h=>({...h, halaq:0, mosques:0}));
+          }
+          if(!hoodsData.length) return '<p style="color:var(--tl);font-size:13px">لا توجد بيانات — أضف المساجد من لوحة التحكم</p>';
+          const totalStudents = hoodsData.reduce((s,h)=>s+h.v,0);
+          const max = hoodsData[0].v;
+          return hoodsData.slice(0,15).map(h=>{
+            const pct = totalStudents>0 ? ((h.v/totalStudents)*100).toFixed(1) : 0;
+            return `<div class="bar-row">
+              <div class="bar-lbl" title="${h.name}">${h.name}</div>
+              <div class="bar-track"><div class="bar-fill" style="width:${max>0?(h.v/max*100).toFixed(1):0}%"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <span style="font-size:12px;font-weight:700;color:var(--primary);min-width:36px;text-align:left">${h.v}</span>
+                <span style="font-size:10px;color:var(--tl);background:var(--off);padding:1px 6px;border-radius:10px;white-space:nowrap">${pct}%</span>
+              </div>
+            </div>`;
+          }).join('');
+        })()}
+        ${(()=>{
+          const mosques = d.mosques||[];
+          if(!mosques.length) return '';
+          const totalStudents = mosques.reduce((s,m)=>s+(m.students||0),0);
+          const hoodsCount = new Set(mosques.map(m=>m.hood).filter(Boolean)).size;
+          return `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;gap:16px;font-size:11px;color:var(--tl)">
+            <span>الأحياء: <strong style="color:var(--primary)">${hoodsCount}</strong></span>
+            <span>إجمالي الطلاب: <strong style="color:var(--primary)">${fmt(totalStudents)}</strong></span>
+            <span style="font-size:10px;color:var(--tl)">* محسوبة من بيانات المساجد</span>
+          </div>`;
+        })()}
       </div>
       <div class="card">
         <div class="card-title"><div class="ct-icon">📋</div>حالة الحلقات — ${y}</div>
@@ -4436,10 +4676,12 @@ function buildExportHTML() {
   // ٣. إزالة حالة الـ PIN المفتوح — الصفحة تبدأ مقفولة
   // (لا شيء هنا لأن _pinUnlocked يبدأ false عند كل تحميل جديد)
 
-  // ٤. إزالة حالة الصفحة النشطة المحتملة عند التصدير
-  // نتأكد أن page-landing هي الـ active وليس page-ctrl
-  html = html.replace(/id="page-ctrl"[^>]*class="page active"/, 'id="page-ctrl" class="page"');
-  html = html.replace(/id="page-landing"[^>]*class="page"(?!\s*active)/, 'id="page-landing" class="page active"');
+  // ٤. إعادة تعيين الصفحة النشطة للرئيسية دائماً
+  // نزيل class "active" من جميع الصفحات
+  html = html.replace(/(<div class="page) active"/g, '$1"');
+  // ثم نضيف active لـ page-landing فقط
+  html = html.replace('id="page-landing"', 'id="page-landing-REPLACE"');
+  html = html.replace('<div class="page" id="page-landing-REPLACE">', '<div class="page" id="page-landing">');
 
   return html;
 }
