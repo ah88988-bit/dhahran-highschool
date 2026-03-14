@@ -397,6 +397,45 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--off);color:
       <div class="fc-body"><ul class="fc-fields"><li>اسم الطالب الحافظ</li><li>اسم الجامع</li><li>عدد الأجزاء المحفوظة</li><li>صورة الطالب (اختياري)</li></ul>
       <button class="fc-btn fc-btn-p" onclick="openForm('huffaz')">📝 فتح النموذج</button></div>
     </div>
+
+    <!-- التقرير الشهري -->
+    <div class="form-card">
+      <div class="fc-hdr" style="background:linear-gradient(135deg,#1a4f6e,var(--primary))">
+        <div class="fc-icon">📅</div>
+        <h3>التقرير الشهري</h3>
+        <p>تعبئة وتصدير PDF بهوية الجمعية</p>
+      </div>
+      <div class="fc-body">
+        <ul class="fc-fields">
+          <li>الشهر والسنة</li>
+          <li>إجمالي الحلق والطلاب</li>
+          <li>الحفاظ الجدد والأجزاء المحفوظة</li>
+          <li>الإيرادات والمصروفات</li>
+          <li>الإنجازات والملاحظات</li>
+        </ul>
+        <button class="fc-btn fc-btn-p" onclick="openForm('monthly-report')">📝 إعداد التقرير</button>
+      </div>
+    </div>
+
+    <!-- التقرير السنوي -->
+    <div class="form-card">
+      <div class="fc-hdr" style="background:linear-gradient(135deg,#2d5016,#3a7a1e)">
+        <div class="fc-icon">📆</div>
+        <h3>التقرير السنوي</h3>
+        <p>تقرير شامل مع مؤشرات الأداء</p>
+      </div>
+      <div class="fc-body">
+        <ul class="fc-fields">
+          <li>السنة والبيانات الكاملة</li>
+          <li>المقارنة مع العام السابق</li>
+          <li>مؤشرات الأداء KPI</li>
+          <li>الملخص التنفيذي والتوصيات</li>
+          <li>يسحب البيانات تلقائياً من النظام</li>
+        </ul>
+        <button class="fc-btn fc-btn-p" onclick="openForm('annual-report')">📝 إعداد التقرير</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -406,32 +445,17 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--off);color:
 
   <!-- شاشة الرقم السري -->
   <div id="ctrl-lock" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:24px">
-    <div style="background:#fff;border-radius:var(--r);padding:40px 36px;box-shadow:var(--shm);border:1px solid var(--border);text-align:center;width:100%;max-width:360px">
+    <div style="background:#fff;border-radius:var(--r);padding:40px 36px;box-shadow:var(--shm);border:1px solid var(--border);text-align:center;width:100%;max-width:340px">
       <div style="font-size:48px;margin-bottom:12px">🔒</div>
       <h3 style="font-size:18px;font-weight:900;color:var(--primary);margin-bottom:6px">لوحة التحكم</h3>
       <p style="font-size:12px;color:var(--tl);margin-bottom:24px">أدخل الرقم السري للمتابعة</p>
-      <div style="display:flex;gap:10px;justify-content:center;margin-bottom:16px" id="pin-dots">
-        <div class="pin-dot" id="pd0"></div>
-        <div class="pin-dot" id="pd1"></div>
-        <div class="pin-dot" id="pd2"></div>
-        <div class="pin-dot" id="pd3"></div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
-        <button onclick="pinPress('1')" class="pin-btn">1</button>
-        <button onclick="pinPress('2')" class="pin-btn">2</button>
-        <button onclick="pinPress('3')" class="pin-btn">3</button>
-        <button onclick="pinPress('4')" class="pin-btn">4</button>
-        <button onclick="pinPress('5')" class="pin-btn">5</button>
-        <button onclick="pinPress('6')" class="pin-btn">6</button>
-        <button onclick="pinPress('7')" class="pin-btn">7</button>
-        <button onclick="pinPress('8')" class="pin-btn">8</button>
-        <button onclick="pinPress('9')" class="pin-btn">9</button>
-        <button class="pin-btn" style="visibility:hidden"></button>
-        <button onclick="pinPress('0')" class="pin-btn">0</button>
-        <button onclick="pinPress('⌫')" class="pin-btn" style="font-size:20px">⌫</button>
-      </div>
-      <p id="pin-err" style="color:var(--danger);font-size:12px;font-weight:700;min-height:18px"></p>
-      <p style="font-size:11px;color:var(--tl);margin-top:8px">الرقم الافتراضي: <strong>1234</strong> — يمكن تغييره من داخل لوحة التحكم</p>
+      <input type="password" id="pin-input" maxlength="20" placeholder="••••"
+        style="width:100%;padding:14px 16px;border:2px solid var(--border);border-radius:var(--rs);font-family:inherit;font-size:22px;text-align:center;letter-spacing:6px;outline:none;transition:border-color .2s;background:#fff;color:var(--primary)"
+        oninput="onPinInput()" onkeydown="if(event.key==='Enter') submitPin()"
+        onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+      <p id="pin-err" style="color:var(--danger);font-size:12px;font-weight:700;min-height:18px;margin-top:10px"></p>
+      <button onclick="submitPin()" style="width:100%;margin-top:8px;padding:12px;background:var(--primary);color:#fff;border:none;border-radius:var(--rs);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .18s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">دخول</button>
+      <p style="font-size:11px;color:var(--tl);margin-top:14px">الرقم الافتراضي: <strong>1234</strong></p>
     </div>
   </div>
 
@@ -447,6 +471,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--off);color:
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
         <span style="font-size:12px;background:rgba(96,196,228,.12);color:var(--primary);padding:4px 12px;border-radius:20px;font-weight:700">📊 احصائيات_فرع_الخبر.xlsx</span>
         <span style="font-size:12px;background:rgba(96,196,228,.12);color:var(--primary);padding:4px 12px;border-radius:20px;font-weight:700">📋 رصد_مستهدفات_الخطة.xlsx</span>
+        <span style="font-size:12px;background:rgba(96,196,228,.12);color:var(--primary);padding:4px 12px;border-radius:20px;font-weight:700">🕌 بيانات_المساجد.xlsx</span>
       </div>
       <div class="upload-zone" id="upload-zone" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
         <input type="file" accept=".xlsx,.xls" multiple onchange="handleMultiUpload(this.files)">
@@ -464,7 +489,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--off);color:
     <div class="ctrl-head"><span style="font-size:20px">📤</span><h3>تصدير بيانات Excel — للتعديل والرجوع برفعه</h3></div>
     <div class="ctrl-body">
       <p style="font-size:12px;color:var(--tl);margin-bottom:18px">صدِّر البيانات الحالية كملف Excel، عدّل عليه، ثم ارفعه مرة ثانية من الأعلى.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
 
         <!-- تصدير الإحصائيات -->
         <div style="background:var(--off);border-radius:var(--r);padding:20px;border:1px solid var(--border)">
@@ -476,7 +501,6 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--off);color:
             </div>
           </div>
           <p style="font-size:11px;color:var(--tl);margin-bottom:14px;line-height:1.7">
-            يحتوي على بيانات جميع السنوات المدخلة:<br>
             المساجد، الحلق، الطلاب، الكوادر، الحفاظ، المالية، الأحياء
           </p>
           <button onclick="exportStatsExcel()" class="ctrl-save" style="width:100%;justify-content:center">
@@ -494,11 +518,27 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--off);color:
             </div>
           </div>
           <p style="font-size:11px;color:var(--tl);margin-bottom:14px;line-height:1.7">
-            يحتوي على جميع مؤشرات الأداء:<br>
             الكود، الاسم، الهدف، المحقق، نسبة التحقق
           </p>
           <button onclick="exportKpiExcel()" class="ctrl-save" style="width:100%;justify-content:center">
             ⬇️ تصدير ملف المؤشرات
+          </button>
+        </div>
+
+        <!-- تصدير المساجد -->
+        <div style="background:var(--off);border-radius:var(--r);padding:20px;border:1px solid var(--border)">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:26px">🕌</span>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--primary)">ملف المساجد</div>
+              <div style="font-size:11px;color:var(--tl)">بيانات_المساجد.xlsx</div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--tl);margin-bottom:14px;line-height:1.7">
+            اسم المسجد، الحي، الحلق، الطلاب، الحالة لكل السنوات
+          </p>
+          <button onclick="exportMosquesExcel()" class="ctrl-save" style="width:100%;justify-content:center">
+            ⬇️ تصدير ملف المساجد
           </button>
         </div>
 
@@ -611,6 +651,32 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--off);color:
     </div>
   </div>
 
+  <!-- إدارة المساجد -->
+  <div class="ctrl-sec">
+    <div class="ctrl-head"><span style="font-size:20px">🕌</span><h3>إدارة بيانات المساجد — <span id="ctrl-mosque-year-label">—</span></h3></div>
+    <div class="ctrl-body">
+      <p style="font-size:12px;color:var(--tl);margin-bottom:14px">البيانات مرتبطة بالسنة المحددة في الأعلى. أضف أو عدّل أو احذف المساجد.</p>
+      <div style="overflow-x:auto;margin-bottom:12px">
+        <table class="kpi-et" id="mosque-ctrl-table">
+          <thead>
+            <tr>
+              <th>اسم المسجد</th>
+              <th>الحي</th>
+              <th>الحلق</th>
+              <th>الفترات</th>
+              <th>الطلاب</th>
+              <th>الحالة</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="mosque-ctrl-body"></tbody>
+        </table>
+      </div>
+      <button onclick="addMosqueRow()" style="padding:8px 18px;border:2px dashed var(--cyan);border-radius:var(--rs);background:rgba(96,196,228,.06);color:var(--primary);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;margin-left:10px">＋ إضافة مسجد</button>
+      <button class="ctrl-save" onclick="saveMosques()" style="margin-top:0">💾 حفظ بيانات المساجد</button>
+    </div>
+  </div>
+
   <!-- تغيير الرقم السري -->
   <div class="ctrl-sec">
     <div class="ctrl-head"><span style="font-size:20px">🔑</span><h3>تغيير الرقم السري</h3></div>
@@ -677,9 +743,110 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--off);color:
   </div>
 </div>
 
+<!-- MODAL: التقرير الشهري -->
+<div class="overlay" id="modal-monthly-report">
+  <div class="modal" style="max-width:580px">
+    <div class="modal-head" style="background:linear-gradient(135deg,#1a4f6e,var(--primary))">
+      <h3>📅 التقرير الشهري — فرع الخبر</h3>
+      <button class="modal-close" onclick="closeModal('modal-monthly-report')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="f-row">
+        <div class="fg"><label>الشهر <span>*</span></label>
+          <select class="fi" id="mr-month">
+            <option value="1">محرم</option><option value="2">صفر</option><option value="3">ربيع الأول</option>
+            <option value="4">ربيع الثاني</option><option value="5">جمادى الأولى</option><option value="6">جمادى الثانية</option>
+            <option value="7">رجب</option><option value="8">شعبان</option><option value="9">رمضان</option>
+            <option value="10">شوال</option><option value="11">ذو القعدة</option><option value="12">ذو الحجة</option>
+          </select>
+        </div>
+        <div class="fg"><label>السنة الهجرية <span>*</span></label><input class="fi" type="number" id="mr-year" placeholder="1446" min="1400" max="1500"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>عدد المساجد</label><input class="fi" type="number" id="mr-masajid" min="0" placeholder="0"></div>
+        <div class="fg"><label>عدد الحلق</label><input class="fi" type="number" id="mr-halaq" min="0" placeholder="0"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>عدد المعلمين</label><input class="fi" type="number" id="mr-teachers" min="0" placeholder="0"></div>
+        <div class="fg"><label>عدد الطلاب</label><input class="fi" type="number" id="mr-students" min="0" placeholder="0"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>صفحات الحفظ</label><input class="fi" type="number" id="mr-hafz-pages" min="0" placeholder="0"></div>
+        <div class="fg"><label>أجزاء الحفظ</label><input class="fi" type="number" id="mr-ajzaa" min="0" placeholder="0"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>صفحات المراجعة</label><input class="fi" type="number" id="mr-muraja-pages" min="0" placeholder="0"></div>
+        <div class="fg"><label>أجزاء المراجعة</label><input class="fi" type="number" id="mr-muraja-ajzaa" min="0" placeholder="0"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>الحفاظ الجدد</label><input class="fi" type="number" id="mr-huffaz" min="0" placeholder="0"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>الإيرادات (ر.س)</label><input class="fi" type="number" id="mr-rev" min="0"></div>
+        <div class="fg"><label>المصروفات (ر.س)</label><input class="fi" type="number" id="mr-exp" min="0"></div>
+      </div>
+      <div class="fg"><label>أبرز الإنجازات</label><textarea class="fi" id="mr-achievements" rows="2" placeholder="أهم ما تحقق هذا الشهر..."></textarea></div>
+      <div class="fg"><label>ملاحظات وتوصيات</label><textarea class="fi" id="mr-notes" rows="2" placeholder="أي ملاحظات أو توصيات..."></textarea></div>
+      <div class="fg"><label>اسم مُعد التقرير</label><input class="fi" type="text" id="mr-author" placeholder="الاسم والمنصب"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-g" onclick="closeModal('modal-monthly-report')">إلغاء</button>
+      <button class="btn btn-p" onclick="exportMonthlyReport()">📄 تصدير PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: التقرير السنوي -->
+<div class="overlay" id="modal-annual-report">
+  <div class="modal" style="max-width:580px">
+    <div class="modal-head" style="background:linear-gradient(135deg,#2d5016,#3a7a1e)">
+      <h3>📆 التقرير السنوي — فرع الخبر</h3>
+      <button class="modal-close" onclick="closeModal('modal-annual-report')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="info-box"><span>💡</span><span>البيانات تُسحب تلقائياً من النظام — يمكنك تعديلها أو إضافة تعليق</span></div>
+      <div class="f-row">
+        <div class="fg"><label>السنة <span>*</span></label>
+          <select class="fi" id="ar-year" onchange="fillAnnualFromDB()"></select>
+        </div>
+        <div class="fg"><label>اسم مُعد التقرير</label><input class="fi" type="text" id="ar-author" placeholder="الاسم والمنصب"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>المساجد</label><input class="fi" type="number" id="ar-masajid" min="0"></div>
+        <div class="fg"><label>الحلق</label><input class="fi" type="number" id="ar-halaq" min="0"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>الطلاب</label><input class="fi" type="number" id="ar-students" min="0"></div>
+        <div class="fg"><label>المعلمون</label><input class="fi" type="number" id="ar-teachers" min="0"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>صفحات الحفظ</label><input class="fi" type="number" id="ar-hafz-pages" min="0"></div>
+        <div class="fg"><label>أجزاء الحفظ</label><input class="fi" type="number" id="ar-ajzaa" min="0"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>صفحات المراجعة</label><input class="fi" type="number" id="ar-muraja-pages" min="0"></div>
+        <div class="fg"><label>أجزاء المراجعة</label><input class="fi" type="number" id="ar-muraja-ajzaa" min="0"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>الحفاظ الجدد</label><input class="fi" type="number" id="ar-huffaz" min="0"></div>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>إجمالي الإيرادات (ر.س)</label><input class="fi" type="number" id="ar-rev" min="0"></div>
+        <div class="fg"><label>إجمالي المصروفات (ر.س)</label><input class="fi" type="number" id="ar-exp" min="0"></div>
+      </div>
+      <div class="fg"><label>الملخص التنفيذي</label><textarea class="fi" id="ar-summary" rows="3" placeholder="ملخص إنجازات العام وأبرز المحطات..."></textarea></div>
+      <div class="fg"><label>التوصيات والتطلعات</label><textarea class="fi" id="ar-recommendations" rows="2" placeholder="توصيات للعام القادم..."></textarea></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-g" onclick="closeModal('modal-annual-report')">إلغاء</button>
+      <button class="btn btn-p" onclick="exportAnnualReport()">📄 تصدير PDF</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL: إضافة عام مؤشرات KPI -->
 <div class="overlay" id="modal-add-kpi-year">
-  <div class="modal" style="max-width:380px">
+  <div class="modal" style="max-width:420px">
     <div class="modal-head">
       <h3>📅 إضافة عام مؤشرات جديد</h3>
       <button class="modal-close" onclick="closeModal('modal-add-kpi-year')">✕</button>
@@ -690,8 +857,29 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--off);color:
         <input class="fi" type="number" id="kpi-year-input" placeholder="مثال: 2026" min="1300" max="2100"
           onkeydown="if(event.key==='Enter') confirmAddKpiYear()">
       </div>
+      <div class="fg">
+        <label>الأرباع المتاحة <span>*</span></label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
+          <label style="display:flex;align-items:center;gap:8px;padding:10px 14px;border:2px solid var(--border);border-radius:var(--rs);cursor:pointer;transition:all .18s;font-weight:600;font-size:13px" id="q1-lbl">
+            <input type="checkbox" id="kpi-q1" checked onchange="updateQLabel(1)" style="width:16px;height:16px;accent-color:var(--primary)">
+            الربع الأول
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;padding:10px 14px;border:2px solid var(--border);border-radius:var(--rs);cursor:pointer;transition:all .18s;font-weight:600;font-size:13px" id="q2-lbl">
+            <input type="checkbox" id="kpi-q2" onchange="updateQLabel(2)" style="width:16px;height:16px;accent-color:var(--primary)">
+            الربع الثاني
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;padding:10px 14px;border:2px solid var(--border);border-radius:var(--rs);cursor:pointer;transition:all .18s;font-weight:600;font-size:13px" id="q3-lbl">
+            <input type="checkbox" id="kpi-q3" onchange="updateQLabel(3)" style="width:16px;height:16px;accent-color:var(--primary)">
+            الربع الثالث
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;padding:10px 14px;border:2px solid var(--border);border-radius:var(--rs);cursor:pointer;transition:all .18s;font-weight:600;font-size:13px" id="q4-lbl">
+            <input type="checkbox" id="kpi-q4" onchange="updateQLabel(4)" style="width:16px;height:16px;accent-color:var(--primary)">
+            الربع الرابع
+          </label>
+        </div>
+      </div>
       <div class="info-box" style="margin-bottom:0">
-        <span>💡</span><span>سيتم إنشاء عام فارغ — أضف المؤشرات يدوياً أو ارفع ملف Excel</span>
+        <span>💡</span><span>سيتم إنشاء عام بالأرباع المحددة — أضف المؤشرات يدوياً أو ارفع ملف Excel</span>
       </div>
       <p id="kpi-year-err" style="color:var(--danger);font-size:12px;font-weight:700;display:none;margin-top:8px"></p>
     </div>
@@ -796,6 +984,18 @@ const DB = {
         {name:'خ - شمالية',v:515},{name:'الإسكان',v:380},{name:'الثقبة',v:367},
         {name:'الحزام',v:326},{name:'م - العمال',v:258},{name:'الدانة',v:171},
         {name:'العقربية',v:156},{name:'الجسر',v:140},{name:'الظهران',v:140},{name:'البايونية',v:127}
+      ],
+      mosques:[
+        {name:'جامع الراجحي',        hood:'خ - شمالية', halaq:5, periods:2, students:68, status:'active'},
+        {name:'جامع الملك فهد',      hood:'الإسكان',    halaq:4, periods:2, students:55, status:'active'},
+        {name:'جامع عمر بن الخطاب',  hood:'الثقبة',     halaq:3, periods:1, students:42, status:'active'},
+        {name:'جامع أبي بكر',        hood:'الحزام',     halaq:4, periods:2, students:58, status:'active'},
+        {name:'جامع الرحمة',         hood:'م - العمال', halaq:3, periods:1, students:40, status:'active'},
+        {name:'جامع النور',          hood:'الدانة',     halaq:2, periods:1, students:28, status:'inactive'},
+        {name:'جامع الفلاح',         hood:'العقربية',   halaq:3, periods:2, students:35, status:'active'},
+        {name:'جامع التوبة',         hood:'الجسر',      halaq:2, periods:1, students:30, status:'active'},
+        {name:'جامع الظهران',        hood:'الظهران',    halaq:2, periods:1, students:25, status:'stopped'},
+        {name:'جامع البر',           hood:'البايونية',  halaq:2, periods:1, students:22, status:'active'}
       ]
     },
     2025: {
@@ -809,7 +1009,8 @@ const DB = {
         {name:'خ - شمالية',v:515},{name:'الإسكان',v:380},{name:'الثقبة',v:367},
         {name:'الحزام',v:326},{name:'م - العمال',v:258},{name:'الدانة',v:171},
         {name:'العقربية',v:156},{name:'الجسر',v:140},{name:'الظهران',v:140},{name:'البايونية',v:127}
-      ]
+      ],
+      mosques:[]
     }
   },
   kpis: [
@@ -857,7 +1058,8 @@ const emptyYear   = () => ({
   stuSa:0,stuNs:0,tchSa:0,tchNs:0,supSa:0,supNs:0,hufSa:0,hufNs:0,
   hafz:0,talqin:0,otherSys:0,ajzaa:0,successRate:0,
   halaqSupported:0,halaqUnsupported:0,halaqStopped:0,supervisors:0,
-  rev1:0,rev2:0,rev3:0,rev4:0,exp1:0,exp2:0,exp3:0,exp4:0,hoods:[]
+  rev1:0,rev2:0,rev3:0,rev4:0,exp1:0,exp2:0,exp3:0,exp4:0,
+  hoods:[], mosques:[]
 });
 const kpisForYear = y => DB.kpis.filter(k => k.year === +y);
 const kpiYears    = () => {
@@ -879,7 +1081,7 @@ const pageRenderers = {
   admin:   () => renderAdmin(latestYear()),
   finance: () => renderFinance(latestYear()),
   kpi:     () => { renderKpis('all'); document.querySelectorAll('.cat-btn').forEach((b,i)=>b.classList.toggle('active',i===0)); },
-  ctrl:    () => { /* initCtrl يُستدعى بعد إدخال الرقم السري */ }
+  ctrl:    () => { setTimeout(()=>{ const inp=document.getElementById('pin-input'); if(inp&&!_pinUnlocked) inp.focus(); },100); }
 };
 
 function showPage(id) {
@@ -892,12 +1094,12 @@ function showPage(id) {
   // قفل لوحة التحكم عند الخروج منها
   if(id !== 'ctrl' && _pinUnlocked) {
     _pinUnlocked = false;
-    _pinEntry = '';
     const lock = document.getElementById('ctrl-lock');
     const content = document.getElementById('ctrl-content');
     if(lock) lock.style.display = 'flex';
     if(content) content.style.display = 'none';
-    updatePinDots();
+    resetPinScreen();
+    setTimeout(()=>{ const inp=document.getElementById('pin-input'); if(inp) inp.focus(); }, 300);
   }
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -1056,11 +1258,208 @@ function renderEdu(y) {
         </table>
       </div>
     </div>
+
+    <!-- جدول المساجد التفصيلي -->
+    <div class="card">
+      <div class="card-title">
+        <div class="ct-icon">🕌</div>
+        تفاصيل المساجد والحلق — ${y}
+        <span style="margin-right:auto;font-size:12px;color:var(--tl);font-weight:400" id="mosque-count-${y}">${(d.mosques||[]).length} مسجد</span>
+      </div>
+      ${(d.mosques||[]).length ? `
+
+      <!-- شريط الفلاتر والبحث -->
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px;padding:12px 14px;background:var(--off);border-radius:var(--rs);border:1px solid var(--border)">
+        <!-- بحث -->
+        <input type="text" id="mosque-search-${y}" oninput="applyMosqueFilters('${y}')"
+          placeholder="🔍 بحث بالاسم أو الحي..."
+          style="padding:7px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:12px;outline:none;font-family:inherit;min-width:180px;flex:1;transition:border-color .2s"
+          onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+
+        <!-- فلتر الحي -->
+        <select id="mosque-hood-${y}" onchange="applyMosqueFilters('${y}')"
+          style="padding:7px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:12px;outline:none;font-family:inherit;background:#fff;cursor:pointer">
+          <option value="">كل الأحياء</option>
+          ${[...new Set((d.mosques||[]).map(m=>m.hood))].sort().map(h=>`<option value="${h}">${h}</option>`).join('')}
+        </select>
+
+        <!-- فلتر الفترات -->
+        <select id="mosque-periods-${y}" onchange="applyMosqueFilters('${y}')"
+          style="padding:7px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:12px;outline:none;font-family:inherit;background:#fff;cursor:pointer">
+          <option value="">كل الفترات</option>
+          <option value="1">فترة واحدة</option>
+          <option value="2">فترتان</option>
+          <option value="3">ثلاث فترات</option>
+        </select>
+
+        <!-- فلتر الحالة -->
+        <select id="mosque-status-${y}" onchange="applyMosqueFilters('${y}')"
+          style="padding:7px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:12px;outline:none;font-family:inherit;background:#fff;cursor:pointer">
+          <option value="">كل الحالات</option>
+          <option value="active">مدعوم</option>
+          <option value="inactive">غير مدعوم</option>
+          <option value="stopped">متوقف</option>
+        </select>
+
+        <!-- عدد الصفوف -->
+        <div style="display:flex;align-items:center;gap:6px;margin-right:auto">
+          <span style="font-size:11px;color:var(--tl);white-space:nowrap">عرض:</span>
+          <select id="mosque-ps-${y}" onchange="setMosquePageSize('${y}',this.value)"
+            style="padding:6px 10px;border:1.5px solid var(--border);border-radius:20px;font-size:12px;outline:none;font-family:inherit;background:#fff;cursor:pointer;font-weight:700;color:var(--primary)">
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="all">الكل</option>
+          </select>
+        </div>
+
+        <!-- زر إعادة تعيين -->
+        <button onclick="resetMosqueFilters('${y}')"
+          style="padding:6px 12px;border:1.5px solid var(--border);border-radius:20px;background:#fff;color:var(--tl);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;transition:all .18s"
+          onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background='#fff'">↺ إعادة تعيين</button>
+      </div>
+
+      <!-- الجدول -->
+      <div style="overflow-x:auto">
+        <table class="tbl" id="mosque-table-${y}">
+          <thead>
+            <tr>
+              <th style="cursor:pointer;user-select:none" onclick="sortMosques('${y}','index')">#</th>
+              <th style="cursor:pointer;user-select:none" onclick="sortMosques('${y}','name')">اسم المسجد ↕</th>
+              <th style="cursor:pointer;user-select:none" onclick="sortMosques('${y}','hood')">الحي ↕</th>
+              <th style="cursor:pointer;user-select:none;text-align:center" onclick="sortMosques('${y}','halaq')">الحلق ↕</th>
+              <th style="cursor:pointer;user-select:none;text-align:center" onclick="sortMosques('${y}','periods')">الفترات ↕</th>
+              <th style="cursor:pointer;user-select:none;text-align:center" onclick="sortMosques('${y}','students')">الطلاب ↕</th>
+              <th>الحالة</th>
+            </tr>
+          </thead>
+          <tbody id="mosque-tbody-${y}">
+            ${(d.mosques||[]).slice(0,25).map((m,i)=>`
+              <tr data-status="${m.status}" data-name="${m.name.toLowerCase()}" data-hood="${m.hood.toLowerCase()}" data-halaq="${m.halaq}" data-periods="${m.periods||1}" data-students="${m.students}" data-index="${i}">
+                <td style="color:var(--tl);font-size:11px">${i+1}</td>
+                <td><strong>${m.name}</strong></td>
+                <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">${m.hood}</span></td>
+                <td style="text-align:center;font-weight:700;color:var(--primary)">${m.halaq}</td>
+                <td style="text-align:center;font-weight:700;color:var(--mid)">${m.periods||1}</td>
+                <td style="text-align:center;font-weight:700">${fmt(m.students)}</td>
+                <td><span class="bdg ${m.status==='active'?'bdg-g':m.status==='inactive'?'bdg-y':'bdg-r'}">${m.status==='active'?'مدعوم':m.status==='inactive'?'غير مدعوم':'متوقف'}</span></td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- التذييل: الإجماليات + رسالة النتائج -->
+      <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--tl);background:var(--off);padding:8px 14px;border-radius:var(--rs)">
+          <span>إجمالي الحلق: <strong style="color:var(--primary)" id="mosque-total-halaq-${y}">${(d.mosques||[]).reduce((s,m)=>s+m.halaq,0)}</strong></span>
+          <span>إجمالي الطلاب: <strong style="color:var(--primary)" id="mosque-total-students-${y}">${fmt((d.mosques||[]).reduce((s,m)=>s+m.students,0))}</strong></span>
+          <span>متوسط طلاب/مسجد: <strong style="color:var(--primary)" id="mosque-avg-${y}">${(d.mosques||[]).length?Math.round((d.mosques||[]).reduce((s,m)=>s+m.students,0)/(d.mosques||[]).length):0}</strong></span>
+        </div>
+        <span id="mosque-showing-${y}" style="font-size:11px;color:var(--tl)">يعرض 1-${Math.min(25,(d.mosques||[]).length)} من ${(d.mosques||[]).length}</span>
+      </div>
+
+      ` : `<div style="text-align:center;padding:28px;color:var(--tl)">
+        <div style="font-size:40px;margin-bottom:8px">🕌</div>
+        <p style="font-size:14px;font-weight:700">لا توجد بيانات مساجد لهذا العام</p>
+        <p style="font-size:11px;margin-top:4px">أضفها من <strong>لوحة التحكم ← بيانات المساجد</strong></p>
+      </div>`}
+    </div>
   `;
 }
 
 // ═══════════════════════════════════════════════════════
-// ADMIN PAGE
+// MOSQUES — فلاتر متقدمة وترتيب وعدد صفوف
+// ═══════════════════════════════════════════════════════
+const _mosqueState = {}; // يخزن حالة كل جدول { pageSize, sortKey, sortDir }
+
+function getMosqueState(y) {
+  if(!_mosqueState[y]) _mosqueState[y] = {pageSize:25, sortKey:'index', sortDir:1};
+  return _mosqueState[y];
+}
+
+function applyMosqueFilters(y) {
+  const d = DB.years[y]; if(!d) return;
+  const state = getMosqueState(y);
+  const q       = (document.getElementById('mosque-search-'+y)?.value||'').toLowerCase();
+  const hood    = document.getElementById('mosque-hood-'+y)?.value||'';
+  const periods = document.getElementById('mosque-periods-'+y)?.value||'';
+  const status  = document.getElementById('mosque-status-'+y)?.value||'';
+
+  // فلترة
+  let filtered = (d.mosques||[]).map((m,i)=>({...m, _i:i})).filter(m=>{
+    const matchQ      = !q      || m.name.toLowerCase().includes(q) || m.hood.toLowerCase().includes(q);
+    const matchHood   = !hood   || m.hood === hood;
+    const matchPeriod = !periods|| String(m.periods||1) === periods;
+    const matchStatus = !status || m.status === status;
+    return matchQ && matchHood && matchPeriod && matchStatus;
+  });
+
+  // ترتيب
+  const {sortKey, sortDir} = state;
+  filtered.sort((a,b)=>{
+    let va = a[sortKey]??a._i, vb = b[sortKey]??b._i;
+    if(typeof va==='string') return va.localeCompare(vb, 'ar') * sortDir;
+    return (va-vb) * sortDir;
+  });
+
+  renderMosqueRows(y, filtered, state.pageSize);
+  updateMosaicSummary(y, filtered);
+}
+
+function renderMosqueRows(y, rows, limit) {
+  const tbody = document.getElementById('mosque-tbody-'+y); if(!tbody) return;
+  const visible = rows.slice(0, limit);
+  tbody.innerHTML = visible.map((m,i)=>`
+    <tr data-status="${m.status}" data-name="${m.name.toLowerCase()}" data-hood="${m.hood.toLowerCase()}"
+        data-halaq="${m.halaq}" data-periods="${m.periods||1}" data-students="${m.students}" data-index="${m._i}">
+      <td style="color:var(--tl);font-size:11px">${m._i+1}</td>
+      <td><strong>${m.name}</strong></td>
+      <td><span style="background:rgba(96,196,228,.1);color:var(--primary);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">${m.hood}</span></td>
+      <td style="text-align:center;font-weight:700;color:var(--primary)">${m.halaq}</td>
+      <td style="text-align:center;font-weight:700;color:var(--mid)">${m.periods||1}</td>
+      <td style="text-align:center;font-weight:700">${fmt(m.students)}</td>
+      <td><span class="bdg ${m.status==='active'?'bdg-g':m.status==='inactive'?'bdg-y':'bdg-r'}">${m.status==='active'?'مدعوم':m.status==='inactive'?'غير مدعوم':'متوقف'}</span></td>
+    </tr>`).join('');
+  // رسالة العرض
+  const showEl = document.getElementById('mosque-showing-'+y);
+  if(showEl) showEl.textContent = `يعرض ${Math.min(visible.length,rows.length)} من ${rows.length} (إجمالي ${(DB.years[y]?.mosques||[]).length})`;
+  const cntEl = document.getElementById('mosque-count-'+y);
+  if(cntEl) cntEl.textContent = rows.length+' / '+(DB.years[y]?.mosques||[]).length+' مسجد';
+}
+
+function updateMosaicSummary(y, filtered) {
+  const hEl = document.getElementById('mosque-total-halaq-'+y);
+  const sEl = document.getElementById('mosque-total-students-'+y);
+  const aEl = document.getElementById('mosque-avg-'+y);
+  const totalH = filtered.reduce((s,m)=>s+m.halaq,0);
+  const totalS = filtered.reduce((s,m)=>s+m.students,0);
+  if(hEl) hEl.textContent = totalH;
+  if(sEl) sEl.textContent = fmt(totalS);
+  if(aEl) aEl.textContent = filtered.length ? Math.round(totalS/filtered.length) : 0;
+}
+
+function setMosquePageSize(y, size) {
+  getMosqueState(y).pageSize = size === 'all' ? Infinity : +size;
+  applyMosqueFilters(y);
+}
+
+function sortMosques(y, key) {
+  const state = getMosqueState(y);
+  if(state.sortKey === key) state.sortDir *= -1;
+  else { state.sortKey = key; state.sortDir = 1; }
+  applyMosqueFilters(y);
+}
+
+function resetMosqueFilters(y) {
+  ['mosque-search-'+y, 'mosque-hood-'+y, 'mosque-periods-'+y, 'mosque-status-'+y].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value='';
+  });
+  const ps = document.getElementById('mosque-ps-'+y); if(ps) ps.value='25';
+  getMosqueState(y).sortKey='index'; getMosqueState(y).sortDir=1; getMosqueState(y).pageSize=25;
+  applyMosqueFilters(y);
+}
+
+// الدوال القديمة محذوفة — استُبدلت بالدوال الجديدة أعلاه
 // ═══════════════════════════════════════════════════════
 function renderAdmin(y) {
   const d=DB.years[y]; const py=prevYear(y); const p=py?DB.years[py]:null;
@@ -1349,6 +1748,7 @@ function initCtrl() {
   rebuildCtrlYrToggle();
   loadCtrlFields(ctrlYear);
   buildKpiEditTable();
+  buildMosquesCtrl(ctrlYear);
 }
 
 function rebuildCtrlYrToggle() {
@@ -1386,6 +1786,7 @@ function selectCtrlYear(y) {
   ctrlYear=y;
   rebuildCtrlYrToggle();
   loadCtrlFields(y);
+  buildMosquesCtrl(y);
 }
 
 function loadCtrlFields(y) {
@@ -1499,11 +1900,22 @@ function closeModal(id) {
   document.body.style.overflow='';
 }
 
+function updateQLabel(q) {
+  const chk = document.getElementById('kpi-q'+q);
+  const lbl = document.getElementById('q'+q+'-lbl');
+  if(!chk||!lbl) return;
+  lbl.style.borderColor = chk.checked ? 'var(--primary)' : 'var(--border)';
+  lbl.style.background  = chk.checked ? 'rgba(50,51,102,.05)' : '';
+  lbl.style.color       = chk.checked ? 'var(--primary)' : 'var(--tl)';
+}
+
 function openAddKpiYearModal() {
   const inp=document.getElementById('kpi-year-input');
   const err=document.getElementById('kpi-year-err');
   if(inp) inp.value='';
   if(err) err.style.display='none';
+  // reset quarters
+  [1,2,3,4].forEach(q=>{ const c=document.getElementById('kpi-q'+q); if(c) c.checked=(q===1); updateQLabel(q); });
   document.getElementById('modal-add-kpi-year').classList.add('open');
   document.body.style.overflow='hidden';
   setTimeout(()=>{ if(inp) inp.focus(); },100);
@@ -1519,15 +1931,18 @@ function confirmAddKpiYear() {
   if(kpiYears().includes(yNum)) {
     err.textContent='هذا العام موجود مسبقاً'; err.style.display='block'; return;
   }
-  // إضافة العام — لا نضيف مؤشرات، فقط نجعله متاحاً
-  // نضيف مؤشراً مؤقتاً ثم نحذفه لضمان ظهور العام في القائمة
-  // الأفضل: نخزّن السنوات بشكل منفصل
+  const quarters=[1,2,3,4].filter(q=>document.getElementById('kpi-q'+q)?.checked);
   if(!DB.kpiYears) DB.kpiYears=[];
   DB.kpiYears.push(yNum);
-  ctrlKpiYear=yNum;
+  // نخزّن الأرباع مع السنة
+  if(!DB.kpiQuarters) DB.kpiQuarters={};
+  DB.kpiQuarters[yNum]=quarters;
+  ctrlKpiYear=yNum; kpiYear=yNum;
   closeModal('modal-add-kpi-year');
   buildKpiEditTable();
-  showToast('تمت إضافة عام '+yNum+' للمؤشرات');
+  const qNames={1:'الأول',2:'الثاني',3:'الثالث',4:'الرابع'};
+  const qStr=quarters.map(q=>'الربع '+qNames[q]).join(' + ');
+  showToast('تمت إضافة عام '+yNum+' — '+qStr);
 }
 
 function openAddKpiModal() {
@@ -1578,12 +1993,14 @@ function buildKpiEditTable() {
   if(toggleEl) {
     const yrs = kpiYears();
     if(!yrs.includes(ctrlKpiYear)) ctrlKpiYear = yrs.slice(-1)[0] || latestYear();
-    toggleEl.innerHTML = yrs.map(y =>`
-      <div style="display:inline-flex;align-items:center;gap:0;background:${y===ctrlKpiYear?'var(--primary)':'transparent'};border-radius:20px;${y===ctrlKpiYear?'box-shadow:0 2px 8px rgba(50,51,102,.3)':''}">
-        <button class="yr-btn${y===ctrlKpiYear?' active':''}" onclick="selectCtrlKpiYear(${y})" style="${y===ctrlKpiYear?'background:transparent;color:#fff;padding-left:6px':''}">${y}</button>
+    toggleEl.innerHTML = yrs.map(y =>{
+      const qs = (DB.kpiQuarters||{})[y];
+      const qBadge = qs ? ` <span style="font-size:10px;opacity:.7">(${qs.map(q=>'ر'+q).join('+')})</span>` : '';
+      return `<div style="display:inline-flex;align-items:center;gap:0;background:${y===ctrlKpiYear?'var(--primary)':'transparent'};border-radius:20px;${y===ctrlKpiYear?'box-shadow:0 2px 8px rgba(50,51,102,.3)':''}">
+        <button class="yr-btn${y===ctrlKpiYear?' active':''}" onclick="selectCtrlKpiYear(${y})" style="${y===ctrlKpiYear?'background:transparent;color:#fff;padding-left:6px':''}">${y}${qBadge}</button>
         <button onclick="deleteKpiYear(${y})" title="حذف عام ${y}" style="background:none;border:none;cursor:pointer;font-size:12px;padding:0 8px 0 2px;color:${y===ctrlKpiYear?'rgba(255,255,255,.7)':'var(--tl)'};line-height:1;transition:color .18s" onmouseover="this.style.color='var(--danger)'" onmouseout="this.style.color='${y===ctrlKpiYear?'rgba(255,255,255,.7)':'var(--tl)'}'">✕</button>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
   }
 
   const pool = DB.kpis.map((k,i)=>({...k,_i:i})).filter(k=>k.year===ctrlKpiYear);
@@ -1651,13 +2068,14 @@ function handleMultiUpload(files) {
     reader.onload=ev=>{
       try {
         const wb=XLSX.read(ev.target.result,{type:'binary'});
-        // تحديد نوع الملف من اسمه أو محتواه
-        const isKpi=file.name.includes('مستهدف')||file.name.includes('استراتيج')||file.name.toLowerCase().includes('kpi');
-        msgs.push((isKpi?'📋 ':'📊 ')+file.name+': '+(isKpi?parseKpiFile(wb):parseStatsFile(wb)));
+        const isMosque = file.name.includes('مساجد') || file.name.includes('mosque') || file.name.toLowerCase().includes('mosque');
+        const isKpi = !isMosque && (file.name.includes('مستهدف')||file.name.includes('استراتيج')||file.name.toLowerCase().includes('kpi'));
+        const icon = isMosque?'🕌':isKpi?'📋':'📊';
+        msgs.push(icon+' '+file.name+': '+(isMosque?parseMosquesFile(wb):isKpi?parseKpiFile(wb):parseStatsFile(wb)));
       } catch(err) { msgs.push('❌ '+file.name+': '+err.message); }
       pending--;
       if(pending===0) {
-        initCtrl(); // إعادة بناء لوحة التحكم بالسنوات الجديدة
+        initCtrl();
         res.className='upload-res ok';
         res.innerHTML=msgs.join('<br>')+'<br><small>✅ جميع الأقسام جاهزة للعرض. راجع الأرقام وعدّل ما يلزم ثم اضغط حفظ.</small>';
       }
@@ -1697,6 +2115,48 @@ function parseStatsFile(wb) {
 }
 
 // يُحدِّث مؤشرات الأداء من ملف KPI
+// ── ملف المساجد ──
+// تنسيق الأعمدة: A=السنة، B=اسم المسجد، C=الحي، D=عدد الحلق، E=عدد الفترات، F=عدد الطلاب، G=الحالة
+function parseMosquesFile(wb) {
+  const ws=wb.Sheets[wb.SheetNames[0]]; if(!ws) return 'لم يُعثر على بيانات.';
+  const rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:null});
+  let added=0, updated=0;
+  const statusMap={'مدعوم':'active','غير مدعوم':'inactive','متوقف':'stopped','active':'active','inactive':'inactive','stopped':'stopped'};
+  rows.slice(1).forEach(row=>{
+    const yr=parseInt(row[0]); if(!yr||isNaN(yr)) return;
+    if(!DB.years[yr]) DB.years[yr]=emptyYear();
+    if(!DB.years[yr].mosques) DB.years[yr].mosques=[];
+    const name=row[1]?String(row[1]).trim():''; if(!name) return;
+    const hood=row[2]?String(row[2]).trim():'';
+    const halaq=typeof row[3]==='number'?Math.round(row[3]):+row[3]||0;
+    const periods=typeof row[4]==='number'?Math.round(row[4]):+row[4]||1;
+    const students=typeof row[5]==='number'?Math.round(row[5]):+row[5]||0;
+    const statusRaw=row[6]?String(row[6]).trim():'مدعوم';
+    const status=statusMap[statusRaw]||'active';
+    const idx=DB.years[yr].mosques.findIndex(m=>m.name===name);
+    if(idx!==-1) { DB.years[yr].mosques[idx]={name,hood,halaq,periods,students,status}; updated++; }
+    else { DB.years[yr].mosques.push({name,hood,halaq,periods,students,status}); added++; }
+  });
+  return `تم إضافة ${added} + تحديث ${updated} مسجداً`;
+}
+
+function exportMosquesExcel() {
+  if(typeof XLSX==='undefined'){ alert('مكتبة Excel غير محملة.'); return; }
+  const wb=XLSX.utils.book_new();
+  const rows=[['السنة','اسم المسجد','الحي','عدد الحلق','عدد الفترات','عدد الطلاب','الحالة']];
+  const statusLabel={active:'مدعوم',inactive:'غير مدعوم',stopped:'متوقف'};
+  sortedYears().forEach(y=>{
+    (DB.years[y].mosques||[]).forEach(m=>{
+      rows.push([y, m.name, m.hood, m.halaq, m.periods||1, m.students, statusLabel[m.status]||'مدعوم']);
+    });
+  });
+  const ws=XLSX.utils.aoa_to_sheet(rows);
+  ws['!cols']=[{wch:8},{wch:28},{wch:18},{wch:12},{wch:12},{wch:12},{wch:14}];
+  XLSX.utils.book_append_sheet(wb,ws,'المساجد');
+  XLSX.writeFile(wb,'بيانات_المساجد.xlsx');
+  showToast('تم تصدير ملف المساجد');
+}
+
 function parseKpiFile(wb) {
   const ws=wb.Sheets[wb.SheetNames[0]]; if(!ws) return 'لم يُعثر على بيانات.';
   const rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:null});
@@ -1887,49 +2347,115 @@ function exportKpiExcel() {
 }
 
 // ═══════════════════════════════════════════════════════
+// MOSQUES CTRL — إدارة المساجد في لوحة التحكم
+// ═══════════════════════════════════════════════════════
+function buildMosquesCtrl(y) {
+  const lbl = document.getElementById('ctrl-mosque-year-label'); if(lbl) lbl.textContent='عام '+y;
+  const tb = document.getElementById('mosque-ctrl-body'); if(!tb) return;
+  const mosques = DB.years[y]?.mosques || [];
+  tb.innerHTML = mosques.map((m,i)=>`
+    <tr id="mosque-row-${i}">
+      <td><input class="hood-inp" type="text" id="m-name-${i}" value="${m.name}" placeholder="اسم المسجد" style="min-width:140px"></td>
+      <td><input class="hood-inp" type="text" id="m-hood-${i}" value="${m.hood}" placeholder="الحي" style="min-width:100px"></td>
+      <td><input class="hood-inp" type="number" id="m-halaq-${i}" value="${m.halaq}" min="0" style="width:60px;text-align:center"></td>
+      <td><input class="hood-inp" type="number" id="m-periods-${i}" value="${m.periods||1}" min="1" max="3" style="width:60px;text-align:center" title="عدد الفترات"></td>
+      <td><input class="hood-inp" type="number" id="m-students-${i}" value="${m.students}" min="0" style="width:70px;text-align:center"></td>
+      <td>
+        <select id="m-status-${i}" style="padding:6px 8px;border:1.5px solid var(--border);border-radius:var(--rs);font-family:inherit;font-size:12px;outline:none">
+          <option value="active" ${m.status==='active'?'selected':''}>مدعوم</option>
+          <option value="inactive" ${m.status==='inactive'?'selected':''}>غير مدعوم</option>
+          <option value="stopped" ${m.status==='stopped'?'selected':''}>متوقف</option>
+        </select>
+      </td>
+      <td><button class="del-btn" onclick="deleteMosqueRow(${i})">✕</button></td>
+    </tr>
+  `).join('');
+  if(!mosques.length) tb.innerHTML=`<tr><td colspan="6" style="text-align:center;color:var(--tl);padding:16px">لا توجد مساجد — اضغط "إضافة مسجد"</td></tr>`;
+}
+
+function addMosqueRow() {
+  const y = ctrlYear;
+  if(!DB.years[y].mosques) DB.years[y].mosques=[];
+  DB.years[y].mosques.push({name:'',hood:'',halaq:1,periods:1,students:0,status:'active'});
+  buildMosquesCtrl(y);
+  // التمرير للصف الجديد
+  setTimeout(()=>{
+    const rows = document.querySelectorAll('#mosque-ctrl-body tr');
+    if(rows.length) rows[rows.length-1].querySelector('input')?.focus();
+  },100);
+}
+
+function deleteMosqueRow(i) {
+  collectMosques();
+  DB.years[ctrlYear].mosques.splice(i,1);
+  buildMosquesCtrl(ctrlYear);
+}
+
+function collectMosques() {
+  const mosques=[];
+  let i=0;
+  while(document.getElementById('m-name-'+i)) {
+    mosques.push({
+      name: document.getElementById('m-name-'+i)?.value||'',
+      hood: document.getElementById('m-hood-'+i)?.value||'',
+      halaq: +document.getElementById('m-halaq-'+i)?.value||0,
+      periods: +document.getElementById('m-periods-'+i)?.value||1,
+      students: +document.getElementById('m-students-'+i)?.value||0,
+      status: document.getElementById('m-status-'+i)?.value||'active'
+    });
+    i++;
+  }
+  DB.years[ctrlYear].mosques = mosques;
+}
+
+function saveMosques() {
+  collectMosques();
+  showToast('تم حفظ بيانات المساجد — الشؤون التعليمية محدَّثة');
+}
+// ═══════════════════════════════════════════════════════
 // PIN LOCK
 // ═══════════════════════════════════════════════════════
 let _pin = '1234';
-let _pinEntry = '';
 let _pinUnlocked = false;
 
-function pinPress(val) {
-  if(val === '⌫') {
-    _pinEntry = _pinEntry.slice(0,-1);
-  } else if(_pinEntry.length < 4) {
-    _pinEntry += val;
-  }
-  updatePinDots();
-  if(_pinEntry.length === 4) {
-    setTimeout(checkPin, 150);
-  }
+function onPinInput() {
+  // أمسح رسالة الخطأ عند الكتابة
+  const err = document.getElementById('pin-err');
+  if(err) err.textContent = '';
+  const inp = document.getElementById('pin-input');
+  if(inp) inp.style.borderColor = 'var(--primary)';
 }
 
-function updatePinDots(state) {
-  for(let i=0;i<4;i++) {
-    const dot = document.getElementById('pd'+i);
-    if(!dot) continue;
-    dot.className = 'pin-dot';
-    if(state==='error') dot.classList.add('error');
-    else if(i < _pinEntry.length) dot.classList.add('filled');
-  }
-}
-
-function checkPin() {
-  if(_pinEntry === _pin) {
+function submitPin() {
+  const inp = document.getElementById('pin-input');
+  const err = document.getElementById('pin-err');
+  if(!inp) return;
+  const val = inp.value;
+  if(val === _pin) {
     _pinUnlocked = true;
+    inp.value = '';
+    inp.style.borderColor = 'var(--border)';
     document.getElementById('ctrl-lock').style.display = 'none';
     document.getElementById('ctrl-content').style.display = 'block';
     initCtrl();
   } else {
-    updatePinDots('error');
-    document.getElementById('pin-err').textContent = 'رقم سري خاطئ — حاول مجدداً';
+    inp.style.borderColor = 'var(--danger)';
+    if(err) err.textContent = 'رقم سري خاطئ — حاول مجدداً';
+    inp.select();
     setTimeout(() => {
-      _pinEntry = '';
-      updatePinDots();
-      document.getElementById('pin-err').textContent = '';
-    }, 900);
+      inp.value = '';
+      inp.style.borderColor = 'var(--border)';
+      if(err) err.textContent = '';
+    }, 1200);
   }
+}
+
+// إعادة تعيين شاشة القفل عند الخروج
+function resetPinScreen() {
+  const inp = document.getElementById('pin-input');
+  const err = document.getElementById('pin-err');
+  if(inp) { inp.value=''; inp.style.borderColor='var(--border)'; }
+  if(err) err.textContent='';
 }
 
 function changePin() {
@@ -1941,7 +2467,7 @@ function changePin() {
   const nw  = newEl.value.trim();
   const cf  = cfEl.value.trim();
   if(old !== _pin) { msg.style.color='var(--danger)'; msg.textContent='الرقم الحالي غير صحيح'; return; }
-  if(!/^\d{4}$/.test(nw)) { msg.style.color='var(--danger)'; msg.textContent='الرقم الجديد يجب أن يكون 4 أرقام'; return; }
+  if(!nw) { msg.style.color='var(--danger)'; msg.textContent='أدخل الرقم الجديد'; return; }
   if(nw !== cf) { msg.style.color='var(--danger)'; msg.textContent='الرقمان الجديدان غير متطابقَين'; return; }
   _pin = nw;
   oldEl.value=''; newEl.value=''; cfEl.value='';
@@ -1949,7 +2475,327 @@ function changePin() {
   setTimeout(()=>msg.textContent='', 3000);
 }
 // ═══════════════════════════════════════════════════════
-function openForm(id){ document.getElementById('modal-'+id).classList.add('open'); document.body.style.overflow='hidden'; }
+// ═══════════════════════════════════════════════════════
+// REPORTS — تقارير بهوية الجمعية
+// ═══════════════════════════════════════════════════════
+
+const BRAND = {
+  primary:'#323366', mid:'#544f7d', cyan:'#60c4e4',
+  off:'#f7f8fc', text:'#1a1a2e', tl:'#6b6f8a',
+  success:'#2d7a55', danger:'#c0392b', border:'#e8eaf2'
+};
+
+function fillAnnualFromDB() {
+  const y=+document.getElementById('ar-year')?.value;
+  const d=DB.years[y]; if(!d) return;
+  const set=(id,v)=>{const el=document.getElementById(id);if(el) el.value=v||0;};
+  set('ar-masajid',d.masajid); set('ar-halaq',d.halaq);
+  set('ar-students',d.students); set('ar-teachers',d.teachers);
+  set('ar-huffaz',d.huffaz);
+  set('ar-ajzaa',d.ajzaa||0);
+  set('ar-hafz-pages',d.hafzPages||0);
+  set('ar-muraja-pages',d.murajaPages||0);
+  set('ar-muraja-ajzaa',d.murajaAjzaa||0);
+  const rev=(d.rev1||0)+(d.rev2||0)+(d.rev3||0)+(d.rev4||0);
+  const exp=(d.exp1||0)+(d.exp2||0)+(d.exp3||0)+(d.exp4||0);
+  set('ar-rev',rev); set('ar-exp',exp);
+}
+
+function reportHeader(title,subtitle,color,mode) {
+  const compact=mode==='compact';
+  const p=compact?'18px 24px 14px':'28px 36px 20px';
+  const fs1=compact?'10px':'11px'; const fs2=compact?'17px':'20px'; const fs3=compact?'12px':'13px';
+  return `<div style="background:${color||BRAND.primary};color:#fff;padding:${p};position:relative;overflow:hidden;border-radius:0 0 14px 14px;margin-bottom:${compact?'16px':'24px'}">
+    <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border:20px solid rgba(96,196,228,.12);border-radius:50%"></div>
+    <div style="position:absolute;bottom:-40px;left:5%;width:150px;height:150px;border:28px solid rgba(96,196,228,.07);border-radius:50%"></div>
+    <div style="position:relative;z-index:1;display:flex;align-items:center;gap:14px">
+      <svg width="${compact?'38':'52'}" height="${compact?'38':'52'}" viewBox="0 0 36 36" fill="none">
+        <path d="M18 4L28 10L28 22L18 28L8 22L8 10Z" fill="none" stroke="#60c4e4" stroke-width="1.5" opacity=".7"/>
+        <path d="M18 8L24 12L24 20L18 24L12 20L12 12Z" fill="rgba(96,196,228,.2)"/>
+        <circle cx="18" cy="16" r="4" fill="#60c4e4" opacity=".9"/>
+        <circle cx="18" cy="7" r="2" fill="#60c4e4"/>
+      </svg>
+      <div style="flex:1">
+        <div style="font-size:${fs1};opacity:.65;margin-bottom:2px">جمعية تحفيظ القرآن الكريم بالمنطقة الشرقية</div>
+        <div style="font-size:${fs2};font-weight:900;margin-bottom:2px">${title}</div>
+        <div style="font-size:${fs3};color:#60c4e4;opacity:.9">${subtitle}</div>
+      </div>
+      <div style="text-align:left;opacity:.7;font-size:${fs1}"><div>فرع الخبر</div><div>${new Date().toLocaleDateString('ar-SA')}</div></div>
+    </div>
+    <div style="height:3px;background:repeating-linear-gradient(90deg,#60c4e4 0,#60c4e4 14px,${BRAND.mid} 14px,${BRAND.mid} 28px,transparent 28px,transparent 40px);margin-top:${compact?'12px':'18px'};border-radius:2px;opacity:.6"></div>
+  </div>`;
+}
+
+function statBox(label,value,sub,bg,mode) {
+  const compact=mode==='compact';
+  const vfs=compact?'20px':'26px'; const lfs=compact?'10px':'11px';
+  return `<div style="background:${bg||BRAND.off};border-radius:${compact?'8px':'12px'};padding:${compact?'10px 12px':'16px 18px'};border-right:4px solid ${BRAND.cyan};flex:1;min-width:100px">
+    <div style="font-size:${lfs};color:${BRAND.tl};font-weight:700;margin-bottom:4px">${label}</div>
+    <div style="font-size:${vfs};font-weight:900;color:${BRAND.primary}">${value}</div>
+    ${sub?`<div style="font-size:${lfs};color:${BRAND.tl};margin-top:2px">${sub}</div>`:''}
+  </div>`;
+}
+
+function secTitle(icon,title,mode) {
+  const compact=mode==='compact';
+  return `<div style="display:flex;align-items:center;gap:8px;margin:${compact?'12px 0 8px':'20px 0 12px'};padding-bottom:6px;border-bottom:2px solid rgba(96,196,228,.25)">
+    <div style="width:${compact?'22px':'28px'};height:${compact?'22px':'28px'};background:rgba(96,196,228,.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:${compact?'12px':'15px'}">${icon}</div>
+    <div style="font-size:${compact?'13px':'15px'};font-weight:700;color:${BRAND.primary}">${title}</div>
+  </div>`;
+}
+
+function exportMonthlyReport() {
+  const months=['','محرم','صفر','ربيع الأول','ربيع الثاني','جمادى الأولى','جمادى الثانية','رجب','شعبان','رمضان','شوال','ذو القعدة','ذو الحجة'];
+  const month=document.getElementById('mr-month')?.value;
+  const year=document.getElementById('mr-year')?.value||'—';
+  const masajid=document.getElementById('mr-masajid')?.value||'0';
+  const halaq=document.getElementById('mr-halaq')?.value||'0';
+  const teachers=document.getElementById('mr-teachers')?.value||'0';
+  const students=+document.getElementById('mr-students')?.value||0;
+  const hafzPages=document.getElementById('mr-hafz-pages')?.value||'0';
+  const ajzaa=document.getElementById('mr-ajzaa')?.value||'0';
+  const murajaPages=document.getElementById('mr-muraja-pages')?.value||'0';
+  const murajaAjzaa=document.getElementById('mr-muraja-ajzaa')?.value||'0';
+  const huffaz=document.getElementById('mr-huffaz')?.value||'0';
+  const rev=+document.getElementById('mr-rev')?.value||0;
+  const exp=+document.getElementById('mr-exp')?.value||0;
+  const surplus=rev-exp;
+  const achievements=document.getElementById('mr-achievements')?.value||'';
+  const notes=document.getElementById('mr-notes')?.value||'';
+  const author=document.getElementById('mr-author')?.value||'';
+  const mName=months[+month]||'';
+
+  const html=`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:210mm;font-family:'Segoe UI',Tahoma,Arial,sans-serif;color:${BRAND.text};background:#fff;direction:rtl;font-size:11px}
+body{margin:0}
+@media print{
+  @page{size:A4 portrait;margin:0}
+  html{width:210mm}
+  body{
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    transform-origin:top right;
+    width:210mm;
+  }
+}
+</style></head><body>
+${reportHeader('التقرير الشهري',`شهر ${mName} ${year} هـ`,BRAND.primary,'compact')}
+<div style="padding:0 24px 18px">
+
+${secTitle('🏛️','البيانات الأساسية','compact')}
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+${statBox('🕌 المساجد',masajid,'','','compact')}
+${statBox('📖 الحلق',halaq,'','','compact')}
+${statBox('👨‍🏫 المعلمون',teachers,'','','compact')}
+${statBox('👤 الطلاب',students.toLocaleString('en-US'),'','','compact')}
+</div>
+
+${secTitle('📖','بيانات الحفظ والمراجعة','compact')}
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+${statBox('📄 صفحات الحفظ',(+hafzPages).toLocaleString('en-US'),'','rgba(50,51,102,.05)','compact')}
+${statBox('📚 أجزاء الحفظ',(+ajzaa).toLocaleString('en-US'),'','rgba(50,51,102,.05)','compact')}
+${statBox('🔄 صفحات المراجعة',(+murajaPages).toLocaleString('en-US'),'','rgba(96,196,228,.07)','compact')}
+${statBox('📝 أجزاء المراجعة',(+murajaAjzaa).toLocaleString('en-US'),'','rgba(96,196,228,.07)','compact')}
+${statBox('⭐ الحفاظ الجدد',huffaz,'','rgba(45,122,85,.07)','compact')}
+</div>
+
+${rev+exp>0?`${secTitle('💰','الوضع المالي','compact')}
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+${statBox('📈 الإيرادات',rev.toLocaleString('en-US')+' ر.س','','rgba(45,122,85,.06)','compact')}
+${statBox('📉 المصروفات',exp.toLocaleString('en-US')+' ر.س','','rgba(192,57,43,.05)','compact')}
+${statBox(surplus>=0?'💚 الفائض':'🔴 العجز',Math.abs(surplus).toLocaleString('en-US')+' ر.س',(rev>0?((Math.abs(surplus)/rev)*100).toFixed(1):0)+'% هامش',surplus>=0?'rgba(45,122,85,.08)':'rgba(192,57,43,.06)','compact')}
+</div>`:''}
+
+${achievements?secTitle('🏆','أبرز الإنجازات','compact')+`<div style="background:${BRAND.off};border-radius:8px;padding:10px 14px;margin-bottom:10px;line-height:1.7;font-size:11px">${achievements.replace(/\n/g,'<br>')}</div>`:''}
+${notes?secTitle('📝','ملاحظات وتوصيات','compact')+`<div style="background:rgba(96,196,228,.06);border-radius:8px;padding:10px 14px;border-right:4px solid ${BRAND.cyan};margin-bottom:10px;line-height:1.7;font-size:11px">${notes.replace(/\n/g,'<br>')}</div>`:''}
+
+<div style="margin-top:16px;display:flex;justify-content:space-between;align-items:flex-end;border-top:2px solid ${BRAND.border};padding-top:12px">
+<div style="font-size:10px;color:${BRAND.tl}">التقرير الشهري — فرع الخبر</div>
+${author?`<div style="text-align:center"><div style="font-size:10px;color:${BRAND.tl};margin-bottom:20px">مُعد التقرير</div><div style="border-top:1px solid #ccc;padding-top:5px;font-size:12px;font-weight:700">${author}</div></div>`:''}
+<div style="font-size:10px;color:${BRAND.tl}">${new Date().toLocaleDateString('ar-SA')}</div>
+</div>
+</div></body></html>`;
+
+  printReport(html,`التقرير_الشهري_${mName}_${year}`);
+  closeModal('modal-monthly-report');
+}
+
+function exportAnnualReport() {
+  const y=+document.getElementById('ar-year')?.value;
+  const author=document.getElementById('ar-author')?.value||'';
+  const masajid=document.getElementById('ar-masajid')?.value||'0';
+  const halaq=document.getElementById('ar-halaq')?.value||'0';
+  const students=+document.getElementById('ar-students')?.value||0;
+  const teachers=document.getElementById('ar-teachers')?.value||'0';
+  const hafzPages=document.getElementById('ar-hafz-pages')?.value||'0';
+  const ajzaa=document.getElementById('ar-ajzaa')?.value||'0';
+  const murajaPages=document.getElementById('ar-muraja-pages')?.value||'0';
+  const murajaAjzaa=document.getElementById('ar-muraja-ajzaa')?.value||'0';
+  const huffaz=document.getElementById('ar-huffaz')?.value||'0';
+  const rev=+document.getElementById('ar-rev')?.value||0;
+  const exp=+document.getElementById('ar-exp')?.value||0;
+  const surplus=rev-exp;
+  const summary=document.getElementById('ar-summary')?.value||'';
+  const recs=document.getElementById('ar-recommendations')?.value||'';
+  const py=prevYear(y); const pd=py?DB.years[py]:null;
+  const chg=(cur,prv)=>{if(!prv||!prv) return '';const d=cur-prv;if(!d)return '';return `<span style="font-size:11px;color:${d>0?BRAND.success:BRAND.danger};font-weight:700"> ${d>0?'↑ +':'↓ '}${Math.abs(d)}</span>`;};
+  const kpis=kpisForYear(y);
+  const kpiExceed=kpis.filter(k=>k.pct>=100).length;
+  const kpiOk=kpis.filter(k=>k.pct>=90&&k.pct<100).length;
+  const kpiLow=kpis.filter(k=>k.pct<90).length;
+  const avgPct=kpis.length?Math.round(kpis.reduce((s,k)=>s+k.pct,0)/kpis.length):0;
+
+  const html=`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:210mm;font-family:'Segoe UI',Tahoma,Arial,sans-serif;color:${BRAND.text};background:#fff;direction:rtl}
+body{margin:0;font-size:9.5px}
+@media print{
+  @page{size:A4 portrait;margin:0}
+  html{width:210mm}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+.prog{height:5px;background:${BRAND.border};border-radius:3px;overflow:hidden}.pf{height:100%;border-radius:3px}
+.tbl{width:100%;border-collapse:collapse;font-size:8.5px}
+.tbl th{background:${BRAND.primary};color:#fff;padding:4px 7px;text-align:right;font-weight:700}
+.tbl td{padding:3px 7px;border-bottom:1px solid ${BRAND.border};line-height:1.3}
+.tbl tr:nth-child(even) td{background:${BRAND.off}}
+.sbox{border-radius:7px;padding:7px 10px;border-right:3px solid ${BRAND.cyan};flex:1;min-width:80px}
+.sbox .lbl{font-size:8.5px;color:${BRAND.tl};font-weight:700;margin-bottom:3px}
+.sbox .val{font-size:18px;font-weight:900;color:${BRAND.primary};line-height:1}
+.sbox .sub{font-size:8px;color:${BRAND.tl};margin-top:2px}
+.sec{display:flex;align-items:center;gap:7px;margin:8px 0 5px;padding-bottom:4px;border-bottom:1.5px solid rgba(96,196,228,.3)}
+.sec-ic{width:20px;height:20px;background:rgba(96,196,228,.15);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.sec-t{font-size:12px;font-weight:700;color:${BRAND.primary}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row4{display:flex;gap:6px;flex-wrap:nowrap;margin-bottom:7px}
+</style></head><body>
+
+${reportHeader('التقرير السنوي',`عام ${y}م — الخطة الاستراتيجية`,BRAND.primary,'compact')}
+
+<div style="padding:0 18px 14px">
+
+${summary?`<div class="sec"><div class="sec-ic">📋</div><div class="sec-t">الملخص التنفيذي</div></div>
+<div style="background:rgba(50,51,102,.04);border-radius:7px;padding:7px 12px;border-right:3px solid ${BRAND.primary};margin-bottom:8px;line-height:1.6;font-size:9px">${summary.replace(/\n/g,'<br>')}</div>`:''}
+
+<div class="two">
+  <div>
+    <div class="sec"><div class="sec-ic">🏛️</div><div class="sec-t">البيانات الأساسية</div></div>
+    <div class="row4">
+      <div class="sbox" style="background:${BRAND.off}"><div class="lbl">🕌 المساجد</div><div class="val">${masajid}</div>${pd?`<div class="sub">مقارنةً بـ ${pd.masajid} (${py})</div>`:''}</div>
+      <div class="sbox" style="background:${BRAND.off}"><div class="lbl">📖 الحلق</div><div class="val">${halaq}</div>${pd?`<div class="sub">مقارنةً بـ ${pd.halaq} (${py})</div>`:''}</div>
+    </div>
+    <div class="row4">
+      <div class="sbox" style="background:${BRAND.off}"><div class="lbl">👨‍🏫 المعلمون</div><div class="val">${teachers}</div>${pd?`<div class="sub">مقارنةً بـ ${pd.teachers} (${py})</div>`:''}</div>
+      <div class="sbox" style="background:${BRAND.off}"><div class="lbl">👤 الطلاب</div><div class="val">${students.toLocaleString('en-US')}</div>${pd?`<div class="sub">مقارنةً بـ ${pd.students.toLocaleString('en-US')} (${py})</div>`:''}</div>
+    </div>
+
+    <div class="sec"><div class="sec-ic">📖</div><div class="sec-t">الحفظ والمراجعة</div></div>
+    <div class="row4">
+      <div class="sbox" style="background:rgba(50,51,102,.05)"><div class="lbl">📄 صفحات الحفظ</div><div class="val">${(+hafzPages).toLocaleString('en-US')}</div></div>
+      <div class="sbox" style="background:rgba(50,51,102,.05)"><div class="lbl">📚 أجزاء الحفظ</div><div class="val">${(+ajzaa).toLocaleString('en-US')}</div></div>
+    </div>
+    <div class="row4">
+      <div class="sbox" style="background:rgba(96,196,228,.07)"><div class="lbl">🔄 صفحات المراجعة</div><div class="val">${(+murajaPages).toLocaleString('en-US')}</div></div>
+      <div class="sbox" style="background:rgba(96,196,228,.07)"><div class="lbl">📝 أجزاء المراجعة</div><div class="val">${(+murajaAjzaa).toLocaleString('en-US')}</div></div>
+    </div>
+    <div class="row4">
+      <div class="sbox" style="background:rgba(45,122,85,.07)"><div class="lbl">⭐ الحفاظ الجدد</div><div class="val">${huffaz}</div>${pd?`<div class="sub">مقارنةً بـ ${pd.huffaz} (${py})</div>`:''}</div>
+    </div>
+
+    ${rev+exp>0?`<div class="sec"><div class="sec-ic">💰</div><div class="sec-t">الوضع المالي</div></div>
+    <div class="row4">
+      <div class="sbox" style="background:rgba(45,122,85,.06)"><div class="lbl">📈 الإيرادات</div><div class="val" style="font-size:13px">${rev.toLocaleString('en-US')}</div><div class="sub">ر.س</div></div>
+      <div class="sbox" style="background:rgba(192,57,43,.05)"><div class="lbl">📉 المصروفات</div><div class="val" style="font-size:13px">${exp.toLocaleString('en-US')}</div><div class="sub">ر.س</div></div>
+      <div class="sbox" style="background:${surplus>=0?'rgba(45,122,85,.08)':'rgba(192,57,43,.06)'}"><div class="lbl">${surplus>=0?'💚 الفائض':'🔴 العجز'}</div><div class="val" style="font-size:13px">${Math.abs(surplus).toLocaleString('en-US')}</div><div class="sub">${rev>0?((Math.abs(surplus)/rev)*100).toFixed(1):0}%</div></div>
+    </div>`:''}
+  </div>
+
+  <div>
+    ${kpis.length?`<div class="sec"><div class="sec-ic">🎯</div><div class="sec-t">مؤشرات الأداء (${kpis.length} مؤشراً)</div></div>
+    <div class="row4" style="margin-bottom:6px">
+      <div class="sbox" style="background:rgba(45,122,85,.08)"><div class="lbl">متحققة ✓</div><div class="val">${kpiExceed}</div></div>
+      <div class="sbox" style="background:rgba(50,51,102,.05)"><div class="lbl">قريبة</div><div class="val">${kpiOk}</div></div>
+      <div class="sbox" style="background:rgba(192,57,43,.05)"><div class="lbl">متابعة</div><div class="val">${kpiLow}</div></div>
+      <div class="sbox" style="background:${avgPct>=90?'rgba(45,122,85,.06)':'rgba(180,83,9,.05)'}"><div class="lbl">متوسط</div><div class="val">${avgPct}%</div></div>
+    </div>
+    <table class="tbl">
+      <thead><tr><th>الكود</th><th>المؤشر</th><th>%</th></tr></thead>
+      <tbody>
+        ${kpis.map(k=>{
+          const clr=k.pct>=100?BRAND.success:k.pct>=90?BRAND.primary:k.pct>=70?'#b45309':BRAND.danger;
+          return `<tr>
+            <td style="font-weight:700;white-space:nowrap">${k.code}</td>
+            <td>${k.name}</td>
+            <td style="white-space:nowrap">
+              <div style="display:flex;align-items:center;gap:3px">
+                <div class="prog" style="width:40px"><div class="pf" style="width:${Math.min(k.pct,100)}%;background:${clr}"></div></div>
+                <span style="font-weight:700;color:${clr};font-size:8px">${k.pct}%</span>
+              </div>
+            </td>
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>`:''}
+
+    ${recs?`<div class="sec" style="margin-top:8px"><div class="sec-ic">🔭</div><div class="sec-t">التوصيات</div></div>
+    <div style="background:rgba(96,196,228,.06);border-radius:7px;padding:7px 12px;border-right:3px solid ${BRAND.cyan};line-height:1.6;font-size:9px">${recs.replace(/\n/g,'<br>')}</div>`:''}
+  </div>
+</div>
+
+<div style="margin-top:12px;display:flex;justify-content:space-between;align-items:flex-end;border-top:1.5px solid ${BRAND.border};padding-top:8px">
+  <div style="font-size:9px;color:${BRAND.tl}">التقرير السنوي — فرع الخبر</div>
+  ${author?`<div style="text-align:center"><div style="font-size:9px;color:${BRAND.tl};margin-bottom:16px">مُعد التقرير</div><div style="border-top:1px solid #ccc;padding-top:4px;font-size:10px;font-weight:700">${author}</div></div>`:''}
+  <div style="font-size:9px;color:${BRAND.tl}">${new Date().toLocaleDateString('ar-SA')}</div>
+</div>
+
+</div></body></html>`;
+
+  printReport(html,`التقرير_السنوي_${y}`);
+  closeModal('modal-annual-report');
+}
+
+function printReport(html,filename) {
+  const win=window.open('','_blank','width=900,height=700');
+  if(!win){alert('السماح بالنوافذ المنبثقة مطلوب لتصدير التقرير');return;}
+
+  // نضيف سكريبت التقليص التلقائي داخل الصفحة المفتوحة
+  const scaleScript = `<script>
+    window.addEventListener('load', function() {
+      var A4_H = 297; // mm
+      var PX_PER_MM = 96 / 25.4;
+      var maxH = A4_H * PX_PER_MM;
+      var bodyH = document.body.scrollHeight;
+      if (bodyH > maxH) {
+        var scale = maxH / bodyH;
+        document.body.style.transform = 'scale(' + scale + ')';
+        document.body.style.transformOrigin = 'top right';
+        document.body.style.width = (100 / scale) + '%';
+        document.documentElement.style.height = A4_H + 'mm';
+        document.documentElement.style.overflow = 'hidden';
+      }
+      setTimeout(function(){ window.print(); }, 500);
+    });
+  <\/script>`;
+
+  const finalHtml = html.replace('</body>', scaleScript + '</body>');
+  win.document.write(finalHtml);
+  win.document.close();
+  win.document.title = filename;
+}
+
+function openForm(id){
+  if(id==='annual-report'){
+    const sel=document.getElementById('ar-year');
+    if(sel){ sel.innerHTML=sortedYears().map(y=>`<option value="${y}">${y}</option>`).join(''); sel.value=latestYear(); fillAnnualFromDB(); }
+    document.getElementById('modal-annual-report').classList.add('open');
+    document.body.style.overflow='hidden'; return;
+  }
+  document.getElementById('modal-'+id).classList.add('open');
+  document.body.style.overflow='hidden';
+}
 function closeForm(id){ document.getElementById('modal-'+id).classList.remove('open'); document.body.style.overflow=''; }
 function submitForm(id){ closeForm(id); showToast('تم الحفظ — سيتم الربط بـ Google Sheets'); }
 document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o){o.classList.remove('open');document.body.style.overflow='';}}));
